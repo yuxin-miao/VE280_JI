@@ -1,0 +1,3 @@
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles/Lab2.dir
