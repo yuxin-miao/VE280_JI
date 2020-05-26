@@ -57,27 +57,27 @@ include CMakeFiles/Lab2.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Lab2.dir/flags.make
 
-CMakeFiles/Lab2.dir/main.cpp.o: CMakeFiles/Lab2.dir/flags.make
-CMakeFiles/Lab2.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Lab2.dir/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lab2.dir/main.cpp.o -c /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/main.cpp
+CMakeFiles/Lab2.dir/ex1.cpp.o: CMakeFiles/Lab2.dir/flags.make
+CMakeFiles/Lab2.dir/ex1.cpp.o: ../ex1.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Lab2.dir/ex1.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lab2.dir/ex1.cpp.o -c /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/ex1.cpp
 
-CMakeFiles/Lab2.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lab2.dir/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/main.cpp > CMakeFiles/Lab2.dir/main.cpp.i
+CMakeFiles/Lab2.dir/ex1.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lab2.dir/ex1.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/ex1.cpp > CMakeFiles/Lab2.dir/ex1.cpp.i
 
-CMakeFiles/Lab2.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lab2.dir/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/main.cpp -o CMakeFiles/Lab2.dir/main.cpp.s
+CMakeFiles/Lab2.dir/ex1.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lab2.dir/ex1.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/ex1.cpp -o CMakeFiles/Lab2.dir/ex1.cpp.s
 
 # Object files for target Lab2
 Lab2_OBJECTS = \
-"CMakeFiles/Lab2.dir/main.cpp.o"
+"CMakeFiles/Lab2.dir/ex1.cpp.o"
 
 # External object files for target Lab2
 Lab2_EXTERNAL_OBJECTS =
 
-Lab2: CMakeFiles/Lab2.dir/main.cpp.o
+Lab2: CMakeFiles/Lab2.dir/ex1.cpp.o
 Lab2: CMakeFiles/Lab2.dir/build.make
 Lab2: CMakeFiles/Lab2.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Lab2"

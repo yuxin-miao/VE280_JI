@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named Lab2_2
+
+# Build rule for target.
+Lab2_2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Lab2_2
+.PHONY : Lab2_2
+
+# fast build rule for target.
+Lab2_2/fast:
+	$(MAKE) -f CMakeFiles/Lab2_2.dir/build.make CMakeFiles/Lab2_2.dir/build
+.PHONY : Lab2_2/fast
+
+#=============================================================================
 # Target rules for targets named Lab2
 
 # Build rule for target.
@@ -123,13 +136,80 @@ Lab2/fast:
 	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/build
 .PHONY : Lab2/fast
 
+#=============================================================================
+# Target rules for targets named Try
+
+# Build rule for target.
+Try: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Try
+.PHONY : Try
+
+# fast build rule for target.
+Try/fast:
+	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/build
+.PHONY : Try/fast
+
+ex1.o: ex1.cpp.o
+
+.PHONY : ex1.o
+
+# target to build an object file
+ex1.cpp.o:
+	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/ex1.cpp.o
+.PHONY : ex1.cpp.o
+
+ex1.i: ex1.cpp.i
+
+.PHONY : ex1.i
+
+# target to preprocess a source file
+ex1.cpp.i:
+	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/ex1.cpp.i
+.PHONY : ex1.cpp.i
+
+ex1.s: ex1.cpp.s
+
+.PHONY : ex1.s
+
+# target to generate assembly for a file
+ex1.cpp.s:
+	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/ex1.cpp.s
+.PHONY : ex1.cpp.s
+
+ex2.o: ex2.cpp.o
+
+.PHONY : ex2.o
+
+# target to build an object file
+ex2.cpp.o:
+	$(MAKE) -f CMakeFiles/Lab2_2.dir/build.make CMakeFiles/Lab2_2.dir/ex2.cpp.o
+.PHONY : ex2.cpp.o
+
+ex2.i: ex2.cpp.i
+
+.PHONY : ex2.i
+
+# target to preprocess a source file
+ex2.cpp.i:
+	$(MAKE) -f CMakeFiles/Lab2_2.dir/build.make CMakeFiles/Lab2_2.dir/ex2.cpp.i
+.PHONY : ex2.cpp.i
+
+ex2.s: ex2.cpp.s
+
+.PHONY : ex2.s
+
+# target to generate assembly for a file
+ex2.cpp.s:
+	$(MAKE) -f CMakeFiles/Lab2_2.dir/build.make CMakeFiles/Lab2_2.dir/ex2.cpp.s
+.PHONY : ex2.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -138,7 +218,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -147,7 +227,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -158,7 +238,15 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... Lab2_2"
 	@echo "... Lab2"
+	@echo "... Try"
+	@echo "... ex1.o"
+	@echo "... ex1.i"
+	@echo "... ex1.s"
+	@echo "... ex2.o"
+	@echo "... ex2.i"
+	@echo "... ex2.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
