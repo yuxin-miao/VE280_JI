@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/ex1.cpp" "/Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles/Lab2.dir/ex1.cpp.o"
+  "/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/main.cpp" "/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles/Lab2.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

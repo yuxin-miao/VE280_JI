@@ -44,25 +44,27 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2
+CMAKE_SOURCE_DIR = /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/Lab2_3.dir/all
 all: CMakeFiles/Lab2_2.dir/all
+all: CMakeFiles/Lab2_1.dir/all
 all: CMakeFiles/Lab2.dir/all
-all: CMakeFiles/Try.dir/all
 
 .PHONY : all
 
 # The main recursive "clean" target.
+clean: CMakeFiles/Lab2_3.dir/clean
 clean: CMakeFiles/Lab2_2.dir/clean
+clean: CMakeFiles/Lab2_1.dir/clean
 clean: CMakeFiles/Lab2.dir/clean
-clean: CMakeFiles/Try.dir/clean
 
 .PHONY : clean
 
@@ -72,20 +74,47 @@ preinstall:
 .PHONY : preinstall
 
 #=============================================================================
+# Target rules for target CMakeFiles/Lab2_3.dir
+
+# All Build rule for target.
+CMakeFiles/Lab2_3.dir/all:
+	$(MAKE) -f CMakeFiles/Lab2_3.dir/build.make CMakeFiles/Lab2_3.dir/depend
+	$(MAKE) -f CMakeFiles/Lab2_3.dir/build.make CMakeFiles/Lab2_3.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles --progress-num=7,8 "Built target Lab2_3"
+.PHONY : CMakeFiles/Lab2_3.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Lab2_3.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Lab2_3.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/Lab2_3.dir/rule
+
+# Convenience name for target.
+Lab2_3: CMakeFiles/Lab2_3.dir/rule
+
+.PHONY : Lab2_3
+
+# clean rule for target.
+CMakeFiles/Lab2_3.dir/clean:
+	$(MAKE) -f CMakeFiles/Lab2_3.dir/build.make CMakeFiles/Lab2_3.dir/clean
+.PHONY : CMakeFiles/Lab2_3.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/Lab2_2.dir
 
 # All Build rule for target.
 CMakeFiles/Lab2_2.dir/all:
 	$(MAKE) -f CMakeFiles/Lab2_2.dir/build.make CMakeFiles/Lab2_2.dir/depend
 	$(MAKE) -f CMakeFiles/Lab2_2.dir/build.make CMakeFiles/Lab2_2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target Lab2_2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles --progress-num=5,6 "Built target Lab2_2"
 .PHONY : CMakeFiles/Lab2_2.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Lab2_2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Lab2_2.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/Lab2_2.dir/rule
 
 # Convenience name for target.
@@ -99,20 +128,47 @@ CMakeFiles/Lab2_2.dir/clean:
 .PHONY : CMakeFiles/Lab2_2.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/Lab2_1.dir
+
+# All Build rule for target.
+CMakeFiles/Lab2_1.dir/all:
+	$(MAKE) -f CMakeFiles/Lab2_1.dir/build.make CMakeFiles/Lab2_1.dir/depend
+	$(MAKE) -f CMakeFiles/Lab2_1.dir/build.make CMakeFiles/Lab2_1.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target Lab2_1"
+.PHONY : CMakeFiles/Lab2_1.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Lab2_1.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Lab2_1.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/Lab2_1.dir/rule
+
+# Convenience name for target.
+Lab2_1: CMakeFiles/Lab2_1.dir/rule
+
+.PHONY : Lab2_1
+
+# clean rule for target.
+CMakeFiles/Lab2_1.dir/clean:
+	$(MAKE) -f CMakeFiles/Lab2_1.dir/build.make CMakeFiles/Lab2_1.dir/clean
+.PHONY : CMakeFiles/Lab2_1.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/Lab2.dir
 
 # All Build rule for target.
 CMakeFiles/Lab2.dir/all:
 	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/depend
 	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target Lab2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target Lab2"
 .PHONY : CMakeFiles/Lab2.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Lab2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Lab2.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/Lab2.dir/rule
 
 # Convenience name for target.
@@ -124,33 +180,6 @@ Lab2: CMakeFiles/Lab2.dir/rule
 CMakeFiles/Lab2.dir/clean:
 	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/clean
 .PHONY : CMakeFiles/Lab2.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/Try.dir
-
-# All Build rule for target.
-CMakeFiles/Try.dir/all:
-	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/depend
-	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles --progress-num=5,6 "Built target Try"
-.PHONY : CMakeFiles/Try.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/Try.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Try.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/Try.dir/rule
-
-# Convenience name for target.
-Try: CMakeFiles/Try.dir/rule
-
-.PHONY : Try
-
-# clean rule for target.
-CMakeFiles/Try.dir/clean:
-	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/clean
-.PHONY : CMakeFiles/Try.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2
+CMAKE_SOURCE_DIR = /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/lab/Lab2/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/Lab2/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named Lab2_3
+
+# Build rule for target.
+Lab2_3: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Lab2_3
+.PHONY : Lab2_3
+
+# fast build rule for target.
+Lab2_3/fast:
+	$(MAKE) -f CMakeFiles/Lab2_3.dir/build.make CMakeFiles/Lab2_3.dir/build
+.PHONY : Lab2_3/fast
+
+#=============================================================================
 # Target rules for targets named Lab2_2
 
 # Build rule for target.
@@ -122,6 +135,19 @@ Lab2_2: cmake_check_build_system
 Lab2_2/fast:
 	$(MAKE) -f CMakeFiles/Lab2_2.dir/build.make CMakeFiles/Lab2_2.dir/build
 .PHONY : Lab2_2/fast
+
+#=============================================================================
+# Target rules for targets named Lab2_1
+
+# Build rule for target.
+Lab2_1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Lab2_1
+.PHONY : Lab2_1
+
+# fast build rule for target.
+Lab2_1/fast:
+	$(MAKE) -f CMakeFiles/Lab2_1.dir/build.make CMakeFiles/Lab2_1.dir/build
+.PHONY : Lab2_1/fast
 
 #=============================================================================
 # Target rules for targets named Lab2
@@ -136,26 +162,13 @@ Lab2/fast:
 	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/build
 .PHONY : Lab2/fast
 
-#=============================================================================
-# Target rules for targets named Try
-
-# Build rule for target.
-Try: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Try
-.PHONY : Try
-
-# fast build rule for target.
-Try/fast:
-	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/build
-.PHONY : Try/fast
-
 ex1.o: ex1.cpp.o
 
 .PHONY : ex1.o
 
 # target to build an object file
 ex1.cpp.o:
-	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/ex1.cpp.o
+	$(MAKE) -f CMakeFiles/Lab2_1.dir/build.make CMakeFiles/Lab2_1.dir/ex1.cpp.o
 .PHONY : ex1.cpp.o
 
 ex1.i: ex1.cpp.i
@@ -164,7 +177,7 @@ ex1.i: ex1.cpp.i
 
 # target to preprocess a source file
 ex1.cpp.i:
-	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/ex1.cpp.i
+	$(MAKE) -f CMakeFiles/Lab2_1.dir/build.make CMakeFiles/Lab2_1.dir/ex1.cpp.i
 .PHONY : ex1.cpp.i
 
 ex1.s: ex1.cpp.s
@@ -173,7 +186,7 @@ ex1.s: ex1.cpp.s
 
 # target to generate assembly for a file
 ex1.cpp.s:
-	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/ex1.cpp.s
+	$(MAKE) -f CMakeFiles/Lab2_1.dir/build.make CMakeFiles/Lab2_1.dir/ex1.cpp.s
 .PHONY : ex1.cpp.s
 
 ex2.o: ex2.cpp.o
@@ -203,13 +216,40 @@ ex2.cpp.s:
 	$(MAKE) -f CMakeFiles/Lab2_2.dir/build.make CMakeFiles/Lab2_2.dir/ex2.cpp.s
 .PHONY : ex2.cpp.s
 
+ex3.o: ex3.cpp.o
+
+.PHONY : ex3.o
+
+# target to build an object file
+ex3.cpp.o:
+	$(MAKE) -f CMakeFiles/Lab2_3.dir/build.make CMakeFiles/Lab2_3.dir/ex3.cpp.o
+.PHONY : ex3.cpp.o
+
+ex3.i: ex3.cpp.i
+
+.PHONY : ex3.i
+
+# target to preprocess a source file
+ex3.cpp.i:
+	$(MAKE) -f CMakeFiles/Lab2_3.dir/build.make CMakeFiles/Lab2_3.dir/ex3.cpp.i
+.PHONY : ex3.cpp.i
+
+ex3.s: ex3.cpp.s
+
+.PHONY : ex3.s
+
+# target to generate assembly for a file
+ex3.cpp.s:
+	$(MAKE) -f CMakeFiles/Lab2_3.dir/build.make CMakeFiles/Lab2_3.dir/ex3.cpp.s
+.PHONY : ex3.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -218,7 +258,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -227,7 +267,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/Lab2.dir/build.make CMakeFiles/Lab2.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -237,16 +277,20 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... Lab2_3"
 	@echo "... edit_cache"
 	@echo "... Lab2_2"
+	@echo "... Lab2_1"
 	@echo "... Lab2"
-	@echo "... Try"
 	@echo "... ex1.o"
 	@echo "... ex1.i"
 	@echo "... ex1.s"
 	@echo "... ex2.o"
 	@echo "... ex2.i"
 	@echo "... ex2.s"
+	@echo "... ex3.o"
+	@echo "... ex3.i"
+	@echo "... ex3.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
