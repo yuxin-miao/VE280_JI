@@ -8,7 +8,6 @@ int Array_address(int x[]);
 void Const_reference(int iVal); // const-qualification of parameters only has an effect in function definition
 void Const_pointer(int num);
 void all_can_change(); // const do not mean constant, just for compiler to avoid changing
-
 int main() {
     //Reference_address();
     //Pointer_address();

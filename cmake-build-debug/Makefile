@@ -123,6 +123,33 @@ VE280/fast:
 	$(MAKE) -f CMakeFiles/VE280.dir/build.make CMakeFiles/VE280.dir/build
 .PHONY : VE280/fast
 
+Note_Week3.o: Note_Week3.cpp.o
+
+.PHONY : Note_Week3.o
+
+# target to build an object file
+Note_Week3.cpp.o:
+	$(MAKE) -f CMakeFiles/VE280.dir/build.make CMakeFiles/VE280.dir/Note_Week3.cpp.o
+.PHONY : Note_Week3.cpp.o
+
+Note_Week3.i: Note_Week3.cpp.i
+
+.PHONY : Note_Week3.i
+
+# target to preprocess a source file
+Note_Week3.cpp.i:
+	$(MAKE) -f CMakeFiles/VE280.dir/build.make CMakeFiles/VE280.dir/Note_Week3.cpp.i
+.PHONY : Note_Week3.cpp.i
+
+Note_Week3.s: Note_Week3.cpp.s
+
+.PHONY : Note_Week3.s
+
+# target to generate assembly for a file
+Note_Week3.cpp.s:
+	$(MAKE) -f CMakeFiles/VE280.dir/build.make CMakeFiles/VE280.dir/Note_Week3.cpp.s
+.PHONY : Note_Week3.cpp.s
+
 lecture_note.o: lecture_note.cpp.o
 
 .PHONY : lecture_note.o
@@ -159,6 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... VE280"
+	@echo "... Note_Week3.o"
+	@echo "... Note_Week3.i"
+	@echo "... Note_Week3.s"
 	@echo "... lecture_note.o"
 	@echo "... lecture_note.i"
 	@echo "... lecture_note.s"

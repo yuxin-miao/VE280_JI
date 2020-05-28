@@ -3,4 +3,4 @@ project(VE280)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(VE280 lecture_note.cpp)
+add_executable(VE280 lecture_note.cpp Note_Week3.cpp)

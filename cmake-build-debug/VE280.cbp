@@ -80,6 +80,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/Note_Week3.cpp">
+			<Option target="VE280"/>
+		</Unit>
 		<Unit filename="/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lecture_note.cpp">
 			<Option target="VE280"/>
 		</Unit>

@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/VE280.dir/Note_Week3.cpp.o"
   "CMakeFiles/VE280.dir/lecture_note.cpp.o"
   "VE280"
   "VE280.pdb"
