@@ -9,6 +9,9 @@ struct LargeStruct{
 };
 
 void recursiveFunction(LargeStruct ls, int i){
+    // This large struct is passed by value
+    // Lack of end situation
+    // So when too many calls, Result in Segmentation fault (no memory left, crashed)
     if (i % NCOUT == 0){
         cout << i << endl;
     }
