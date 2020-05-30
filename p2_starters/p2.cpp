@@ -31,10 +31,10 @@ int main(int argc, char *argv[]) {
     // READ: User directories
     ifstream read_user_dir;
     for (int i = 0; i < count_user; i++) {
-        stringstream path;
-        path << "./" << user_dir << "/" << user[i].username << "/" << "user_info";
+        //stringstream path;
+        //path << "./" << user_dir << "/" << user[i].username << "/" << "user_info";
         string user_info;
-        read_user_dir.open(path.str());
+        read_user_dir.open("./" + user_dir + "/" + user[i].username + "/" + "user_info");
         stringstream ss_user_info;
         if (read_user_dir.is_open()) {
             while (getline(read_user_dir, user_info)) {
@@ -72,12 +72,46 @@ int main(int argc, char *argv[]) {
         }
         if (user[i].num_posts != 0) {
             //read posts
+            for (int loop_post = 0; loop_post < user[i].num_posts; loop_post++) {
+                stringstream path_post;
+                path_post << "./" << user_dir << "/" << user[i].username << "/posts/" << loop_post + 1;
+                ifstream read_post(path_post.str());
+                if (read_post.is_open()) {
+                    string post_content;
+                    getline(read_post, post_content);
+                    user[i].posts[loop_post].title = post_content;
+                    int tag_num = 0;
+                    while (getline(read_post, post_content)) {
+                        if (post_content[0] == '#') {
+                            user[i].posts[loop_post].tags[tag_num] = post_content;
+                            tag_num++;
+                        }
+                        else if (isdigit(post_content[0])) {user[i].posts[loop_post].num_likes = stoi(post_content);
+                            break;
+                        }
+                        else {
+                            user[i].posts[loop_post].text = post_content;
+                        }
+                    }
+                    user[i].posts[loop_post].num_tags = tag_num;
+                    for (int like_user = 0; like_user < user[i].posts[loop_post].num_likes; like_user++) {
+                        getline(read_post, post_content);
+
+                    }
+
+                    read_post.close();
+                }
+                else cout << "OPEN POST FAILED!" << endl;
+            }
+
+
         }
     }
 
+
     /*
      * TEST
-     */
+
     int test_num = 7;
     cout << "TEST: " << user[test_num].username << endl;
     cout << "POSTS: " << user[test_num].num_posts << endl;
@@ -88,7 +122,7 @@ int main(int argc, char *argv[]) {
     cout << "NUM_FOLLOWers: " << user[test_num].num_followers << endl;
     for (int i = 0; i < user[test_num].num_followers; i++) {
         cout << user[test_num].follower[i]->username << endl;
-    }
+    }*/
     return 0;
 }
 
