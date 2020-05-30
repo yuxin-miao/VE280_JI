@@ -153,11 +153,10 @@ struct User_t
 /* TODO: Define any additional compound types here */
 // Hint: You might find a program driving structure "Server_t" useful.
 
-/*
+
 struct Server_t
 {
-    ...
 };
-*/
+
 
 #endif // SERVER_TYPE_H

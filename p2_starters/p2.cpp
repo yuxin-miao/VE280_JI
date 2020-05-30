@@ -8,6 +8,7 @@
 #include <cassert>
 #include <algorithm>
 #include "server_type.h"
+#include "simulation.h"
 
 using namespace std;
 void read_username_file (const string& name);
@@ -17,7 +18,9 @@ int main(int argc, char *argv[]) {
     read_username.open(argv[1]);
     string user_dir;
     User_t user[30]; // 确定一下有没有说最多几个user
+    Post_t posts_all[1001];
     int count_user = 0;
+    int count_post = 0;
     if (read_username.is_open()) {
         getline(read_username, user_dir);
         string user_name;
@@ -72,6 +75,15 @@ int main(int argc, char *argv[]) {
         }
         if (user[i].num_posts != 0) {
             //read posts
+
+
+
+
+
+
+
+
+
             for (int loop_post = 0; loop_post < user[i].num_posts; loop_post++) {
                 stringstream path_post;
                 path_post << "./" << user_dir << "/" << user[i].username << "/posts/" << loop_post + 1;
@@ -96,12 +108,30 @@ int main(int argc, char *argv[]) {
                     user[i].posts[loop_post].num_tags = tag_num;
                     for (int like_user = 0; like_user < user[i].posts[loop_post].num_likes; like_user++) {
                         getline(read_post, post_content);
-
+                        for (int search_it = 0; search_it < count_user; search_it++) {
+                            if (user[search_it].username == post_content) {
+                                user[i].posts[loop_post].like_users[like_user] = &user[search_it];
+                            }
+                        }
                     }
-
+                    getline(read_post, post_content); int num_comment = stoi(post_content);
+                    user[i].posts[loop_post].num_comments = num_comment;
+                    for (int comment_num = 0; comment_num < user[i].posts[loop_post].num_comments; comment_num++) {
+                        getline(read_post, post_content);
+                        for (int search_it = 0; search_it < count_user; search_it++) {
+                            if (user[search_it].username == post_content) {
+                                user[i].posts[loop_post].comments[comment_num].user = &user[search_it];
+                                getline(read_post, post_content);
+                                user[i].posts[loop_post].comments[comment_num].text = post_content;
+                            }
+                        }
+                    }
                     read_post.close();
                 }
                 else cout << "OPEN POST FAILED!" << endl;
+                posts_all[count_post] = user[i].posts[loop_post];
+                posts_all[count_post].owner = &user[i];
+                count_post++;
             }
 
 
@@ -123,6 +153,13 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < user[test_num].num_followers; i++) {
         cout << user[test_num].follower[i]->username << endl;
     }*/
+
+    /*TEST WITH DEFAULT FUNCTION*/
+    cout << posts_all[0].owner->username << endl;
+    //cout << user[0].posts[0].owner->username << endl; 为什么不对呢！
+    printUser(user[0], "follower");
+    cout << user[0].follower[0]->num_followers << endl;
+    //printPost(user[0].posts[0]); ????
     return 0;
 }
 

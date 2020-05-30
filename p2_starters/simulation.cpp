@@ -6,6 +6,8 @@
  */
 
 #include "simulation.h"
+#include <iostream>
+using namespace std;
 
 // TODO: Define your functions in this header file.
 

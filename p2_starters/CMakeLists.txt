@@ -3,4 +3,4 @@ project(p2_starters)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(p2_starters p2.cpp)
+add_executable(p2_starters p2.cpp simulation.cpp)

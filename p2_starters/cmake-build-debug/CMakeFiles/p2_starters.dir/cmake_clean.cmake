@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/p2_starters.dir/p2.cpp.o"
+  "CMakeFiles/p2_starters.dir/simulation.cpp.o"
   "p2_starters"
   "p2_starters.pdb"
 )

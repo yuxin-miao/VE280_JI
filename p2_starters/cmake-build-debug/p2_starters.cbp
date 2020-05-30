@@ -83,6 +83,12 @@
 		<Unit filename="/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/p2.cpp">
 			<Option target="p2_starters"/>
 		</Unit>
+		<Unit filename="/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/simulation.cpp">
+			<Option target="p2_starters"/>
+		</Unit>
+		<Unit filename="/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/simulation.h">
+			<Option target="p2_starters"/>
+		</Unit>
 		<Unit filename="/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
