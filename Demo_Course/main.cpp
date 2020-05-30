@@ -37,11 +37,12 @@ fptr f( char c ) {
 }
 fpTR fp_return() {
     return min;
-}; 
+};
+void enum_type();
 int main(){
     //function_pointer();
-
-    call_stack_usingPointer();
+    //call_stack_usingPointer();
+    enum_type();
     return 0;
 }
 
@@ -67,10 +68,41 @@ void function_pointer() {
     cout << fp(1, 2) << endl;
     cout << fpArray[0](2, 3) << endl;
     cout << fpArray[1](3, 4) << endl;
-    // fp++;  Arithmetic on a pointer to the function type 'int (int, int)'
-    // fpArray++; Cannot increment value of type 'int (*[2])(int, int)'
+    // fp++;  Arithmetic on a pointer to the function type 'int (int, int)' // doesn't make sense, what does it point to after inc?
+    // fpArray++; Cannot increment value of type 'int (*[2])(int, int)'  // arrays are rvalues
     fpp++;
     cout << (*fpp)(4, 5) << endl;
     cout << (void *)fp << endl;
     cout << fp << endl;
+}
+
+// ENUMERATION TYPE
+enum Suit_t {CLUBS, DIAMONDS, HEARTS, SPADES};
+// automatically convert to int
+// numerically, CLUBS = 0; DIAMONDS = 1; HEARTS = 2; SPADES = 3
+void enum_type() {
+    enum Suit_t s = CLUBS;
+    const string suitname[] = {"clubs", "diamonds", "hearts", "spades"};
+    Suit_t c;
+    if (HEARTS == 2*DIAMONDS) {
+    // refer the suit_t type as int
+    }
+    cout << "Suit is " << suitname[s] << endl;
+}
+// Enum is the type. An enumerator is one value of that type. 
+// Enum is represented by an int, so an enumerator takes the same amount of space as an int value.
+bool isRed(enum Suit_t s) {
+    switch (s) {
+        case DIAMONDS: cout << 1;
+            break;
+        case HEARTS: return true;
+            break;
+        case CLUBS: cout << 0;
+            break;
+        case SPADES: return false;
+            break;
+        default:
+            assert(0);
+            break;
+    }
 }

@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/p2.cpp
+iostream
+-
+fstream
+-
+string
+-
+sstream
+-
+iomanip
+-
+cstdlib
+-
+cctype
+-
+cassert
+-
+algorithm
+-
+server_type.h
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/server_type.h
+
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/server_type.h
+string
+-
+
