@@ -2,10 +2,10 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="Lab2" targetName="Lab2" />
+      <config projectName="Lab2" targetName="Lab2_3" />
       <config projectName="Lab2" targetName="Lab2_2" />
       <config projectName="Lab2" targetName="Lab2_1" />
-      <config projectName="Lab2" targetName="Lab2_3" />
+      <config projectName="Lab2" targetName="Lab2" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -15,9 +15,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70dd405b-4083-403c-8591-9fe5f4ece02b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Lab2_1.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Lab2_1.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../p2_starters/logfile2" beforeDir="false" afterPath="$PROJECT_DIR$/../../p2_starters/logfile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../p2_starters/p2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../p2_starters/p2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../p2_starters/simulation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../p2_starters/simulation.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../p2_starters/simulation.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../p2_starters/simulation.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../p2_starters/try" beforeDir="false" afterPath="$PROJECT_DIR$/../../p2_starters/try" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +94,7 @@
       <option name="presentableId" value="Default" />
       <updated>1590569728959</updated>
       <workItem from="1590569730903" duration="6019000" />
+      <workItem from="1591011621338" duration="12000" />
     </task>
     <servers />
   </component>

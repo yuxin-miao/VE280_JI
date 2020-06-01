@@ -131,26 +131,105 @@ int main(int argc, char *argv[]) {
     ifstream read_logfile;
     read_logfile.open(argv[2]);
     string request_line;
+    Tag_t tag_all[5001];
     if (read_logfile.is_open()) {
         while (getline(read_logfile, request_line)) {
             stringstream request_ss;
             request_ss << request_line;
             string user1, request, user2;
             int user1_index, user2_index;
-            request_ss >> user1 >> request;
+            int post_id;
+            request_ss >> user1;
+            if (user1 == "trending") {
+                print_request(user1);
+                int top_n;
+                request_ss >> top_n;
+                trending(user, top_n, tag_all);
+            }
+            request_ss >> request;
             if (request == "follow") {
+                print_request(request);
                 request_ss >> user2;
                 user1_index = search_user(user, user1);
                 user2_index = search_user(user, user2);
-                follow(&user[user1_index], &user[user2_index]);
+                follow(user[user1_index], user[user2_index]);
+            }
+            else if (request == "unfollow") {
+                print_request(request);
+                request_ss >> user2;
+                user1_index = search_user(user, user1);
+                user2_index = search_user(user, user2);
+                unfollow(user[user1_index], user[user2_index]);
+            }
+            else if (request == "like") {
+                print_request(request);
+                request_ss >> user2 >> post_id;
+                user1_index = search_user(user, user1);
+                user2_index = search_user(user, user2);
+                like(user[user1_index], user[user2_index].posts[post_id-1]);
+            }
+            else if (request == "unlike") {
+                print_request(request);
+                request_ss >> user2 >> post_id;
+                user1_index = search_user(user, user1);
+                user2_index = search_user(user, user2);
+                unlike(user[user1_index], user[user2_index].posts[post_id-1]);
+            }
+            else if (request == "comment") {
+                print_request(request);
+                request_ss >> user2 >> post_id;
+                string text;
+                getline(read_logfile, text);
+                user1_index = search_user(user, user1);
+                user2_index = search_user(user, user2);
+                comment(user[user1_index], user[user2_index].posts[post_id-1], text);
+            }
+            else if (request == "uncomment") {
+                print_request(request);
+                int comment_id;
+                request_ss >> user2 >> post_id >> comment_id;
+                user1_index = search_user(user, user1);
+                user2_index = search_user(user, user2);
+                uncomment(user[user1_index], user[user2_index].posts[post_id-1], comment_id - 1);
+            }
+            else if (request == "post") {
+                print_request(request);
+                stringstream post_ss;
+                getline(read_logfile, request_line);
+                post_ss << request_line << " ";
+                while (getline(read_logfile, request_line)) {
+                    if (request_line[0] == '#') post_ss << request_line << " ";
+                    else break;
+                }
+                post_ss << request_line << " ";
+                user1_index = search_user(user, user1);
+                post(user[user1_index], &post_ss);
+            }
+            else if (request == "delete") {
+                print_request(request);
+                request_ss >> post_id;
+                user1_index = search_user(user, user1);
+                unpost(user[user1_index], post_id - 1);
+            }
+            else if (request == "refresh") {
+                print_request(request);
+                user1_index = search_user(user, user1);
+                refresh(user[user1_index]);
+            }
+            else if (request == "visit") {
+                print_request(request);
+                request_ss >> user2;
+                user1_index = search_user(user, user1);
+                user2_index = search_user(user, user2);
+                visit(user[user1_index], user[user2_index]);
             }
 
             /*for (int i = 0; getline(read_username, user_name); i++) {
                 user[i].username = user_name;
                 count_user++;
-            }
-            read_logfile.close();*/
+            }*/
         }
+        read_logfile.close();
     }
     else cout << "LOGFILE OPEN FAILED!" << endl;
 
