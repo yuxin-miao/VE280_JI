@@ -13,14 +13,15 @@
 using namespace std;
 void read_username_file (const string& name);
 int main(int argc, char *argv[]) {
-    // READ: User data - username file
+    /******USERNAME INITIALIZATION****/
+    // READ: User data
     ifstream read_username;
     read_username.open(argv[1]);
     string user_dir;
     User_t user[30]; // 确定一下有没有说最多几个user
-    Post_t posts_all[1001];
+    //Post_t posts_all[1001];
     int count_user = 0;
-    int count_post = 0;
+    //int count_post = 0;
     if (read_username.is_open()) {
         getline(read_username, user_dir);
         string user_name;
@@ -34,8 +35,6 @@ int main(int argc, char *argv[]) {
     // READ: User directories
     ifstream read_user_dir;
     for (int i = 0; i < count_user; i++) {
-        //stringstream path;
-        //path << "./" << user_dir << "/" << user[i].username << "/" << "user_info";
         string user_info;
         read_user_dir.open("./" + user_dir + "/" + user[i].username + "/" + "user_info");
         stringstream ss_user_info;
@@ -73,18 +72,9 @@ int main(int argc, char *argv[]) {
             }
 
         }
-        if (user[i].num_posts != 0) {
-            //read posts
-
-
-
-
-
-
-
-
-
+        if (user[i].num_posts != 0) { //read posts
             for (int loop_post = 0; loop_post < user[i].num_posts; loop_post++) {
+                user[i].posts[loop_post].owner = &user[i];
                 stringstream path_post;
                 path_post << "./" << user_dir << "/" << user[i].username << "/posts/" << loop_post + 1;
                 ifstream read_post(path_post.str());
@@ -129,14 +119,40 @@ int main(int argc, char *argv[]) {
                     read_post.close();
                 }
                 else cout << "OPEN POST FAILED!" << endl;
-                posts_all[count_post] = user[i].posts[loop_post];
-                posts_all[count_post].owner = &user[i];
-                count_post++;
+                //posts_all[count_post] = user[i].posts[loop_post];
+                //posts_all[count_post].owner = &user[i];
+                //count_post++;
             }
 
 
         }
     }
+    /***LOGFILE PROCESSING***/
+    ifstream read_logfile;
+    read_logfile.open(argv[2]);
+    string request_line;
+    if (read_logfile.is_open()) {
+        while (getline(read_logfile, request_line)) {
+            stringstream request_ss;
+            request_ss << request_line;
+            string user1, request, user2;
+            int user1_index, user2_index;
+            request_ss >> user1 >> request;
+            if (request == "follow") {
+                request_ss >> user2;
+                user1_index = search_user(user, user1);
+                user2_index = search_user(user, user2);
+                follow(&user[user1_index], &user[user2_index]);
+            }
+
+            /*for (int i = 0; getline(read_username, user_name); i++) {
+                user[i].username = user_name;
+                count_user++;
+            }
+            read_logfile.close();*/
+        }
+    }
+    else cout << "LOGFILE OPEN FAILED!" << endl;
 
 
     /*
@@ -155,30 +171,12 @@ int main(int argc, char *argv[]) {
     }*/
 
     /*TEST WITH DEFAULT FUNCTION*/
-    cout << posts_all[0].owner->username << endl;
-    //cout << user[0].posts[0].owner->username << endl; 为什么不对呢！
-    printUser(user[0], "follower");
-    cout << user[0].follower[0]->num_followers << endl;
-    //printPost(user[0].posts[0]); ????
+    //cout << posts_all[0].owner->username << endl;
+    //cout << user[0].posts[0].owner->username << endl;
+    //printUser(user[0], "follower");
+    //cout << user[0].follower[0]->num_followers << endl;
+    //printPost(user[0].posts[0]);
+    //cout << user[0].posts[0].title << endl;
     return 0;
 }
 
-void read_username_file (const string& name) {
-    // MODIFIES:
-    // READ: User data - username file
-    ifstream read_username;
-    read_username.open(name);
-    string user_dir;
-    User_t user[30]; // 确定一下有没有说最多几个user
-    int count_user = 0;
-    if (read_username.is_open()) {
-        getline(read_username, user_dir);
-        string user_name;
-        for (int i =0; getline(read_username, user_name); i++) {
-            user[i].username = user_name;
-            count_user++;
-        }
-        read_username.close();
-    }
-
-}

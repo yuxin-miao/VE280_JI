@@ -4,12 +4,30 @@
  * Latest Update: 5/29/2020.
  * All rights reserved.
  */
-
 #include "simulation.h"
 #include <iostream>
 using namespace std;
 
+int search_user(const struct User_t user[], const string& user1) {
+    int index = 0;
+    for (int i = 0; !user[i].username.empty(); i++) {
+        if (user[i].username == user1) {
+            index = i;
+            break;
+        }
+    }
+    return index;
+}
+
 // TODO: Define your functions in this header file.
+void follow(struct User_t *user1, struct User_t *user2){
+    user1->num_following++;
+    user1->following[user1->num_following] = user2;
+    user2->num_followers++;
+    user2->follower[user2->num_followers] = user1;
+
+}
+
 
 /* Helper Functions */
 
