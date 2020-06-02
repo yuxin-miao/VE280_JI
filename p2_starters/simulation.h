@@ -39,7 +39,7 @@ void uncomment(struct User_t &user1, struct Post_t &post, int commend_index);
 // MODIFIES: Post_t post(comment)
 // EFFECTS: Implement the request: user1 uncomment user2 post_id comment_id
 
-void post(struct User_t &user1, stringstream *post_ss);
+void post(struct User_t &user1, const string new_post_line[]);
 // MODIFIES: User_t user1.post
 // EFFECTS: Implement the request: user1 post
 

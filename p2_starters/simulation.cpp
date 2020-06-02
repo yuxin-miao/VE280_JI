@@ -90,20 +90,16 @@ void uncomment(struct User_t &user1, struct Post_t &post, const int commend_inde
     post.comments[post.num_comments].text = "";
 }
 
-void post(struct User_t &user1, stringstream *post_ss) {
+void post(struct User_t &user1, const string new_post_line[]) {
     user1.posts[user1.num_posts].owner = &user1;
-    string post_text;
-    *post_ss >> post_text;
-    user1.posts[user1.num_posts].title = post_text;
-    int num_tag = 0;
-    while (*post_ss >> post_text) {
-        if (post_text[0] == '#') {
-            user1.posts[user1.num_posts].tags[num_tag] = post_text;
-            num_tag++;
-        }
+    user1.posts[user1.num_posts].title = new_post_line[0];
+    int i = 1;
+    while (new_post_line[i][0] == '#') {
+        user1.posts[user1.num_posts].tags[i-1] = new_post_line[i];
+        i++;
     }
-    user1.posts[user1.num_posts].num_tags = num_tag;
-    user1.posts[user1.num_posts].text = post_text;
+    user1.posts[user1.num_posts].num_tags = i - 1;
+    user1.posts[user1.num_posts].text = new_post_line[i];
     user1.posts[user1.num_posts].num_comments = 0;
     user1.posts[user1.num_posts].num_likes = 0;
     user1.num_posts++;
@@ -170,14 +166,19 @@ void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {
                 for (; !tag_all[tag_in_array].tag_content.empty(); tag_in_array++) {
                     if (user[i].posts[post_index].tags[tag_index] == tag_all[tag_in_array].tag_content) {
                         tag_all[tag_in_array].tag_score = tag_all[tag_in_array].tag_score + 5
-                                + 3 * user[i].posts[post_index].num_likes + user[i].posts[post_index].num_comments;
+                                + 3 * user[i].posts[post_index].num_comments + user[i].posts[post_index].num_likes;
                         break;
                     }
                 }
+                /*cout << "post tag: " << user[i].posts[post_index].tags[tag_index] << endl;
+                cout << "tag_in_array: " << tag_in_array << endl;
+                cout << "tag_all[tag_in_array].tag_content: "<< tag_all[tag_in_array].tag_content << endl;
+                 */
                 if (tag_all[tag_in_array].tag_content.empty()) {
+                    //cout << "empty!" << endl;
                     tag_all[tag_in_array].tag_content = user[i].posts[post_index].tags[tag_index];
                     tag_all[tag_in_array].tag_score = tag_all[tag_in_array].tag_score + 5
-                            + 3 * user[i].posts[post_index].num_likes + user[i].posts[post_index].num_comments;
+                            + 3 * user[i].posts[post_index].num_comments + user[i].posts[post_index].num_likes;
                 }
             }
         }
@@ -186,7 +187,8 @@ void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {
     do {tag_num++;} while (!tag_all[tag_num].tag_content.empty());
     qsort(tag_all, tag_num, sizeof(tag_all[0]), compare_tag);
     for (int i = 0; i < top_n && i < tag_num; i++) {
-        cout << i+1 << " " << tag_all[i].tag_content << ": " << tag_all[i].tag_score << endl;
+        string tag_content_out = tag_all[i].tag_content.substr(1, tag_all[i].tag_content.size() - 2);
+        cout << i+1 << " " << tag_content_out << ": " << tag_all[i].tag_score << endl;
     }
 }
 

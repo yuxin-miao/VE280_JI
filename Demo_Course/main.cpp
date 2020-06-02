@@ -1,4 +1,14 @@
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <iomanip>
+#include <cstdlib>
+#include <cctype>
+#include <cassert>
+#include <algorithm>
+#include <thread>
+
 using namespace std;
 
 int min(int x, int y){
@@ -39,10 +49,24 @@ fpTR fp_return() {
     return min;
 };
 void enum_type();
+void buffer_output();
+void file_stream();
 int main(){
     //function_pointer();
     //call_stack_usingPointer();
-    enum_type();
+    int arr[] = {1, 2, 0, 4, 5};
+    int i = 0;
+    while (i < sizeof(arr)/ sizeof(arr[0])) {
+        i++;
+    }
+    int x;
+    string s1, s2;
+    file_stream();
+
+
+    getline(cin, s1);
+
+    //enum_type();
     return 0;
 }
 
@@ -104,5 +128,30 @@ bool isRed(enum Suit_t s) {
         default:
             assert(0);
             break;
+    }
+}
+void buffer_output() {
+    cout << "WELCOME!" << endl;
+    cout << "Let's sleep";
+}
+void file_stream() {
+    // READ: User data
+    ifstream read_username;
+    read_username.open("username");
+    string user_dir;
+    string user[30];
+    int count_user = 0;
+    cout << 0 << endl;
+
+    if (read_username.is_open()) {
+
+        getline(read_username, user_dir);
+        string user_name;
+        for (int i =0; getline(read_username, user_name); i++) {
+            user[i] =  user_name;
+
+            count_user++;
+        }
+        read_username.close();
     }
 }

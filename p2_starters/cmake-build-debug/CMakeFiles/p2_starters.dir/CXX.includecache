@@ -27,8 +27,22 @@ algorithm
 -
 server_type.h
 /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/server_type.h
+simulation.h
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/simulation.h
 
 /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/server_type.h
 string
 -
+
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/simulation.cpp
+simulation.h
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/simulation.h
+iostream
+-
+sstream
+-
+
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/simulation.h
+server_type.h
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/server_type.h
 

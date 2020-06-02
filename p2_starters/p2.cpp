@@ -193,17 +193,16 @@ int main(int argc, char *argv[]) {
                 uncomment(user[user1_index], user[user2_index].posts[post_id-1], comment_id - 1);
             }
             else if (request == "post") {
+                string new_post_line[10];
                 print_request(request);
-                stringstream post_ss;
-                getline(read_logfile, request_line);
-                post_ss << request_line << " ";
-                while (getline(read_logfile, request_line)) {
-                    if (request_line[0] == '#') post_ss << request_line << " ";
-                    else break;
+                getline(read_logfile, new_post_line[0]);
+                int i = 1;
+                while (getline(read_logfile, new_post_line[i])) {
+                    if (new_post_line[i][0] != '#') break;
+                    i++;
                 }
-                post_ss << request_line << " ";
                 user1_index = search_user(user, user1);
-                post(user[user1_index], &post_ss);
+                post(user[user1_index], new_post_line);
             }
             else if (request == "delete") {
                 print_request(request);
