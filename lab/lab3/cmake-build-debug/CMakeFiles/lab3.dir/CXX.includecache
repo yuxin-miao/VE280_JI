@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex2.cpp
+iostream
+-
+limits.h
+-
+ex2.h
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex2.h
+
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex2.h
+
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex3.cpp
+iostream
+-
+
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/main.cpp
+iostream
+-
+ex2.h
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex2.h
+
