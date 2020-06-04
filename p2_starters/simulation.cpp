@@ -150,12 +150,26 @@ void visit(struct User_t &user1, struct User_t &user2) {
     printUser(user2, relationship);
 }
 
+int compare_ASCII (const string &l_str, const string &r_str) {
+    if (l_str.empty() | r_str.empty()) return 0;
+    if (l_str.at(0) < r_str.at(0)) return -1;
+    else if (l_str.at(0) > r_str.at(0)) return 1;
+    else return compare_ASCII(l_str.substr(1), r_str.substr(1));
+}
+
 int compare_tag (const void * A, const void * B) {
     const Tag_t* l = (Tag_t*)A;
     const Tag_t* r = (Tag_t*)B;
     if (l->tag_score > r->tag_score) return -1;
-    if (l->tag_score < r->tag_score) return 1;
-    return 0;
+    else if (l->tag_score < r->tag_score) return 1;
+    else  {
+        int compare_cha = compare_ASCII(l->tag_content.substr(1), r->tag_content.substr(1));
+        if (compare_cha) return compare_cha;
+        else {
+            if (l->tag_content.length() < r->tag_content.length()) return -1;
+            else return 1;
+        }
+    }
 };
 
 void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {

@@ -89,9 +89,6 @@
 		<Unit filename="/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex3.cpp">
 			<Option target="lab3"/>
 		</Unit>
-		<Unit filename="/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/main.cpp">
-			<Option target="lab3"/>
-		</Unit>
 		<Unit filename="/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

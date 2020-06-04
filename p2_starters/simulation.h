@@ -53,7 +53,11 @@ void refresh(struct User_t &user1);
 void visit(struct User_t &user1, struct User_t &user2);
 // EFFECTS: Implement the request: user1 visit user2
 
+int compare_ASCII (string &l_str, string &r_str);
+// EFFECTS: Compare the string l_str, r_str recursively based on the first character
+// used for trending function
 int compare_tag (struct Tag_t A, struct Tag_t B);
+// EFFECTS: compare the
 void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]);
 // MODIFIES: Tag_t tag_all
 // EFFECTS: Implement the request: trending n

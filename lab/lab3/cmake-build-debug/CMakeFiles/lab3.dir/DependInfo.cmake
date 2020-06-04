@@ -6,7 +6,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex2.cpp" "/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/cmake-build-debug/CMakeFiles/lab3.dir/ex2.cpp.o"
   "/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex3.cpp" "/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/cmake-build-debug/CMakeFiles/lab3.dir/ex3.cpp.o"
-  "/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/main.cpp" "/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/cmake-build-debug/CMakeFiles/lab3.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
