@@ -7,6 +7,7 @@
 #include "simulation.h"
 #include "server_type.h"
 #include <iostream>
+#include <algorithm>
 #include <sstream>
 #include <fstream>
 
@@ -168,7 +169,7 @@ void visit(struct User_t &user1, struct User_t &user2) {
     else if (!user1_fo_user2) relationship = "stranger";
     printUser(user2, relationship);
 }
-
+/*
 int compare_ASCII (const string &l_str, const string &r_str) {
     if (l_str.empty() | r_str.empty()) return 0;
     if (l_str.at(0) < r_str.at(0)) return -1;
@@ -187,6 +188,23 @@ int compare_tag (const void * A, const void * B) {
         else {
             if (l->tag_content.length() < r->tag_content.length()) return -1;
             else return 1;
+        }
+    }
+};*/
+
+int sort_ASCII (const string &l_str, const string &r_str) {
+    if (l_str.empty() | r_str.empty()) return 5;
+    if (l_str.at(0) != r_str.at(0)) return l_str.at(0) < r_str.at(0);
+    else return sort_ASCII(l_str.substr(1), r_str.substr(1));
+}
+
+bool sort_tag (const Tag_t& A, const Tag_t& B) {
+    if (A.tag_score != B.tag_score) return A.tag_score > B.tag_score;
+    else  {
+        int sort_cha = sort_ASCII(A.tag_content, B.tag_content);
+        if (sort_cha != 5) return sort_cha;
+        else {
+            return A.tag_content.length() < B.tag_content.length();
         }
     }
 };
@@ -222,7 +240,8 @@ void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {
     }
     int tag_num = 0;
     do {tag_num++;} while (!tag_all[tag_num].tag_content.empty());
-    qsort(tag_all, tag_num, sizeof(tag_all[0]), compare_tag);
+    sort(tag_all, tag_all + tag_num, sort_tag);
+    //qsort(tag_all, tag_num, sizeof(tag_all[0]), compare_tag);
     // string size 考虑一下！
     for (int i = 0; i < top_n && i < tag_num; i++) {
         string tag_content_out = tag_all[i].tag_content;

@@ -59,10 +59,12 @@ void refresh(struct User_t &user1);
 void visit(struct User_t &user1, struct User_t &user2);
 // EFFECTS: Implement the request: user1 visit user2
 
-int compare_ASCII (const std::string &l_str, const std::string &r_str);
+//int compare_ASCII (const std::string &l_str, const std::string &r_str);
+int sort_ASCII (const std::string &l_str, const std::string &r_str);
 // EFFECTS: Compare the string l_str, r_str recursively based on the first character
 // used for trending function
-int compare_tag (const void * A, const void * B);
+//int compare_tag (const void * A, const void * B);
+bool sort_tag (const Tag_t& A, const Tag_t& B);
 // EFFECTS: For trending function, sort the tag based on the score
 void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]);
 // MODIFIES: Tag_t tag_all
