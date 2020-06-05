@@ -15,7 +15,7 @@ using namespace std;
 // 缩短main！
 int main(int argc, char *argv[]) {
 
-    exception_invalid_argument(argc, argv);
+    exception_invalid_argument(argc);
 
     /******USERNAME INITIALIZATION****/
     // READ: User data
@@ -161,7 +161,7 @@ int main(int argc, char *argv[]) {
             request_ss << request_line;
             string user1, request, user2;
             int user1_index, user2_index;
-            int post_id;
+            unsigned int post_id;
             request_ss >> user1;
             if (user1 == "trending") {
                 print_request(user1);
@@ -190,7 +190,7 @@ int main(int argc, char *argv[]) {
                 user1_index = search_user(user, user1);
                 user2_index = search_user(user, user2);
                 if (exception_like(user[user1_index], user[user2_index], post_id))
-                    like(user[user1_index], user[user2_index].posts[post_id-1]);
+                    like(user[user1_index], user[user2_index].posts[(int)post_id-1]);
             }
             else if (request == "unlike") {
                 print_request(request);
@@ -198,7 +198,7 @@ int main(int argc, char *argv[]) {
                 user1_index = search_user(user, user1);
                 user2_index = search_user(user, user2);
                 if (exception_unlike(user[user1_index], user[user2_index], post_id))
-                    unlike(user[user1_index], user[user2_index].posts[post_id-1]);
+                    unlike(user[user1_index], user[user2_index].posts[(int)post_id-1]);
             }
             else if (request == "comment") {
                 print_request(request);
@@ -208,16 +208,16 @@ int main(int argc, char *argv[]) {
                 user1_index = search_user(user, user1);
                 user2_index = search_user(user, user2);
                 if (exception_comment(user[user1_index], user[user2_index], post_id))
-                    comment(user[user1_index], user[user2_index].posts[post_id-1], text);
+                    comment(user[user1_index], user[user2_index].posts[(int)post_id-1], text);
             }
             else if (request == "uncomment") {
                 print_request(request);
-                int comment_id;
+                unsigned int comment_id;
                 request_ss >> user2 >> post_id >> comment_id;
                 user1_index = search_user(user, user1);
                 user2_index = search_user(user, user2);
                 if (exception_uncomment(user[user1_index], user[user2_index], post_id, comment_id))
-                    uncomment(user[user1_index], user[user2_index].posts[post_id-1], comment_id - 1);
+                    uncomment(user[user2_index].posts[post_id-1], (int)comment_id - 1);
             }
             else if (request == "post") {
                 string new_post_line[10];

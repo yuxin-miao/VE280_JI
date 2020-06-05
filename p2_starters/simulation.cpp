@@ -53,9 +53,9 @@ void follow(struct User_t &user1, struct User_t &user2){
 }
 
 void unfollow(struct User_t &user1, struct User_t &user2) {
-    for (int i = 0; i < user1.num_following; i++) {
+    for (unsigned int i = 0; i < user1.num_following; i++) {
         if (user1.following[i]->username == user2.username) {
-            for (int j = i; j < user1.num_following - 1; j++) {
+            for (unsigned int j = i; j < user1.num_following - 1; j++) {
                 user1.following[j] = user1.following[j + 1];
             }
             break;
@@ -63,9 +63,9 @@ void unfollow(struct User_t &user1, struct User_t &user2) {
     }
     user1.num_following--;
     user1.following[user1.num_following] = nullptr;
-    for (int i = 0; i < user2.num_followers; i++) {
+    for (unsigned int i = 0; i < user2.num_followers; i++) {
         if (user2.follower[i]->username == user1.username) {
-            for (int j = i; j < user2.num_followers - 1; j++) {
+            for (unsigned int j = i; j < user2.num_followers - 1; j++) {
                 user2.follower[j] = user2.follower[j + 1];
             }
             break;
@@ -81,9 +81,9 @@ void like(struct User_t &user1, struct Post_t &post) {
 }
 
 void unlike(struct User_t &user1, struct Post_t &post) {
-    for (int i = 0; i < post.num_likes; i++) {
+    for (unsigned int i = 0; i < post.num_likes; i++) {
         if (post.like_users[i]->username == user1.username) {
-            for (int j = i; j < post.num_likes - 1; j++) {
+            for (unsigned int j = i; j < post.num_likes - 1; j++) {
                 post.like_users[j] = post.like_users[j+1];
             }
             break;
@@ -99,8 +99,8 @@ void comment(struct User_t &user1, struct Post_t &post, const string &text) {
     post.num_comments++;
 }
 
-void uncomment(struct User_t &user1, struct Post_t &post, const int commend_index) {
-    for (int i = commend_index; i < post.num_comments-1; i++) {
+void uncomment(struct Post_t &post, const int commend_index) {
+    for (unsigned int i = commend_index; i < post.num_comments-1; i++) {
         post.comments[i].user = post.comments[i+1].user;
         post.comments[i].text = post.comments[i+1].text;
     }
@@ -125,7 +125,7 @@ void post(struct User_t &user1, const string new_post_line[]) {
 }
 
 void unpost(struct User_t &user1, const int post_index) {
-    for (int i = post_index; i < user1.num_posts - 1; i++) {
+    for (unsigned int i = post_index; i < user1.num_posts - 1; i++) {
         user1.posts[i] = user1.posts[i+1];
     }
     user1.posts[user1.num_posts].owner = nullptr;
@@ -133,11 +133,11 @@ void unpost(struct User_t &user1, const int post_index) {
 }
 
 void refresh(struct User_t &user1) {
-    for (int i = 0; i < user1.num_posts; i++) {
+    for (unsigned int i = 0; i < user1.num_posts; i++) {
         printPost(user1.posts[i]);
     }
-    for (int i = 0; i < user1.num_following; i++) {
-        for (int j = 0; j < user1.following[i]->num_posts; j++) {
+    for (unsigned int i = 0; i < user1.num_following; i++) {
+        for (unsigned int j = 0; j < user1.following[i]->num_posts; j++) {
             printPost(user1.following[i]->posts[j]);
         }
     }
@@ -151,13 +151,13 @@ void visit(struct User_t &user1, struct User_t &user2) {
     }
     bool user1_fo_user2 = false;
     bool user2_fo_user1 = false;
-    for (int i = 0; i < user1.num_following; i++) {
+    for (unsigned int i = 0; i < user1.num_following; i++) {
         if (user1.following[i] == &user2) {
             user1_fo_user2 = true;
             break;
         }
     }
-    for (int i = 0; i < user2.num_following; i++) {
+    for (unsigned int i = 0; i < user2.num_following; i++) {
         if (user2.following[i] == &user1) {
             user2_fo_user1 = true;
             break;
@@ -192,18 +192,27 @@ int compare_tag (const void * A, const void * B) {
 };
 
 void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {
+    // first delete the tag_score stored
+    for (int i = 0; !tag_all[i].tag_content.empty(); i++) {
+        tag_all[i].tag_score = 0;
+    }
+
+    // for every post's tag, calculate the score
     for (int i = 0; !user[i].username.empty(); i++) {
-        for (int post_index = 0; post_index < user[i].num_posts; post_index++) {
-            for (int tag_index = 0; tag_index < user[i].posts[post_index].num_tags; tag_index++) {
+        for (unsigned int post_index = 0; post_index < user[i].num_posts; post_index++) {
+            for (unsigned int tag_index = 0; tag_index < user[i].posts[post_index].num_tags; tag_index++) {
                 int tag_in_array = 0;
                 for (; !tag_all[tag_in_array].tag_content.empty(); tag_in_array++) {
                     if (user[i].posts[post_index].tags[tag_index] == tag_all[tag_in_array].tag_content) {
+                        // this tag exists in the array of tag
                         tag_all[tag_in_array].tag_score = tag_all[tag_in_array].tag_score + 5
                                 + 3 * user[i].posts[post_index].num_comments + user[i].posts[post_index].num_likes;
                         break;
                     }
                 }
                 if (tag_all[tag_in_array].tag_content.empty()) {
+                    // this tag does not exist in the array of tag
+                    // add this new tag to array
                     tag_all[tag_in_array].tag_content = user[i].posts[post_index].tags[tag_index];
                     tag_all[tag_in_array].tag_score = tag_all[tag_in_array].tag_score + 5
                             + 3 * user[i].posts[post_index].num_comments + user[i].posts[post_index].num_likes;
@@ -261,11 +270,11 @@ void printUser_detailed(User_t& user) {
     cout << user.username << endl;
     cout << "Posts:" << user.num_posts << endl;
     cout << "Following number: " << user.num_following << endl;
-    for (int i = 0; i < user.num_following; i++) {
+    for (unsigned int i = 0; i < user.num_following; i++) {
         cout << "Following " << i << ": " << user.following[i]->username << endl;
     }
     cout << "Follower number: " << user.num_followers << endl;
-    for (int i = 0; i < user.num_followers; i++) {
+    for (unsigned int i = 0; i < user.num_followers; i++) {
         cout << "Follower " << i << ": " << user.follower[i]->username << endl;
     }
 }
@@ -280,7 +289,7 @@ void printPost_detailed(Post_t& post){
     }
     cout << "\nLikes: " << post.num_likes << endl;
 
-    for (int i = 0; i < post.num_likes; i++) {
+    for (unsigned int i = 0; i < post.num_likes; i++) {
         cout << "Like user " << i <<  ": " << post.like_users[i]->username << endl;
     }
     if (post.num_comments > 0){
@@ -295,14 +304,14 @@ void printPost_detailed(Post_t& post){
 
 void printPost_all_for_one(User_t& user) {
     cout << user.username << " post: "<< user.num_posts << "posts." << endl;
-    for (int i = 0; i < user.num_posts; i++) {
+    for (unsigned int i = 0; i < user.num_posts; i++) {
         cout << i << " post: " << endl;
         printPost_detailed(user.posts[i]);
     }
 }
 
 /***EXCEPTION***/
-int exception_invalid_argument(int argc, char* argv[]) {
+int exception_invalid_argument(int argc) {
     try{
         if(argc < 3){
             ostringstream oStream;
@@ -333,7 +342,7 @@ int exception_file_missing(const std::string &file_name) {
 int exception_capacity_overflow(const User_t user[]) {
     try {
         // Detect user number overflow
-        int num_user = 0;
+        unsigned int num_user = 0;
         do { num_user++; } while (!user[num_user].username.empty());
         if (num_user > MAX_USERS) {
             ostringstream ostream;
@@ -342,7 +351,7 @@ int exception_capacity_overflow(const User_t user[]) {
             throw Exception_t(CAPACITY_OVERFLOW, ostream.str());
         }
 
-        for (int i = 0; i < num_user; i++) {
+        for (unsigned int i = 0; i < num_user; i++) {
             if (user[i].num_posts > MAX_POSTS) {
                 // Detect posts number per user overflow
                 ostringstream ostream;
@@ -414,9 +423,9 @@ int exception_capacity_overflow_post(const Post_t &post) {
     return 1;
 }
 
-int exception_like(const User_t &user1, const User_t &user2, const int post_id) {
+int exception_like(const User_t &user1, const User_t &user2, const unsigned int post_id) {
     try{
-        if (user2.num_posts < post_id) {
+        if (user2.num_posts < post_id || post_id < 1) {
             // Check whether user2 has post post_id
             ostringstream oStream;
             oStream << "Error: " << user1.username << " cannot like post #" << post_id << " of " << user2.username << "!" << endl;
@@ -424,7 +433,7 @@ int exception_like(const User_t &user1, const User_t &user2, const int post_id) 
             throw Exception_t(INVALID_LOG, oStream.str());
         }
         else {
-            for (int i = 0; i < user2.posts[post_id-1].num_likes; i++) {
+            for (unsigned int i = 0; i < user2.posts[post_id-1].num_likes; i++) {
                 if (user2.posts[post_id-1].like_users[i]->username == user1.username) {
                     ostringstream oStream;
                     oStream << "Error: " << user1.username << " cannot like post #" << post_id << " of " << user2.username << "!" << endl;
@@ -441,9 +450,9 @@ int exception_like(const User_t &user1, const User_t &user2, const int post_id) 
     return 1;
 }
 
-int exception_unlike(const User_t &user1, const User_t &user2, const int post_id) {
+int exception_unlike(const User_t &user1, const User_t &user2, const unsigned int post_id) {
     try{
-        if (user2.num_posts < post_id) {
+        if (user2.num_posts < post_id || post_id < 1) {
             // Check whether user2 has post post_id
             ostringstream oStream;
             oStream << "Error: " << user1.username << " cannot unlike post #" << post_id
@@ -453,7 +462,7 @@ int exception_unlike(const User_t &user1, const User_t &user2, const int post_id
         }
         else {
             bool liked = false;
-            for (int i = 0; i < user2.posts[post_id-1].num_likes; i++) {
+            for (unsigned int i = 0; i < user2.posts[post_id-1].num_likes; i++) {
                 if (user2.posts[post_id-1].like_users[i]->username == user1.username) {
                     liked = true;
                     break;
@@ -475,9 +484,9 @@ int exception_unlike(const User_t &user1, const User_t &user2, const int post_id
     return 1;
 }
 
-int exception_comment(const User_t &user1, const User_t &user2, const int post_id) {
+int exception_comment(const User_t &user1, const User_t &user2, const unsigned int post_id) {
     try {
-        if (user2.num_posts < post_id) {
+        if (user2.num_posts < post_id || post_id < 1) {
             // Check whether user2 has post post_id
             ostringstream oStream;
             oStream << "Error: " << user1.username << " cannot comment post #" << post_id
@@ -493,9 +502,9 @@ int exception_comment(const User_t &user1, const User_t &user2, const int post_i
     return 1;
 }
 
-int exception_uncomment(const User_t &user1, const User_t &user2, const int post_id, const int comment_id) {
+int exception_uncomment(const User_t &user1, const User_t &user2, const unsigned int post_id, const unsigned int comment_id) {
     try {
-        if (user2.num_posts < post_id) {
+        if (user2.num_posts < post_id || post_id < 1) {
             // Check whether user2 has post post_id
             ostringstream oStream;
             oStream << "Error: " << user1.username << " cannot uncomment comment #" << comment_id
@@ -504,7 +513,7 @@ int exception_uncomment(const User_t &user1, const User_t &user2, const int post
             oStream << user2.username << " does not have post #" << post_id << "." << endl;
             throw Exception_t(INVALID_LOG, oStream.str());
         }
-        else if (user2.posts[post_id-1].num_comments < comment_id) {
+        else if (user2.posts[post_id-1].num_comments < comment_id || comment_id < 1) {
             // Check whether user2's #post_id has comment #comment_id
             ostringstream oStream;
             oStream << "Error: " << user1.username << " cannot uncomment comment #" << comment_id
@@ -530,9 +539,9 @@ int exception_uncomment(const User_t &user1, const User_t &user2, const int post
     return 1;
 }
 
-int exception_delete(const User_t &user1, const int post_id) {
+int exception_delete(const User_t &user1, const unsigned int post_id) {
     try {
-        if (user1.num_posts < post_id) {
+        if (user1.num_posts < post_id || post_id < 1) {
             // Check whether user1 has post post_id
             ostringstream oStream;
             oStream << "Error: " << user1.username << " cannot delete post #" << post_id << "!" << endl;

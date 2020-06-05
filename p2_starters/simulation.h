@@ -41,7 +41,7 @@ void comment(struct User_t &user1, struct Post_t &post, const std::string &text)
 // MODIFIES: Post_t post (comment)
 // EFFECTS: Implement the request: user1 comment user2 post_id \n text
 
-void uncomment(struct User_t &user1, struct Post_t &post, int commend_index);
+void uncomment(struct Post_t &post, int commend_index);
 // MODIFIES: Post_t post(comment)
 // EFFECTS: Implement the request: user1 uncomment user2 post_id comment_id
 
@@ -88,7 +88,7 @@ void printPost_all_for_one(User_t& user);
 
 /***EXCEPTION***/
 // Initialization error
-int exception_invalid_argument(int argc, char *argv[]);
+int exception_invalid_argument(int argc);
 // EFFECTS: check whether the number of arguments is less than 2
 
 int exception_file_missing(const std::string &file_name);
@@ -105,20 +105,20 @@ int exception_capacity_overflow_post(const Post_t &post);
 //开始log processing以后也要注意capacity overflow！等会写
 
 // Processing Error
-int exception_like(const User_t &user1, const User_t &user2, int post_id);
+int exception_like(const User_t &user1, const User_t &user2, unsigned int post_id);
 // EFFECTS: check invalid log for like request - post_id not exist / already like
 
-int exception_unlike(const User_t &user1, const User_t &user2, int post_id);
+int exception_unlike(const User_t &user1, const User_t &user2, unsigned int post_id);
 // EFFECTS: check invalid log for unlike request - post_id not exist / not liked
 
-int exception_comment(const User_t &user1, const User_t &user2, int post_id);
+int exception_comment(const User_t &user1, const User_t &user2, int unsigned post_id);
 // EFFECTS: check invalid log for comment request - post_id not exist
 
-int exception_uncomment(const User_t &user1, const User_t &user2, int post_id, int comment_id);
+int exception_uncomment(const User_t &user1, const User_t &user2, int unsigned post_id, int unsigned comment_id);
 // EFFECTS: check invalid log for uncomment request -
 // post_id not exist / comment_id not exist / comment_id not belong to user1
 
-int exception_delete(const User_t &user1, int post_id);
+int exception_delete(const User_t &user1, unsigned int post_id);
 // EFFECTS: check invalid log for delete request - post_id not exist
 
 
