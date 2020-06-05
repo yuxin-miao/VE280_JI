@@ -5,10 +5,29 @@
  * All rights reserved.
  */
 #include "simulation.h"
+#include "server_type.h"
 #include <iostream>
 #include <sstream>
+#include <fstream>
 
 using namespace std;
+
+void read_username_file (char* argv[], User_t user[], std::string &user_dir) {
+    ifstream read_username;
+    read_username.open(argv[1]);
+    //int count_user = 0;
+    if (read_username.is_open()) {
+        getline(read_username, user_dir);
+        string user_name;
+        for (int i =0; getline(read_username, user_name); i++) {
+            user[i].username = user_name;
+            //count_user++;
+        }
+        read_username.close();
+    }
+    else cout << "Username file open failed!" << endl;
+}
+
 
 int search_user(const struct User_t user[], const string& user1) {
     int index = 0;
@@ -95,7 +114,7 @@ void post(struct User_t &user1, const string new_post_line[]) {
     user1.posts[user1.num_posts].title = new_post_line[0];
     int i = 1;
     while (new_post_line[i][0] == '#') {
-        user1.posts[user1.num_posts].tags[i-1] = new_post_line[i];
+        user1.posts[user1.num_posts].tags[i-1] = new_post_line[i].substr(1, new_post_line[i].length()-2);
         i++;
     }
     user1.posts[user1.num_posts].num_tags = i - 1;
@@ -163,7 +182,7 @@ int compare_tag (const void * A, const void * B) {
     if (l->tag_score > r->tag_score) return -1;
     else if (l->tag_score < r->tag_score) return 1;
     else  {
-        int compare_cha = compare_ASCII(l->tag_content.substr(1), r->tag_content.substr(1));
+        int compare_cha = compare_ASCII(l->tag_content, r->tag_content);
         if (compare_cha) return compare_cha;
         else {
             if (l->tag_content.length() < r->tag_content.length()) return -1;
@@ -184,12 +203,7 @@ void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {
                         break;
                     }
                 }
-                /*cout << "post tag: " << user[i].posts[post_index].tags[tag_index] << endl;
-                cout << "tag_in_array: " << tag_in_array << endl;
-                cout << "tag_all[tag_in_array].tag_content: "<< tag_all[tag_in_array].tag_content << endl;
-                 */
                 if (tag_all[tag_in_array].tag_content.empty()) {
-                    //cout << "empty!" << endl;
                     tag_all[tag_in_array].tag_content = user[i].posts[post_index].tags[tag_index];
                     tag_all[tag_in_array].tag_score = tag_all[tag_in_array].tag_score + 5
                             + 3 * user[i].posts[post_index].num_comments + user[i].posts[post_index].num_likes;
@@ -200,8 +214,9 @@ void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {
     int tag_num = 0;
     do {tag_num++;} while (!tag_all[tag_num].tag_content.empty());
     qsort(tag_all, tag_num, sizeof(tag_all[0]), compare_tag);
+    // string size 考虑一下！
     for (int i = 0; i < top_n && i < tag_num; i++) {
-        string tag_content_out = tag_all[i].tag_content.substr(1, tag_all[i].tag_content.size() - 2);
+        string tag_content_out = tag_all[i].tag_content;
         cout << i+1 << " " << tag_content_out << ": " << tag_all[i].tag_score << endl;
     }
 }
@@ -284,4 +299,250 @@ void printPost_all_for_one(User_t& user) {
         cout << i << " post: " << endl;
         printPost_detailed(user.posts[i]);
     }
+}
+
+/***EXCEPTION***/
+int exception_invalid_argument(int argc, char* argv[]) {
+    try{
+        if(argc < 3){
+            ostringstream oStream;
+            oStream << "Error: Wrong number of arguments!" << endl;
+            oStream << "Usage: ./p2 <username> <logfile>" << endl;
+            throw Exception_t(INVALID_ARGUMENT, oStream.str());
+        }
+    }
+    catch (Exception_t &exception) {
+        cout << exception.error_info;
+        return 0;
+    }
+    return 0;
+}
+
+int exception_file_missing(const std::string &file_name) {
+    try{
+        ostringstream ostream;
+        ostream << "Error: Cannot open file " << file_name << "!" <<endl;
+        throw Exception_t(FILE_MISSING, ostream.str());
+    }
+    catch (Exception_t &exception) {
+        cout << exception.error_info;
+        return 0;
+    }
+}
+
+int exception_capacity_overflow(const User_t user[]) {
+    try {
+        // Detect user number overflow
+        int num_user = 0;
+        do { num_user++; } while (!user[num_user].username.empty());
+        if (num_user > MAX_USERS) {
+            ostringstream ostream;
+            ostream << "Error: Too many users!" << endl;
+            ostream << "Maximal number of users is " << MAX_USERS << "." << endl;
+            throw Exception_t(CAPACITY_OVERFLOW, ostream.str());
+        }
+
+        for (int i = 0; i < num_user; i++) {
+            if (user[i].num_posts > MAX_POSTS) {
+                // Detect posts number per user overflow
+                ostringstream ostream;
+                ostream << "Error: Too many posts for user " << user[i].username << "!" << endl;
+                ostream << "Maximal number of posts is " << MAX_POSTS << "." << endl;
+                throw Exception_t(CAPACITY_OVERFLOW, ostream.str());
+
+            }
+
+            if (user[i].num_following > MAX_FOLLOWING) {
+                // Detect number of following per user overflow
+                ostringstream ostream;
+                ostream << "Error: Too many followings for user " << user[i].username << "!" << endl;
+                ostream << "Maximal number of followings is " << MAX_FOLLOWING << "." << endl;
+                throw Exception_t(CAPACITY_OVERFLOW, ostream.str());
+            }
+            if (user[i].num_followers > MAX_FOLLOWERS) {
+                // Detect number of following per user overflow
+                ostringstream ostream;
+                ostream << "Error: Too many followers for user " << user[i].username << "!" << endl;
+                ostream << "Maximal number of followers is " << MAX_FOLLOWERS << "." << endl;
+                throw Exception_t(CAPACITY_OVERFLOW, ostream.str());
+            }
+        }
+    }
+    catch (Exception_t &exception) {
+        cout << exception.error_info;
+        return 0;
+    }
+    return 1;
+}
+
+int exception_post_overflow(const Post_t &post) {
+    try{// Detect number of tags per post overflow
+        ostringstream oStream;
+        oStream << "Error: Too many tags for post " << post.title << "!" << endl;
+        oStream << "Maximal number of tag is " << MAX_TAGS << "." << endl;
+        throw Exception_t(CAPACITY_OVERFLOW, oStream.str());
+
+    }
+    catch (Exception_t &exception) {
+        cout << exception.error_info;
+        return 0;
+    }
+}
+
+int exception_capacity_overflow_post(const Post_t &post) {
+    try{
+        if(post.num_likes > MAX_LIKES){
+            // Detect number of tags per post overflow
+            ostringstream oStream;
+            oStream << "Error: Too many likes for post " << post.title << "!" << endl;
+            oStream << "Maximal number of likes is " << MAX_LIKES << "." << endl;
+            throw Exception_t(CAPACITY_OVERFLOW, oStream.str());
+        }
+        if(post.num_comments > MAX_COMMENTS){
+            // Detect number of tags per post overflow
+            ostringstream oStream;
+            oStream << "Error: Too many comments for post " << post.title << "!" << endl;
+            oStream << "Maximal number of comments is " << MAX_COMMENTS << "." << endl;
+            throw Exception_t(CAPACITY_OVERFLOW, oStream.str());
+        }
+
+    }
+    catch (Exception_t &exception) {
+        cout << exception.error_info;
+        return 0;
+    }
+    return 1;
+}
+
+int exception_like(const User_t &user1, const User_t &user2, const int post_id) {
+    try{
+        if (user2.num_posts < post_id) {
+            // Check whether user2 has post post_id
+            ostringstream oStream;
+            oStream << "Error: " << user1.username << " cannot like post #" << post_id << " of " << user2.username << "!" << endl;
+            oStream << user2.username << " does not have post #" << post_id << "." << endl;
+            throw Exception_t(INVALID_LOG, oStream.str());
+        }
+        else {
+            for (int i = 0; i < user2.posts[post_id-1].num_likes; i++) {
+                if (user2.posts[post_id-1].like_users[i]->username == user1.username) {
+                    ostringstream oStream;
+                    oStream << "Error: " << user1.username << " cannot like post #" << post_id << " of " << user2.username << "!" << endl;
+                    oStream << user1.username << " has already liked post #" << post_id << " of " << user2.username << "." << endl;
+                    throw Exception_t(INVALID_LOG, oStream.str());
+                }
+            }
+        }
+    }
+    catch (Exception_t &exception) {
+        cout << exception.error_info;
+        return 0;
+    }
+    return 1;
+}
+
+int exception_unlike(const User_t &user1, const User_t &user2, const int post_id) {
+    try{
+        if (user2.num_posts < post_id) {
+            // Check whether user2 has post post_id
+            ostringstream oStream;
+            oStream << "Error: " << user1.username << " cannot unlike post #" << post_id
+                    << " of " << user2.username << "!" << endl;
+            oStream << user2.username << " does not have post #" << post_id << "." << endl;
+            throw Exception_t(INVALID_LOG, oStream.str());
+        }
+        else {
+            bool liked = false;
+            for (int i = 0; i < user2.posts[post_id-1].num_likes; i++) {
+                if (user2.posts[post_id-1].like_users[i]->username == user1.username) {
+                    liked = true;
+                    break;
+                }
+            }
+            if (!liked) {
+                ostringstream oStream;
+                oStream << "Error: " << user1.username << " cannot unlike post #" << post_id
+                        << " of " << user2.username << "!" << endl;
+                oStream << user1.username << " has not liked post #" << post_id << " of " << user2.username << "." << endl;
+                throw Exception_t(INVALID_LOG, oStream.str());
+            }
+        }
+    }
+    catch (Exception_t &exception) {
+        cout << exception.error_info;
+        return 0;
+    }
+    return 1;
+}
+
+int exception_comment(const User_t &user1, const User_t &user2, const int post_id) {
+    try {
+        if (user2.num_posts < post_id) {
+            // Check whether user2 has post post_id
+            ostringstream oStream;
+            oStream << "Error: " << user1.username << " cannot comment post #" << post_id
+                    << " of " << user2.username<< "!" << endl;
+            oStream << user2.username << " does not have post #" << post_id << "." << endl;
+            throw Exception_t(INVALID_LOG, oStream.str());
+        }
+    }
+    catch (Exception_t &exception) {
+        cout << exception.error_info;
+        return 0;
+    }
+    return 1;
+}
+
+int exception_uncomment(const User_t &user1, const User_t &user2, const int post_id, const int comment_id) {
+    try {
+        if (user2.num_posts < post_id) {
+            // Check whether user2 has post post_id
+            ostringstream oStream;
+            oStream << "Error: " << user1.username << " cannot uncomment comment #" << comment_id
+                    << " of post #" << post_id
+                    << " posted by " << user2.username<< "!" << endl;
+            oStream << user2.username << " does not have post #" << post_id << "." << endl;
+            throw Exception_t(INVALID_LOG, oStream.str());
+        }
+        else if (user2.posts[post_id-1].num_comments < comment_id) {
+            // Check whether user2's #post_id has comment #comment_id
+            ostringstream oStream;
+            oStream << "Error: " << user1.username << " cannot uncomment comment #" << comment_id
+                    << " of post #" << post_id
+                    << " posted by " << user2.username<< "!" << endl;
+            oStream << "Post #" << post_id << " does not have comment #" << comment_id << "." << endl;
+            throw Exception_t(INVALID_LOG, oStream.str());
+        }
+        else if (user2.posts[post_id-1].comments[comment_id-1].user->username != user1.username) {
+            // Check whether user2's #post_id's comment #comment_id belongs to user1
+            ostringstream oStream;
+            oStream << "Error: " << user1.username << " cannot uncomment comment #" << comment_id
+                    << " of post #" << post_id
+                    << " posted by " << user2.username<< "!" << endl;
+            oStream <<  user1.username << " is not the owner of comment #" << comment_id << "." << endl;
+            throw Exception_t(INVALID_LOG, oStream.str());
+        }
+    }
+    catch (Exception_t &exception) {
+        cout << exception.error_info;
+        return 0;
+    }
+    return 1;
+}
+
+int exception_delete(const User_t &user1, const int post_id) {
+    try {
+        if (user1.num_posts < post_id) {
+            // Check whether user1 has post post_id
+            ostringstream oStream;
+            oStream << "Error: " << user1.username << " cannot delete post #" << post_id << "!" << endl;
+            oStream << user1.username << " does not have post #" << post_id << "." << endl;
+            throw Exception_t(INVALID_LOG, oStream.str());
+        }
+    }
+    catch (Exception_t &exception) {
+        cout << exception.error_info;
+        return 0;
+    }
+    return 1;
 }

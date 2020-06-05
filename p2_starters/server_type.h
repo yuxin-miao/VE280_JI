@@ -10,7 +10,6 @@
 
 #include <string>
 
-using namespace std;
 
 
 /* Constants */
@@ -43,18 +42,18 @@ enum Error_t {
     CAPACITY_OVERFLOW,
     INVALID_LOG,
 };
-/*
-struct Exception_t: public exception{
-    Error_t error;
-    string error_info;
 
-    Exception_t(Error_t err, const string& info){
+struct Exception_t: public std::exception{
+    Error_t error;
+    std::string error_info;
+
+    Exception_t(Error_t err, const std::string& info){
         this->error = err;
         this->error_info = info;
-    }
+    };
 };
- 别忘记！
- */
+
+
 
 
 /* Compound Types Declaration */
@@ -77,7 +76,7 @@ struct Comment_t
 // * user: pointer to the user who posted that comment
 */
 {
-    string text;
+    std::string text;
     User_t *user;
 };
 
@@ -92,7 +91,7 @@ struct Tag_t
 // * tag_score: the score of the tag used to determine the trend
 */
 {
-    string tag_content;
+    std::string tag_content;
     unsigned int tag_score;
 };
 
@@ -115,10 +114,10 @@ struct Post_t
 {
     Comment_t comments[MAX_COMMENTS];
     User_t *like_users[MAX_LIKES];
-    string tags[MAX_TAGS];
+    std::string tags[MAX_TAGS];
     User_t *owner;
-    string title;
-    string text;
+    std::string title;
+    std::string text;
     unsigned int num_likes;
     unsigned int num_comments;
     unsigned int num_tags;
@@ -143,7 +142,7 @@ struct User_t
     Post_t posts[MAX_POSTS];
     User_t *following[MAX_FOLLOWING];
     User_t *follower[MAX_FOLLOWERS];
-    string username;
+    std::string username;
     unsigned int num_posts;
     unsigned int num_following;
     unsigned int num_followers;
@@ -153,10 +152,10 @@ struct User_t
 /* TODO: Define any additional compound types here */
 // Hint: You might find a program driving structure "Server_t" useful.
 
-
+/*
 struct Server_t
 {
 };
-
+*/
 
 #endif // SERVER_TYPE_H
