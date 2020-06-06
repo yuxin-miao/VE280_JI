@@ -21,9 +21,8 @@ int main(int argc, char *argv[]) {
     // READ: User data
 
     string user_dir;
-    User_t user[30]; // 确定一下有没有说最多几个user
+    User_t user[30];
 
-    //read_username_file(argv, user, user_dir);
     ifstream read_username;
     read_username.open(argv[1]);
     int count_user = 0;
@@ -236,7 +235,7 @@ int main(int argc, char *argv[]) {
                 request_ss >> post_id;
                 user1_index = search_user(user, user1);
                 if (exception_delete(user[user1_index], post_id))
-                    unpost(user[user1_index], post_id - 1);
+                    unpost(user[user1_index], (int)post_id - 1);
             }
             else if (request == "refresh") {
                 print_request(request);
@@ -254,31 +253,6 @@ int main(int argc, char *argv[]) {
         read_logfile.close();
     }
     else cout << "LOGFILE OPEN FAILED!" << endl;
-
-
-    /*
-     * TEST
-
-    int test_num = 7;
-    cout << "TEST: " << user[test_num].username << endl;
-    cout << "POSTS: " << user[test_num].num_posts << endl;
-    cout << "NUM_FOLLOWing: " << user[test_num].num_following << endl;
-    for (int i = 0; i < user[test_num].num_following; i++) {
-        cout << user[test_num].following[i]->username << endl;
-    }
-    cout << "NUM_FOLLOWers: " << user[test_num].num_followers << endl;
-    for (int i = 0; i < user[test_num].num_followers; i++) {
-        cout << user[test_num].follower[i]->username << endl;
-    }*/
-
-    /*TEST WITH DEFAULT FUNCTION*/
-    //cout << posts_all[0].owner->username << endl;
-    //cout << user[0].posts[0].owner->username << endl;
-    //printUser(user[0], "follower");
-    //cout << user[0].follower[0]->num_followers << endl;
-    //printPost(user[0].posts[0]);
-    //cout << user[0].posts[0].title << endl;
-
 
     return 0;
 }

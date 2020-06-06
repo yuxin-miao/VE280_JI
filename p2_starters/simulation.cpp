@@ -169,45 +169,45 @@ void visit(struct User_t &user1, struct User_t &user2) {
     else if (!user1_fo_user2) relationship = "stranger";
     printUser(user2, relationship);
 }
-/*
-int compare_ASCII (const string &l_str, const string &r_str) {
-    if (l_str.empty() | r_str.empty()) return 0;
-    if (l_str.at(0) < r_str.at(0)) return -1;
-    else if (l_str.at(0) > r_str.at(0)) return 1;
-    else return compare_ASCII(l_str.substr(1), r_str.substr(1));
+
+void bubble_sort_swap (struct Tag_t& left, struct Tag_t& right) {
+    string temp = left.tag_content;
+    unsigned int temp_score = left.tag_score;
+    left.tag_score = right.tag_score;
+    left.tag_content = right.tag_content;
+    right.tag_content = temp;
+    right.tag_score = temp_score;
 }
 
-int compare_tag (const void * A, const void * B) {
-    const Tag_t* l = (Tag_t*)A;
-    const Tag_t* r = (Tag_t*)B;
-    if (l->tag_score > r->tag_score) return -1;
-    else if (l->tag_score < r->tag_score) return 1;
-    else  {
-        int compare_cha = compare_ASCII(l->tag_content, r->tag_content);
-        if (compare_cha) return compare_cha;
-        else {
-            if (l->tag_content.length() < r->tag_content.length()) return -1;
-            else return 1;
-        }
-    }
-};*/
-
-int sort_ASCII (const string &l_str, const string &r_str) {
-    if (l_str.empty() | r_str.empty()) return 5;
-    if (l_str.at(0) != r_str.at(0)) return l_str.at(0) < r_str.at(0);
-    else return sort_ASCII(l_str.substr(1), r_str.substr(1));
+int recursive_ASCII (const string& str_left, const string& str_right) {
+    if (str_left.empty() | str_right.empty()) return 5;
+    if (str_left.at(0) > str_right.at(0)) return 1;
+    else if (str_left.at(0) < str_right.at(0))
+        return 0;
+    else
+        return recursive_ASCII(str_left.substr(1), str_right.substr(1));
 }
 
-bool sort_tag (const Tag_t& A, const Tag_t& B) {
-    if (A.tag_score != B.tag_score) return A.tag_score > B.tag_score;
-    else  {
-        int sort_cha = sort_ASCII(A.tag_content, B.tag_content);
-        if (sort_cha != 5) return sort_cha;
-        else {
-            return A.tag_content.length() < B.tag_content.length();
+void bubble_sort (struct Tag_t tag_all[], const int tag_num) {
+    for (int i = 0; i < tag_num - 1; i++) {
+        bool swapped = false;
+        for (int j = 0; j < tag_num - i - 1; j++) {
+            if (tag_all[j].tag_score < tag_all[j + 1].tag_score)
+                {bubble_sort_swap(tag_all[j], tag_all[j + 1]); swapped = true;}
+            else if (tag_all[j].tag_score == tag_all[j + 1].tag_score) {
+                int ASCII = recursive_ASCII(tag_all[j].tag_content, tag_all[j + 1].tag_content);
+                if (ASCII == 1)
+                    {bubble_sort_swap(tag_all[j], tag_all[j + 1]); swapped = true;}
+                else if (ASCII == 5){
+                    if (tag_all[j].tag_content.length() > tag_all[j + 1].tag_content.length())
+                        {bubble_sort_swap(tag_all[j], tag_all[j + 1]); swapped = true;}
+                }
+            }
         }
+        if (!swapped) break;
     }
-};
+
+}
 
 void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {
     // first delete the tag_score stored
@@ -240,12 +240,16 @@ void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {
     }
     int tag_num = 0;
     do {tag_num++;} while (!tag_all[tag_num].tag_content.empty());
-    sort(tag_all, tag_all + tag_num, sort_tag);
-    //qsort(tag_all, tag_num, sizeof(tag_all[0]), compare_tag);
-    // string size 考虑一下！
+    /*cout << "Before sorting..." << endl;
     for (int i = 0; i < top_n && i < tag_num; i++) {
-        string tag_content_out = tag_all[i].tag_content;
-        cout << i+1 << " " << tag_content_out << ": " << tag_all[i].tag_score << endl;
+        printTag(tag_all[i], i + 1);
+    }*/
+
+    bubble_sort(tag_all, tag_num);
+    //cout << "After sorting..." << endl;
+
+    for (int i = 0; i < top_n && i < tag_num; i++) {
+        printTag(tag_all[i], i + 1);
     }
 }
 
@@ -283,50 +287,6 @@ void printPost(Post_t& post){
 
 void printTag(const Tag_t& tag, unsigned int rank){
     cout << rank << " " << tag.tag_content << ": " << tag.tag_score << endl;
-}
-
-void printUser_detailed(User_t& user) {
-    cout << user.username << endl;
-    cout << "Posts:" << user.num_posts << endl;
-    cout << "Following number: " << user.num_following << endl;
-    for (unsigned int i = 0; i < user.num_following; i++) {
-        cout << "Following " << i << ": " << user.following[i]->username << endl;
-    }
-    cout << "Follower number: " << user.num_followers << endl;
-    for (unsigned int i = 0; i < user.num_followers; i++) {
-        cout << "Follower " << i << ": " << user.follower[i]->username << endl;
-    }
-}
-
-void printPost_detailed(Post_t& post){
-    cout << "Post owner: " <<  post.owner->username << endl;
-    cout << post.title << endl;
-    cout << post.text << endl;
-    cout << "Tags: ";
-    for(unsigned int i = 0; i<post.num_tags; ++i){
-        cout << post.tags[i] << " ";
-    }
-    cout << "\nLikes: " << post.num_likes << endl;
-
-    for (unsigned int i = 0; i < post.num_likes; i++) {
-        cout << "Like user " << i <<  ": " << post.like_users[i]->username << endl;
-    }
-    if (post.num_comments > 0){
-        cout << "Comments:" << endl;
-        for(unsigned int i = 0; i<post.num_comments; ++i){
-            cout << post.comments[i].user->username << ": "
-                 << post.comments[i].text << endl;
-        }
-    }
-    cout << "- - - - - - - - - - - - - - -" << endl;
-}
-
-void printPost_all_for_one(User_t& user) {
-    cout << user.username << " post: "<< user.num_posts << "posts." << endl;
-    for (unsigned int i = 0; i < user.num_posts; i++) {
-        cout << i << " post: " << endl;
-        printPost_detailed(user.posts[i]);
-    }
 }
 
 /***EXCEPTION***/
