@@ -229,6 +229,7 @@ void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {
                     }
                 }
                 if (tag_all[tag_in_array].tag_content.empty()) {
+                    tag_all[tag_in_array].tag_score = 0;
                     // this tag does not exist in the array of tag
                     // add this new tag to array
                     tag_all[tag_in_array].tag_content = user[i].posts[post_index].tags[tag_index];

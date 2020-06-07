@@ -37,9 +37,15 @@ string
 /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/simulation.cpp
 simulation.h
 /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/simulation.h
+server_type.h
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/server_type.h
 iostream
 -
+algorithm
+-
 sstream
+-
+fstream
 -
 
 /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/p2_starters/simulation.h
