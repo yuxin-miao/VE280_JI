@@ -13,7 +13,7 @@
 
 using namespace std;
 
-void read_username_file (char* argv[], User_t user[], std::string &user_dir) {
+int read_username_file (char* argv[], User_t user[], std::string &user_dir) {
     ifstream read_username;
     read_username.open(argv[1]);
     //int count_user = 0;
@@ -26,8 +26,58 @@ void read_username_file (char* argv[], User_t user[], std::string &user_dir) {
         }
         read_username.close();
     }
-    else cout << "Username file open failed!" << endl;
+    else {
+        exception_file_missing(argv[1]);
+        return 0;
+    }
+    return 1;
 }
+
+int read_username_dir (User_t user[], const std::string &user_dir) {
+    ifstream read_user_dir;
+    for (int i = 0; !user[i].username.empty(); i++) {
+        string user_info;
+        read_user_dir.open(user_dir + "/" + user[i].username + "/" + "user_info");
+        stringstream ss_user_info;
+        if (read_user_dir.is_open()) {
+            while (getline(read_user_dir, user_info)) {
+                ss_user_info << user_info << " ";
+            }
+            read_user_dir.close();
+        } else {
+            exception_file_missing(user_dir + "/" + user[i].username + "/" + "user_info");
+            return 0;
+        }
+        string temp;
+        int user_info_num = 0; // store the digits in stringstream
+        int count_info_num = 0;
+        while (ss_user_info >> user_info_num) {
+            if (count_info_num == 0) {
+                user[i].num_posts = (unsigned int) user_info_num;
+                count_info_num++;
+            }
+            else if (count_info_num == 1) {
+                user[i].num_following = (unsigned int) user_info_num;
+                count_info_num++; //store the num_following and the following names
+                for (int j = 0; j < user_info_num; j++) {
+                    ss_user_info >> temp;
+                    int user_index = search_user(user, temp);
+                    user[i].following[j] = &user[user_index];
+                }
+            } else if (count_info_num == 2) {
+                user[i].num_followers = user_info_num;
+                count_info_num++; //store the num_follower and the follower names
+                for (int j = 0; j < user_info_num; j++) {
+                    ss_user_info >> temp;
+                    int user_index = search_user(user, temp);
+                    user[i].follower[j] = &user[user_index];
+                }
+            }
+        }
+    }
+    return 1;
+}
+
 
 
 int search_user(const struct User_t user[], const string& user1) {

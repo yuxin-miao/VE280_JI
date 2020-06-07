@@ -17,40 +17,35 @@ int main(int argc, char *argv[]) {
 
     exception_invalid_argument(argc);
 
-    /******USERNAME INITIALIZATION****/
-    // READ: User data
+    /******USERNAME INITIALIZATION******/
 
     string user_dir;
-    User_t user[30];
+    User_t user[30]; // array used to store user information
 
-    ifstream read_username;
-    read_username.open(argv[1]);
-    int count_user = 0;
-    if (read_username.is_open()) {
-        getline(read_username, user_dir);
-        string user_name;
-        for (int i = 0; getline(read_username, user_name); i++) {
-            user[i].username = user_name;
-            count_user++;
-        }
-        read_username.close();
-    }
-    else {
-        exception_file_missing(argv[1]);
-        return 0;
-    }
-    if (!exception_capacity_overflow(user)) return 0; // MAX_USER overflow
+    // READ: User data
+
+    // read username file, if FILE_MISSING, terminate
+    if (!read_username_file(argv, user, user_dir)) return 0;
+
+    if (!exception_capacity_overflow(user)) return 0;
+    // Detect MAX_USER overflow, if CAPACITY_OVERFLOW, terminate
 
     // READ: User directories
     ifstream read_user_dir;
-    for (int i = 0; i < count_user; i++) {
+    //read_username_dir(user, user_dir);
+    //if (!read_username_dir(user, user_dir)) return 0; // if FILE_MISSING, terminate
+
+    for (int i = 0; !user[i].username.empty(); i++) {
         string user_info;
         read_user_dir.open( user_dir + "/" + user[i].username + "/" + "user_info");
         stringstream ss_user_info;
         if (read_user_dir.is_open()) {
             while (getline(read_user_dir, user_info)) {
+                cout << "user_info: " << user_info << endl;
                 ss_user_info << user_info << " " ;
             }
+            cout << "user_info——out!!: " << user_info << endl;
+
             read_user_dir.close();
         }
         else {
@@ -58,32 +53,29 @@ int main(int argc, char *argv[]) {
             return 0;
         }
         string temp;
-        int user_info_num = 0; // store the digits in stringstream
-        int count_info_num = 0;
+        unsigned int user_info_num = 0; // store the digits in stringstream
+        unsigned int count_info_num = 0;
         while (ss_user_info >> user_info_num) {
-            if (count_info_num == 0) {user[i].num_posts = (unsigned int)user_info_num; count_info_num++;}
-            else if (count_info_num == 1) {user[i].num_following = (unsigned int)user_info_num; count_info_num++; //store the num_following and the following names
-                for (int j = 0; j < user_info_num; j++) {
+            if (count_info_num == 0) {user[i].num_posts = user_info_num; count_info_num++;
+            cout << user_info_num << endl;
+            cout<< user[i].username << " : "<<user[i].num_posts;}
+            else if (count_info_num == 1) {user[i].num_following = user_info_num; count_info_num++; //store the num_following and the following names
+                for (unsigned int j = 0; j < user_info_num; j++) {
                     ss_user_info >> temp;
-                    for (int search_it = 0; search_it < count_user; search_it++) {
-                        if (user[search_it].username == temp) {
-                            user[i].following[j] = &user[search_it];
-                        }
-                    }
+                    int user_index = search_user(user, temp);
+                    user[i].following[j] = &user[user_index];
                 }
             }
             else if (count_info_num == 2) {user[i].num_followers = user_info_num; count_info_num++; //store the num_follower and the follower names
-                for (int j = 0; j < user_info_num; j++) {
+                for (unsigned int j = 0; j < user_info_num; j++) {
                     ss_user_info >> temp;
-                    for (int search_it = 0; search_it < count_user; search_it++) {
-                        if (user[search_it].username == temp) {
-                            user[i].follower[j] = &user[search_it];
-                        }
-                    }
+                    int user_index = search_user(user, temp);
+                    user[i].follower[j] = &user[user_index];
                 }
             }
 
         }
+        cout << user[3].num_posts << endl;
         if (!exception_capacity_overflow(user)) return 0;
         // MAX posts / followings / followers overflow
         if (user[i].num_posts != 0) { //read posts
@@ -119,24 +111,18 @@ int main(int argc, char *argv[]) {
                     if (!exception_capacity_overflow_post(user[i].posts[loop_post])) return 0; // Detect number of likes overflow
                     for (unsigned int like_user = 0; like_user < user[i].posts[loop_post].num_likes; like_user++) {
                         getline(read_post, post_content);
-                        for (int search_it = 0; search_it < count_user; search_it++) {
-                            if (user[search_it].username == post_content) {
-                                user[i].posts[loop_post].like_users[like_user] = &user[search_it];
-                            }
-                        }
+                        int user_index = search_user(user, post_content);
+                        user[i].posts[loop_post].like_users[like_user] = &user[user_index];
                     }
                     getline(read_post, post_content); int num_comment = stoi(post_content);
                     user[i].posts[loop_post].num_comments = (unsigned int)num_comment;
                     if (!exception_capacity_overflow_post(user[i].posts[loop_post])) return 0; // Detect number of comments overflow
                     for (unsigned int comment_num = 0; comment_num < user[i].posts[loop_post].num_comments; comment_num++) {
                         getline(read_post, post_content);
-                        for (int search_it = 0; search_it < count_user; search_it++) {
-                            if (user[search_it].username == post_content) {
-                                user[i].posts[loop_post].comments[comment_num].user = &user[search_it];
-                                getline(read_post, post_content);
-                                user[i].posts[loop_post].comments[comment_num].text = post_content;
-                            }
-                        }
+                        int user_index = search_user(user, post_content);
+                        user[i].posts[loop_post].comments[comment_num].user = &user[user_index];
+                        getline(read_post, post_content);
+                        user[i].posts[loop_post].comments[comment_num].text = post_content;
                     }
                     read_post.close();
                 }
@@ -149,6 +135,7 @@ int main(int argc, char *argv[]) {
 
         }
     }
+
     /***LOGFILE PROCESSING***/
     ifstream read_logfile;
     read_logfile.open(argv[2]);

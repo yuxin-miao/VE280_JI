@@ -10,11 +10,16 @@
 // TODO: Declare your functions in this header file.
 
 
-void read_username_file (char* argv[], User_t user[], std::string &user_dir);
+int read_username_file (char* argv[], User_t user[], std::string &user_dir);
+// MODIFIES: user[], user_dir
+// EFFECTS: read file username (argv[1]) and store user directory and user names
+
+int read_username_dir (User_t user[], const std::string &user_dir);
+// MODIFIES: user[]
+// EFFECTS: read user directories
 
 
 
-// Hint: You may need these request handling functions.
 int search_user(const struct User_t user[], const std::string& user1);
 // EFFECTS: Search the username (user1) is in which location of the array of type struct User_t
 
