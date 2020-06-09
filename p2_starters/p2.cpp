@@ -2,17 +2,13 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <iomanip>
-#include <cstdlib>
 #include <cctype>
-#include <cassert>
 #include <algorithm>
 #include "server_type.h"
 #include "simulation.h"
 
 using namespace std;
 
-// 缩短main！
 int main(int argc, char *argv[]) {
 
     exception_invalid_argument(argc);

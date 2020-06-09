@@ -16,13 +16,11 @@ using namespace std;
 void read_username_file (char* argv[], User_t user[], std::string &user_dir) {
     ifstream read_username;
     read_username.open(argv[1]);
-    //int count_user = 0;
     if (read_username.is_open()) {
         getline(read_username, user_dir);
         string user_name;
         for (int i =0; getline(read_username, user_name); i++) {
             user[i].username = user_name;
-            //count_user++;
         }
         read_username.close();
     }
@@ -241,14 +239,7 @@ void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {
     }
     int tag_num = 0;
     do {tag_num++;} while (!tag_all[tag_num].tag_content.empty());
-    /*cout << "Before sorting..." << endl;
-    for (int i = 0; i < top_n && i < tag_num; i++) {
-        printTag(tag_all[i], i + 1);
-    }*/
-
     bubble_sort(tag_all, tag_num);
-    //cout << "After sorting..." << endl;
-
     for (int i = 0; i < top_n && i < tag_num; i++) {
         printTag(tag_all[i], i + 1);
     }
