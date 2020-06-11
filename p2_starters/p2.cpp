@@ -9,7 +9,7 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    exception_invalid_argument(argc);
+    if (!exception_invalid_argument(argc)) return 0;
 
     /******USERNAME INITIALIZATION******/
     string user_dir;

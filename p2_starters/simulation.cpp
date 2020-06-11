@@ -13,16 +13,15 @@
 
 using namespace std;
 
+/***INITIALIZATION***/
 int read_username_file (char* argv[], User_t user[], std::string &user_dir) {
     ifstream read_username;
     read_username.open(argv[1]);
-    //int count_user = 0;
     if (read_username.is_open()) {
         getline(read_username, user_dir);
         string user_name;
         for (int i =0; getline(read_username, user_name); i++) {
             user[i].username = user_name;
-            //count_user++;
         }
         read_username.close();
     }
@@ -35,7 +34,6 @@ int read_username_file (char* argv[], User_t user[], std::string &user_dir) {
 
 int read_username_dir (User_t user[], const std::string &user_dir) {
     ifstream read_user_dir;
-
     for (int i = 0; !user[i].username.empty(); i++) {
         string user_info;
         read_user_dir.open( user_dir + "/" + user[i].username + "/" + "user_info");
@@ -55,15 +53,24 @@ int read_username_dir (User_t user[], const std::string &user_dir) {
         unsigned int user_info_num = 0; // store the digits in stringstream
         unsigned int count_info_num = 0;
         while (ss_user_info >> user_info_num) {
-            if (count_info_num == 0) {user[i].num_posts = user_info_num; count_info_num++;}
-            else if (count_info_num == 1) {user[i].num_following = user_info_num; count_info_num++; //store the num_following and the following names
+            if (count_info_num == 0) {
+                user[i].num_posts = user_info_num;
+                count_info_num++;
+            }
+            else if (count_info_num == 1) {
+                user[i].num_following = user_info_num;
+                count_info_num++; //store the num_following and the following names
+                if (!exception_capacity_overflow(user)) return 0;
                 for (unsigned int j = 0; j < user_info_num; j++) {
                     ss_user_info >> temp;
                     int user_index = search_user(user, temp);
                     user[i].following[j] = &user[user_index];
                 }
             }
-            else if (count_info_num == 2) {user[i].num_followers = user_info_num; count_info_num++; //store the num_follower and the follower names
+            else if (count_info_num == 2) {
+                user[i].num_followers = user_info_num;
+                count_info_num++; //store the num_follower and the follower names
+                if (!exception_capacity_overflow(user)) return 0;
                 for (unsigned int j = 0; j < user_info_num; j++) {
                     ss_user_info >> temp;
                     int user_index = search_user(user, temp);
@@ -84,7 +91,6 @@ int read_username_dir (User_t user[], const std::string &user_dir) {
                     string post_content;
                     getline(read_post, post_content);
                     user[i].posts[loop_post].title = post_content;
-
                     int tag_num = 0;
                     while (getline(read_post, post_content)) {
                         if (post_content[0] == '#') {
@@ -347,13 +353,9 @@ void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {
     }
     int tag_num = 0;
     do {tag_num++;} while (!tag_all[tag_num].tag_content.empty());
-    /*cout << "Before sorting..." << endl;
-    for (int i = 0; i < top_n && i < tag_num; i++) {
-        printTag(tag_all[i], i + 1);
-    }*/
+
 
     bubble_sort(tag_all, tag_num);
-    //cout << "After sorting..." << endl;
 
     for (int i = 0; i < top_n && i < tag_num; i++) {
         printTag(tag_all[i], i + 1);
@@ -410,7 +412,7 @@ int exception_invalid_argument(int argc) {
         cout << exception.error_info;
         return 0;
     }
-    return 0;
+    return 1;
 }
 
 int exception_file_missing(const std::string &file_name) {
@@ -427,6 +429,7 @@ int exception_file_missing(const std::string &file_name) {
 
 int exception_capacity_overflow(const User_t user[]) {
     try {
+
         // Detect user number overflow
         unsigned int num_user = 0;
         do { num_user++; } while (!user[num_user].username.empty());
