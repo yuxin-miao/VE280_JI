@@ -10,20 +10,14 @@
 // TODO: Declare your functions in this header file.
 
 
-/***INITIALIZATION***/
-int read_username_file (char* argv[], User_t user[], std::string &user_dir);
-// MODIFIES: user[], user_dir
-// EFFECTS: read file username (argv[1]) and store user directory and user names
+void read_username_file (char* argv[], User_t user[], std::string &user_dir);
 
-int read_username_dir (User_t user[], const std::string &user_dir);
-// MODIFIES: user[]
-// EFFECTS: read user directories
 
+
+// Hint: You may need these request handling functions.
 int search_user(const struct User_t user[], const std::string& user1);
 // EFFECTS: Search the username (user1) is in which location of the array of type struct User_t
 
-
-/***LOGFILE PROCESSING***/
 void print_request(const std::string& request);
 // EFFECTS: Print out request when read in
 
@@ -65,6 +59,7 @@ void refresh(struct User_t &user1);
 void visit(struct User_t &user1, struct User_t &user2);
 // EFFECTS: Implement the request: user1 visit user2
 
+
 int recursive_ASCII (const std::string& str_left, const std::string& str_right);
 // EFFECTS: Compare the string str_left, str_right recursively based on the first character
 // used for trending function
@@ -77,12 +72,15 @@ void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]);
 // EFFECTS: Implement the request: trending n
 
 
+
 /* Helper Functions */
 
 // Printing
 void printUser(User_t& user, const std::string& relationship);
 void printPost(Post_t& post);
 void printTag(const Tag_t& tag, unsigned int rank);
+
+
 
 
 /***EXCEPTION***/
@@ -101,6 +99,7 @@ int exception_post_overflow(const Post_t &post);
 
 int exception_capacity_overflow_post(const Post_t &post);
 // EFFECTS: check capacity overflow for number of likes/comments per post
+//开始log processing以后也要注意capacity overflow！等会写
 
 // Processing Error
 int exception_like(const User_t &user1, const User_t &user2, unsigned int post_id);

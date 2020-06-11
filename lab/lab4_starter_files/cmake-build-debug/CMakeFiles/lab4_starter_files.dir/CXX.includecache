@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab4_starter_files/ex3.cpp
+iostream
+-
+sstream
+-
+
