@@ -127,7 +127,7 @@ int main(int argc, char *argv[]) {
         }
         read_logfile.close();
     }
-    else cout << "LOGFILE OPEN FAILED!" << endl;
+    else exception_file_missing(argv[2]); // check FILE_MISSING exception
     return 0;
 }
 
