@@ -70,9 +70,17 @@ Error: marstin cannot unlike post #1 of zhuzhuoer!
 marstin has not liked post #1 of zhuzhuoer.
 >> like
 >> like
+Error: marstin cannot like post #1 of zhuzhuoer!
+marstin has already liked post #1 of zhuzhuoer.
+>> like
 Error: marstin cannot like post #0 of zhuzhuoer!
 zhuzhuoer does not have post #0.
 >> post
+>> visit
+zhuzhuoer
+friend
+Followers: 1
+Following: 2
 >> refresh
 zhuzhuoer
 Writing Project 2
@@ -130,12 +138,6 @@ zhuzhuoer: True.
 >> comment
 Error: marstin cannot comment post #0 of zhuzhuoer!
 zhuzhuoer does not have post #0.
->> trending
-1 VE280: 56
-2 SU2020: 42
-3 VE492: 22
-4 JI: 11
-5 code: 6
 >> comment
 >> refresh
 marstin
@@ -200,16 +202,22 @@ Likes: 0
 4 JI: 14
 5 code: 9
 >> unlike
+>> unlike
+Error: marstin cannot unlike post #1 of zhuzhuoer!
+marstin has not liked post #1 of zhuzhuoer.
 >> uncomment
 Error: zhuzhuoer cannot uncomment comment #0 of post #1 posted by zhuzhuoer!
-Post 1 does not have comment #0.
+Post #1 does not have comment #0.
 >> uncomment
 Error: zhuzhuoer cannot uncomment comment #1 of post #1 posted by zhuzhuoer!
-zhuzhuoer is not the owner of comment #1
+zhuzhuoer is not the owner of comment #1.
 >> uncomment
 Error: marstin cannot uncomment comment #2 of post #1 posted by zhuzhuoer!
-Post 1 does not have comment #2.
+Post #1 does not have comment #2.
 >> uncomment
+>> uncomment
+Error: marstin cannot uncomment comment #1 of post #3 posted by zhuzhuoer!
+zhuzhuoer does not have post #3.
 >> refresh
 zhuzhuoer
 Writing Project 2
