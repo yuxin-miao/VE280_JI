@@ -93,10 +93,13 @@ int read_username_dir (User_t user[], const std::string &user_dir) {
                     user[i].posts[loop_post].title = post_content;
                     int tag_num = 0;
                     while (getline(read_post, post_content)) {
+
                         if (post_content[0] == '#') {
-                            user[i].posts[loop_post].tags[tag_num] = post_content.substr(1, post_content.length() - 2);
+                            if (tag_num < 5)
+                                user[i].posts[loop_post].tags[tag_num] = post_content.substr(1, post_content.length() - 2);
                             tag_num++;
                         }
+
                         if (tag_num > 5) {
                             // Detect number of tags overflow
                             exception_post_overflow(user[i].posts[loop_post]);
@@ -477,7 +480,7 @@ int exception_post_overflow(const Post_t &post) {
     try{// Detect number of tags per post overflow
         ostringstream oStream;
         oStream << "Error: Too many tags for post " << post.title << "!" << endl;
-        oStream << "Maximal number of tag is " << MAX_TAGS << "." << endl;
+        oStream << "Maximal number of tags is " << MAX_TAGS << "." << endl;
         throw Exception_t(CAPACITY_OVERFLOW, oStream.str());
 
     }
@@ -490,14 +493,14 @@ int exception_post_overflow(const Post_t &post) {
 int exception_capacity_overflow_post(const Post_t &post) {
     try{
         if(post.num_likes > MAX_LIKES){
-            // Detect number of tags per post overflow
+            // Detect number of likes per post overflow
             ostringstream oStream;
             oStream << "Error: Too many likes for post " << post.title << "!" << endl;
             oStream << "Maximal number of likes is " << MAX_LIKES << "." << endl;
             throw Exception_t(CAPACITY_OVERFLOW, oStream.str());
         }
         if(post.num_comments > MAX_COMMENTS){
-            // Detect number of tags per post overflow
+            // Detect number of comments per post overflow
             ostringstream oStream;
             oStream << "Error: Too many comments for post " << post.title << "!" << endl;
             oStream << "Maximal number of comments is " << MAX_COMMENTS << "." << endl;
