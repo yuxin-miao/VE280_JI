@@ -308,14 +308,14 @@ void bubble_sort (struct Tag_t tag_all[], const int tag_num) {
         bool swapped = false;
         for (int j = 0; j < tag_num - i - 1; j++) {
             if (tag_all[j].tag_score < tag_all[j + 1].tag_score)
-                {bubble_sort_swap(tag_all[j], tag_all[j + 1]); swapped = true;}
+            {bubble_sort_swap(tag_all[j], tag_all[j + 1]); swapped = true;}
             else if (tag_all[j].tag_score == tag_all[j + 1].tag_score) {
                 int ASCII = recursive_ASCII(tag_all[j].tag_content, tag_all[j + 1].tag_content);
                 if (ASCII == 1)
-                    {bubble_sort_swap(tag_all[j], tag_all[j + 1]); swapped = true;}
+                {bubble_sort_swap(tag_all[j], tag_all[j + 1]); swapped = true;}
                 else if (ASCII == 5){
                     if (tag_all[j].tag_content.length() > tag_all[j + 1].tag_content.length())
-                        {bubble_sort_swap(tag_all[j], tag_all[j + 1]); swapped = true;}
+                    {bubble_sort_swap(tag_all[j], tag_all[j + 1]); swapped = true;}
                 }
             }
         }
@@ -339,7 +339,7 @@ void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {
                     if (user[i].posts[post_index].tags[tag_index] == tag_all[tag_in_array].tag_content) {
                         // this tag exists in the array of tag
                         tag_all[tag_in_array].tag_score = tag_all[tag_in_array].tag_score + 5
-                                + 3 * user[i].posts[post_index].num_comments + user[i].posts[post_index].num_likes;
+                                                          + 3 * user[i].posts[post_index].num_comments + user[i].posts[post_index].num_likes;
                         break;
                     }
                 }
@@ -349,7 +349,7 @@ void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {
                     // add this new tag to array
                     tag_all[tag_in_array].tag_content = user[i].posts[post_index].tags[tag_index];
                     tag_all[tag_in_array].tag_score = tag_all[tag_in_array].tag_score + 5
-                            + 3 * user[i].posts[post_index].num_comments + user[i].posts[post_index].num_likes;
+                                                      + 3 * user[i].posts[post_index].num_comments + user[i].posts[post_index].num_likes;
                 }
             }
         }
