@@ -1,0 +1,78 @@
+False
+./p2
+
+missing-file-userinfo: error
+*** 
+--- 
+***************
+*** 1 ****
+! Error: Cannot open file users/missing-file-userinfo/user_info!
+--- 1 ----
+! Error: Cannot open file users\missing-file-userinfo\user_info!
+
+invalid-arg-no-arg: pass
+
+missing-file-post: error
+*** 
+--- 
+***************
+*** 1 ****
+! Error: Cannot open file users/missing-file-userinfo/user_info!
+--- 1 ----
+! Error: Cannot open file users\missing-file-userinfo\user_info!
+
+uncomment-not-post: pass
+
+like-already: error
+*** 
+--- 
+***************
+*** 1,4 ****
+  >> like
+  >> like
+  Error: empty-1 cannot like post #1 of one-post!
+! empty-1 has already liked post #1 of one-post.
+--- 1,4 ----
+  >> like
+
+uncomment-not-owner: pass
+like-not-post: pass
+too-many-posts: pass
+too-many-likes: pass
+too-many-followings: pass
+missing-file-username: pass
+too-many-comments: pass
+delete-not-post: pass
+invalid-arg-one-arg: pass
+
+uncomment-not-comment: error
+*** 
+--- 
+***************
+*** 1,3 ****
+  >> uncomment
+  Error: empty-1 cannot uncomment comment #1 of post #1 posted by one-post!
+! Post #1 does not have comment #1.
+--- 1,3 ----
+  >> uncomment
+  Error: empty-1 cannot uncomment comment #1 of post #1 posted by one-post!
+
+comment-not-post: pass
+too-many-users: pass
+invalid-arg-too-many: pass
+
+too-many-tags: error
+*** 
+--- 
+***************
+*** 1,2 ****
+! Error: Too many tags for post !
+! Maximal number of tag is 5.
+--- 1,2 ----
+! Error: Too many tags for post too-many-tags!
+! Maximal number of tags is 5.
+
+missing-file-logfile: pass
+too-many-followers: pass
+unlike-not-post: pass
+unlike-not-liked: pass

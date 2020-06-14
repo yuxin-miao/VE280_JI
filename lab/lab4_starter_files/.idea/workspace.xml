@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="lab4_starter_files" targetName="lab4_starter_files" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2070d7b3-83f0-4f01-8c75-3c2c65617459" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../p2_starters/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../p2_starters/cmake-build-debug/CMakeFiles/p2_starters.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../../p2_starters/cmake-build-debug/CMakeFiles/p2_starters.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../p2_starters/cmake-build-debug/CMakeFiles/p2_starters.dir/simulation.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../../p2_starters/cmake-build-debug/CMakeFiles/p2_starters.dir/simulation.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../p2_starters/cmake-build-debug/p2_starters" beforeDir="false" afterPath="$PROJECT_DIR$/../../p2_starters/cmake-build-debug/p2_starters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../p2_starters/p2" beforeDir="false" afterPath="$PROJECT_DIR$/../../p2_starters/p2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../p2_starters/simulation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../p2_starters/simulation.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/3.15.3/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/3.15.3/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/project1.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/project1.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/project1.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/project1.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/project1.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/project1.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/project1.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/project1.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/CMakeFiles/project1.dir/p1.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project1/cmake-build-debug/project1.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../../project1/cmake-build-debug/project1.cbp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1d3oMoiZ2eCcRO8sbCBHBL0njns" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager">
+    <configuration name="lab4_starter_files" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="lab4_starter_files" TARGET_NAME="lab4_starter_files" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="lab4_starter_files" RUN_TARGET_NAME="lab4_starter_files">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2070d7b3-83f0-4f01-8c75-3c2c65617459" name="Default Changelist" comment="" />
+      <created>1591663091270</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1591663091270</updated>
+      <workItem from="1591663093544" duration="9457000" />
+      <workItem from="1591922369415" duration="15000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591671784808">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/1440.0.1194.834/0.0.1440.900@0.0.1440.900" timestamp="1591671784808" />
+    <state x="457" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1591670184577">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="457" y="260" key="#com.intellij.fileTypes.FileTypeChooser/1440.0.1194.834/0.0.1440.900@0.0.1440.900" timestamp="1591670184577" />
+    <state width="443" height="466" key="DebuggerActiveHint" timestamp="1591666999738">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="443" height="466" key="DebuggerActiveHint/1440.0.1194.834/0.0.1440.900@0.0.1440.900" timestamp="1591666999738" />
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1591674464592">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/1440.0.1194.834/0.0.1440.900@0.0.1440.900" timestamp="1591674464592" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1591674464590">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.center/1440.0.1194.834/0.0.1440.900@0.0.1440.900" timestamp="1591674464590" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1591674464589">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.left/1440.0.1194.834/0.0.1440.900@0.0.1440.900" timestamp="1591674464589" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1591674464591">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="245" key="GridCell.Tab.0.right/1440.0.1194.834/0.0.1440.900@0.0.1440.900" timestamp="1591674464591" />
+    <state width="1398" height="259" key="GridCell.Tab.1.bottom" timestamp="1591674464585">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="259" key="GridCell.Tab.1.bottom/1440.0.1194.834/0.0.1440.900@0.0.1440.900" timestamp="1591674464585" />
+    <state width="1398" height="259" key="GridCell.Tab.1.center" timestamp="1591674464584">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="259" key="GridCell.Tab.1.center/1440.0.1194.834/0.0.1440.900@0.0.1440.900" timestamp="1591674464584" />
+    <state width="1398" height="259" key="GridCell.Tab.1.left" timestamp="1591674464583">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="259" key="GridCell.Tab.1.left/1440.0.1194.834/0.0.1440.900@0.0.1440.900" timestamp="1591674464583" />
+    <state width="1398" height="259" key="GridCell.Tab.1.right" timestamp="1591674464585">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="259" key="GridCell.Tab.1.right/1440.0.1194.834/0.0.1440.900@0.0.1440.900" timestamp="1591674464585" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ex1.cpp</url>
+          <line>98</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ex1.cpp</url>
+          <line>23</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ex1.cpp</url>
+          <line>57</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ex2.cpp</url>
+          <line>19</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ex2.cpp</url>
+          <line>27</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

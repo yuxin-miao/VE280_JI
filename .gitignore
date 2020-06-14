@@ -1,2 +1,5 @@
 *lbm*
 *lbq*
+cmake-build-debug/
+.idea/
+*.o

@@ -13,7 +13,8 @@
 
 using namespace std;
 
-void read_username_file (char* argv[], User_t user[], std::string &user_dir) {
+/***INITIALIZATION***/
+int read_username_file (char* argv[], User_t user[], std::string &user_dir) {
     ifstream read_username;
     read_username.open(argv[1]);
     if (read_username.is_open()) {
@@ -24,8 +25,124 @@ void read_username_file (char* argv[], User_t user[], std::string &user_dir) {
         }
         read_username.close();
     }
-    else cout << "Username file open failed!" << endl;
+    else {
+        exception_file_missing(argv[1]);
+        return 0;
+    }
+    return 1;
 }
+
+int read_username_dir (User_t user[], const std::string &user_dir) {
+    ifstream read_user_dir;
+    for (int i = 0; !user[i].username.empty(); i++) {
+        string user_info;
+        read_user_dir.open( user_dir + "/" + user[i].username + "/" + "user_info");
+        stringstream ss_user_info;
+        if (read_user_dir.is_open()) {
+            while (getline(read_user_dir, user_info)) {
+                ss_user_info << user_info << " " ;
+            }
+
+            read_user_dir.close();
+        }
+        else {
+            exception_file_missing(user_dir + "/" + user[i].username + "/" + "user_info");
+            return 0;
+        }
+        string temp;
+        unsigned int user_info_num = 0; // store the digits in stringstream
+        unsigned int count_info_num = 0;
+        while (ss_user_info >> user_info_num) {
+            if (count_info_num == 0) {
+                user[i].num_posts = user_info_num;
+                count_info_num++;
+            }
+            else if (count_info_num == 1) {
+                user[i].num_following = user_info_num;
+                count_info_num++; //store the num_following and the following names
+                if (!exception_capacity_overflow(user)) return 0;
+                for (unsigned int j = 0; j < user_info_num; j++) {
+                    ss_user_info >> temp;
+                    int user_index = search_user(user, temp);
+                    user[i].following[j] = &user[user_index];
+                }
+            }
+            else if (count_info_num == 2) {
+                user[i].num_followers = user_info_num;
+                count_info_num++; //store the num_follower and the follower names
+                if (!exception_capacity_overflow(user)) return 0;
+                for (unsigned int j = 0; j < user_info_num; j++) {
+                    ss_user_info >> temp;
+                    int user_index = search_user(user, temp);
+                    user[i].follower[j] = &user[user_index];
+                }
+            }
+
+        }
+        if (!exception_capacity_overflow(user)) return 0;
+        // MAX posts / followings / followers overflow
+        if (user[i].num_posts != 0) { //read posts
+            for (unsigned int loop_post = 0; loop_post < user[i].num_posts; loop_post++) {
+                user[i].posts[loop_post].owner = &user[i];
+                stringstream path_post;
+                path_post << user_dir << "/" << user[i].username << "/posts/" << loop_post + 1;
+                ifstream read_post(path_post.str());
+                if (read_post.is_open()) {
+                    string post_content;
+                    getline(read_post, post_content);
+                    user[i].posts[loop_post].title = post_content;
+                    int tag_num = 0;
+                    while (getline(read_post, post_content)) {
+
+                        if (post_content[0] == '#') {
+                            if (tag_num < 5)
+                                user[i].posts[loop_post].tags[tag_num] = post_content.substr(1, post_content.length() - 2);
+                            tag_num++;
+                        }
+
+                        if (tag_num > 5) {
+                            // Detect number of tags overflow
+                            exception_post_overflow(user[i].posts[loop_post]);
+                            return 0;
+                        }
+                        else if (isdigit(post_content[0])) {user[i].posts[loop_post].num_likes = stoi(post_content);
+                            break;
+                        }
+                        else {
+                            user[i].posts[loop_post].text = post_content;
+                        }
+                    }
+                    user[i].posts[loop_post].num_tags = tag_num;
+                    if (!exception_capacity_overflow_post(user[i].posts[loop_post])) return 0; // Detect number of likes overflow
+                    for (unsigned int like_user = 0; like_user < user[i].posts[loop_post].num_likes; like_user++) {
+                        getline(read_post, post_content);
+                        int user_index = search_user(user, post_content);
+                        user[i].posts[loop_post].like_users[like_user] = &user[user_index];
+                    }
+                    getline(read_post, post_content); int num_comment = stoi(post_content);
+                    user[i].posts[loop_post].num_comments = (unsigned int)num_comment;
+                    if (!exception_capacity_overflow_post(user[i].posts[loop_post])) return 0; // Detect number of comments overflow
+                    for (unsigned int comment_num = 0; comment_num < user[i].posts[loop_post].num_comments; comment_num++) {
+                        getline(read_post, post_content);
+                        int user_index = search_user(user, post_content);
+                        user[i].posts[loop_post].comments[comment_num].user = &user[user_index];
+                        getline(read_post, post_content);
+                        user[i].posts[loop_post].comments[comment_num].text = post_content;
+                    }
+                    read_post.close();
+                }
+                else {
+                    exception_file_missing(path_post.str());
+                    return 0;
+                }
+            }
+
+
+        }
+    }
+    return 1;
+}
+
 
 
 int search_user(const struct User_t user[], const string& user1) {
@@ -239,7 +356,10 @@ void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]) {
     }
     int tag_num = 0;
     do {tag_num++;} while (!tag_all[tag_num].tag_content.empty());
+
+
     bubble_sort(tag_all, tag_num);
+
     for (int i = 0; i < top_n && i < tag_num; i++) {
         printTag(tag_all[i], i + 1);
     }
@@ -295,7 +415,7 @@ int exception_invalid_argument(int argc) {
         cout << exception.error_info;
         return 0;
     }
-    return 0;
+    return 1;
 }
 
 int exception_file_missing(const std::string &file_name) {
@@ -312,6 +432,7 @@ int exception_file_missing(const std::string &file_name) {
 
 int exception_capacity_overflow(const User_t user[]) {
     try {
+
         // Detect user number overflow
         unsigned int num_user = 0;
         do { num_user++; } while (!user[num_user].username.empty());
@@ -359,7 +480,7 @@ int exception_post_overflow(const Post_t &post) {
     try{// Detect number of tags per post overflow
         ostringstream oStream;
         oStream << "Error: Too many tags for post " << post.title << "!" << endl;
-        oStream << "Maximal number of tag is " << MAX_TAGS << "." << endl;
+        oStream << "Maximal number of tags is " << MAX_TAGS << "." << endl;
         throw Exception_t(CAPACITY_OVERFLOW, oStream.str());
 
     }
@@ -372,14 +493,14 @@ int exception_post_overflow(const Post_t &post) {
 int exception_capacity_overflow_post(const Post_t &post) {
     try{
         if(post.num_likes > MAX_LIKES){
-            // Detect number of tags per post overflow
+            // Detect number of likes per post overflow
             ostringstream oStream;
             oStream << "Error: Too many likes for post " << post.title << "!" << endl;
             oStream << "Maximal number of likes is " << MAX_LIKES << "." << endl;
             throw Exception_t(CAPACITY_OVERFLOW, oStream.str());
         }
         if(post.num_comments > MAX_COMMENTS){
-            // Detect number of tags per post overflow
+            // Detect number of comments per post overflow
             ostringstream oStream;
             oStream << "Error: Too many comments for post " << post.title << "!" << endl;
             oStream << "Maximal number of comments is " << MAX_COMMENTS << "." << endl;
