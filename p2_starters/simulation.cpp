@@ -14,7 +14,7 @@
 using namespace std;
 
 /***INITIALIZATION***/
-int read_username_file (char* argv[], User_t user[], std::string &user_dir) {
+int read_username_file (char* argv[], User_t user[], std::string &user_dir) { //read username file (argv[1]))
     ifstream read_username;
     read_username.open(argv[1]);
     if (read_username.is_open()) {
@@ -34,6 +34,7 @@ int read_username_file (char* argv[], User_t user[], std::string &user_dir) {
 
 int read_username_dir (User_t user[], const std::string &user_dir) {
     ifstream read_user_dir;
+    // read user_info
     for (int i = 0; !user[i].username.empty(); i++) {
         string user_info;
         read_user_dir.open( user_dir + "/" + user[i].username + "/" + "user_info");
@@ -94,7 +95,7 @@ int read_username_dir (User_t user[], const std::string &user_dir) {
                     int tag_num = 0;
                     while (getline(read_post, post_content)) {
                         if (post_content[0] == '#') {
-                            bool exist = false;
+                            bool exist = false; // whether a repetitive tag
                             for (int tag_in = 0; !user[i].posts[loop_post].tags[tag_in].empty(); tag_in++) {
                                 if (user[i].posts[loop_post].tags[tag_in] == post_content.substr(1, post_content.length() - 2)) {
                                     exist = true;
@@ -104,6 +105,9 @@ int read_username_dir (User_t user[], const std::string &user_dir) {
                             if ((tag_num < 5) & (!exist)) {
                                 user[i].posts[loop_post].tags[tag_num]
                                 = post_content.substr(1,post_content.length() - 2);
+                                tag_num++;
+                            }
+                            else if ((tag_num == 5) & (!exist)) {
                                 tag_num++;
                             }
                         }
@@ -144,8 +148,6 @@ int read_username_dir (User_t user[], const std::string &user_dir) {
                     return 0;
                 }
             }
-
-
         }
     }
     return 1;
@@ -153,6 +155,7 @@ int read_username_dir (User_t user[], const std::string &user_dir) {
 
 
 int logfile_process(User_t user[], const std::string& logfile) {
+    // logfile processing, read in request
     ifstream read_logfile;
     read_logfile.open(logfile);
     string request_line;
@@ -162,10 +165,10 @@ int logfile_process(User_t user[], const std::string& logfile) {
             stringstream request_ss;
             request_ss << request_line;
             string user1, request, user2;
-            int user1_index, user2_index;
+            int user1_index, user2_index; // for the corresponding user's index in array user[]
             unsigned int post_id;
             request_ss >> user1;
-            if (user1 == "trending") {
+            if (user1 == "trending") { // as the only request that do not have user.username
                 print_request(user1);
                 int top_n;
                 request_ss >> top_n;
@@ -261,6 +264,7 @@ int logfile_process(User_t user[], const std::string& logfile) {
 
 
 int search_user(const struct User_t user[], const string& user1) {
+    // search user index in array user[]
     int index = 0;
     for (int i = 0; !user[i].username.empty(); i++) {
         if (user[i].username == user1) {
@@ -271,7 +275,7 @@ int search_user(const struct User_t user[], const string& user1) {
     return index;
 }
 
-void print_request(const string& request) {
+void print_request(const string& request) { // print out the request
     cout << ">> " << request << endl;
 }
 
@@ -284,6 +288,7 @@ void follow(struct User_t &user1, struct User_t &user2){
 }
 
 void unfollow(struct User_t &user1, struct User_t &user2) {
+    // find the followers's index
     for (unsigned int i = 0; i < user1.num_following; i++) {
         if (user1.following[i]->username == user2.username) {
             for (unsigned int j = i; j < user1.num_following - 1; j++) {
@@ -294,6 +299,7 @@ void unfollow(struct User_t &user1, struct User_t &user2) {
     }
     user1.num_following--;
     user1.following[user1.num_following] = nullptr;
+    // move the other followers forward
     for (unsigned int i = 0; i < user2.num_followers; i++) {
         if (user2.follower[i]->username == user1.username) {
             for (unsigned int j = i; j < user2.num_followers - 1; j++) {
@@ -346,8 +352,8 @@ void post(struct User_t &user1, const string new_post_line[]) {
     user1.posts[user1.num_posts].title = new_post_line[0];
     int i = 1;
     int tag_num = 0;
+    // read in tags, deal with repetitive tags
     while (new_post_line[i][0] == '#') {
-
         bool exist = false;
         for (int tag_in = 0; !user1.posts[user1.num_posts].tags[tag_in].empty(); tag_in++) {
             if (user1.posts[user1.num_posts].tags[tag_in] == new_post_line[i].substr(1, new_post_line[i].length()-2)) {
@@ -389,6 +395,7 @@ void refresh(struct User_t &user1) {
 
 void visit(struct User_t &user1, struct User_t &user2) {
     string relationship;
+    // first for one refresh himself
     if (&user1 == &user2) {
         printUser(user2, "");
         return;
@@ -414,6 +421,7 @@ void visit(struct User_t &user1, struct User_t &user2) {
 }
 
 void bubble_sort_swap (struct Tag_t& left, struct Tag_t& right) {
+    // swap the two struct
     string temp = left.tag_content;
     unsigned int temp_score = left.tag_score;
     left.tag_score = right.tag_score;
@@ -423,6 +431,7 @@ void bubble_sort_swap (struct Tag_t& left, struct Tag_t& right) {
 }
 
 int recursive_ASCII (const string& str_left, const string& str_right) {
+    // recursively compare the two string
     if (str_left.empty() | str_right.empty()) return 5;
     if (str_left.at(0) > str_right.at(0)) return 1;
     else if (str_left.at(0) < str_right.at(0))
@@ -432,6 +441,7 @@ int recursive_ASCII (const string& str_left, const string& str_right) {
 }
 
 void bubble_sort (struct Tag_t tag_all[], const int tag_num) {
+    // using bubble sort to sort the array tag_all[]
     for (int i = 0; i < tag_num - 1; i++) {
         bool swapped = false;
         for (int j = 0; j < tag_num - i - 1; j++) {
@@ -547,6 +557,7 @@ int exception_invalid_argument(int argc) {
 }
 
 int exception_file_missing(const std::string &file_name) {
+    // for file_missing, throw the exception
     try{
         ostringstream ostream;
         ostream << "Error: Cannot open file " << file_name << "!" <<endl;
@@ -560,7 +571,6 @@ int exception_file_missing(const std::string &file_name) {
 
 int exception_capacity_overflow(const User_t user[]) {
     try {
-
         // Detect user number overflow
         unsigned int num_user = 0;
         do { num_user++; } while (!user[num_user].username.empty());
@@ -580,7 +590,6 @@ int exception_capacity_overflow(const User_t user[]) {
                 throw Exception_t(CAPACITY_OVERFLOW, ostream.str());
 
             }
-
             if (user[i].num_following > MAX_FOLLOWING) {
                 // Detect number of following per user overflow
                 ostringstream ostream;
@@ -689,6 +698,7 @@ int exception_unlike(const User_t &user1, const User_t &user2, const unsigned in
                 }
             }
             if (!liked) {
+                // do not have post
                 ostringstream oStream;
                 oStream << "Error: " << user1.username << " cannot unlike post #" << post_id
                         << " of " << user2.username << "!" << endl;
