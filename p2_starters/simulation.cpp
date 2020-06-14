@@ -93,11 +93,19 @@ int read_username_dir (User_t user[], const std::string &user_dir) {
                     user[i].posts[loop_post].title = post_content;
                     int tag_num = 0;
                     while (getline(read_post, post_content)) {
-
                         if (post_content[0] == '#') {
-                            if (tag_num < 5)
-                                user[i].posts[loop_post].tags[tag_num] = post_content.substr(1, post_content.length() - 2);
-                            tag_num++;
+                            bool exist = false;
+                            for (int tag_in = 0; !user[i].posts[loop_post].tags[tag_in].empty(); tag_in++) {
+                                if (user[i].posts[loop_post].tags[tag_in] == post_content.substr(1, post_content.length() - 2)) {
+                                    exist = true;
+                                    break;
+                                }
+                            }
+                            if ((tag_num < 5) & (!exist)) {
+                                user[i].posts[loop_post].tags[tag_num]
+                                = post_content.substr(1,post_content.length() - 2);
+                                tag_num++;
+                            }
                         }
 
                         if (tag_num > 5) {
@@ -144,7 +152,7 @@ int read_username_dir (User_t user[], const std::string &user_dir) {
 }
 
 
-int logfile_process(User_t user[], std::string logfile) {
+int logfile_process(User_t user[], const std::string& logfile) {
     ifstream read_logfile;
     read_logfile.open(logfile);
     string request_line;
@@ -333,14 +341,27 @@ void uncomment(struct Post_t &post, const int commend_index) {
 }
 
 void post(struct User_t &user1, const string new_post_line[]) {
+
     user1.posts[user1.num_posts].owner = &user1;
     user1.posts[user1.num_posts].title = new_post_line[0];
     int i = 1;
+    int tag_num = 0;
     while (new_post_line[i][0] == '#') {
-        user1.posts[user1.num_posts].tags[i-1] = new_post_line[i].substr(1, new_post_line[i].length()-2);
+
+        bool exist = false;
+        for (int tag_in = 0; !user1.posts[user1.num_posts].tags[tag_in].empty(); tag_in++) {
+            if (user1.posts[user1.num_posts].tags[tag_in] == new_post_line[i].substr(1, new_post_line[i].length()-2)) {
+                exist = true;
+                break;
+            }
+        }
+        if (!exist && i < 5) {
+            user1.posts[user1.num_posts].tags[tag_num] = new_post_line[i].substr(1, new_post_line[i].length()-2);
+            tag_num++;
+        }
         i++;
     }
-    user1.posts[user1.num_posts].num_tags = i - 1;
+    user1.posts[user1.num_posts].num_tags = tag_num;
     user1.posts[user1.num_posts].text = new_post_line[i];
     user1.posts[user1.num_posts].num_comments = 0;
     user1.posts[user1.num_posts].num_likes = 0;

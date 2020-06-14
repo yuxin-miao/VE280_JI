@@ -24,7 +24,8 @@ int search_user(const struct User_t user[], const std::string& user1);
 
 
 /***LOGFILE PROCESSING***/
-int logfile_process(User_t user[], std::string logfile);
+int logfile_process(User_t user[], const std::string& logfile);
+// EFFECTS: Read the logfile, process
 
 void print_request(const std::string& request);
 // EFFECTS: Print out request when read in

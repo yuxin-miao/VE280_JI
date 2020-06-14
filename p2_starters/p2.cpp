@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 /***LOGFILE PROCESSING***/
     string logfile = argv[2];
     if (!logfile_process(user, logfile)) {
-        exception_file_missing(logfile);
+        exception_file_missing(logfile); // if FILE_MISSING, terminate
         return 0;
     }
     return 0;
