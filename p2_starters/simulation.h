@@ -11,73 +11,74 @@
 
 
 /***INITIALIZATION***/
-int read_username_file (char* argv[], User_t user[], std::string &user_dir);
 // MODIFIES: user[], user_dir
 // EFFECTS: read file username (argv[1]) and store user directory and user names
+int read_username_file (char* argv[], User_t user[], std::string &user_dir);
 
-int read_username_dir (User_t user[], const std::string &user_dir);
 // MODIFIES: user[]
 // EFFECTS: read user directories
+int read_username_dir (User_t user[], const std::string &user_dir);
 
-int search_user(const struct User_t user[], const std::string& user1);
 // EFFECTS: Search the username (user1) is in which location of the array of type struct User_t
+int search_user(const struct User_t user[], const std::string& user1);
 
 
 /***LOGFILE PROCESSING***/
-int logfile_process(User_t user[], const std::string& logfile);
 // EFFECTS: Read the logfile, process
+int logfile_process(User_t user[], const std::string& logfile);
 
-void print_request(const std::string& request);
 // EFFECTS: Print out request when read in
+void print_request(const std::string& request);
 
-void follow(struct User_t &user1, struct User_t &user2);
 // MODIFIES: struct User_t: user1 (following), user2 (follower)
 // EFFECTS: Implement the request: user1 follow user2
+void follow(struct User_t &user1, struct User_t &user2);
 
-void unfollow(struct User_t &user1, struct User_t &user2);
 // MODIFIES: struct User_t: user1 (following), user2 (follower)
 // EFFECTS: Implement the request: user1 unfollow user2
+void unfollow(struct User_t &user1, struct User_t &user2);
 
-void like(struct User_t &user1, struct Post_t &post);
 // MODIFIES: Post_t post (likes)
 // EFFECTS: Implement the request: user1 like user2 post_id
+void like(struct User_t &user1, struct Post_t &post);
 
-void unlike(struct User_t &user1, struct Post_t &post);
 // MODIFIES: Post_t post (likes)
 // EFFECTS: Implement the request: user1 unlike user2 post_id
+void unlike(struct User_t &user1, struct Post_t &post);
 
-void comment(struct User_t &user1, struct Post_t &post, const std::string &text);
 // MODIFIES: Post_t post (comment)
 // EFFECTS: Implement the request: user1 comment user2 post_id \n text
+void comment(struct User_t &user1, struct Post_t &post, const std::string &text);
 
-void uncomment(struct Post_t &post, int commend_index);
 // MODIFIES: Post_t post(comment)
 // EFFECTS: Implement the request: user1 uncomment user2 post_id comment_id
+void uncomment(struct Post_t &post, int commend_index);
 
-void post(struct User_t &user1, const std::string new_post_line[]);
 // MODIFIES: User_t user1.post
 // EFFECTS: Implement the request: user1 post
+void post(struct User_t &user1, const std::string new_post_line[]);
 
-void unpost(struct User_t &user1, int post_index);
 // MODIFIES: User_t user1.post
 // EFFECTS: Implement the request: user1 delete post_id
+void unpost(struct User_t &user1, int post_index);
 
-void refresh(struct User_t &user1);
 // EFFECTS: Implement the request: user1 refresh
+void refresh(struct User_t &user1);
 
-void visit(struct User_t &user1, struct User_t &user2);
 // EFFECTS: Implement the request: user1 visit user2
+void visit(struct User_t &user1, struct User_t &user2);
 
-int recursive_ASCII (const std::string& str_left, const std::string& str_right);
 // EFFECTS: Compare the string str_left, str_right recursively based on the first character
 // used for trending function
-void bubble_sort (struct Tag_t tag_all[], int tag_num);
+int recursive_ASCII (const std::string& str_left, const std::string& str_right);
 // EFFECTS: For trending function, sort the tag based on the score
-void bubble_sort_swap (struct Tag_t& left, struct Tag_t& right);
+void bubble_sort (struct Tag_t tag_all[], int tag_num);
 // EFFECTS: For bubble sort, swap Tag_t left and Tag_t right
-void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]);
+void bubble_sort_swap (struct Tag_t& left, struct Tag_t& right);
 // MODIFIES: Tag_t tag_all
 // EFFECTS: Implement the request: trending n
+void trending(struct User_t user[], int top_n, struct Tag_t tag_all[]);
+
 
 
 /* Helper Functions */
