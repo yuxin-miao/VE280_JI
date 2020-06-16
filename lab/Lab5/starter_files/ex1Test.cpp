@@ -27,32 +27,47 @@ static bool list_equal(list_t l1, list_t l2)
 */
 int main()
 {
-    int i, dotAns=0;
+    //int i, dotAns=0;
     list_t listA, listA_answer;
-    list_t listB, listC;
-
+    list_t listB, listC, list_empty;
+    list_empty = list_make();
     listA = list_make();
     listB = list_make();
     listC = list_make();
     listA_answer = list_make();
 
-    for(i = 5; i>0; i--)
+    for(int i = 10; i>0; i--)
     {
         listA = list_make(i, listA);
         listB = list_make(i+10, listB);
-        dotAns += i*(i+10);
+        listA = list_make(i, listA);
+
     }
 
-    for(i = 5; i>0; i-=2)
-    {
-        listA_answer = list_make(i, listA_answer);
-    }
-    for(int j = 3; j > 0; j--) {
+
+    for(int j = 10; j > -8; j-=2) {
         listC = list_make(j, listC);
+        listC = list_make(j, listC);
+        listC = list_make(j, listC);
+
     }
     //list_print(filter_odd(listC));
-    list_print(filter_odd(listA));
+    list_print(listC);
+
     list_print(filter_odd(listC));
+    list_print(filter_odd(listC));
+    cout << "\n";
+    list_print(listA);
+    list_print(filter_odd(listA));
+    cout << "\n";
+
+    list_print(listB);
+    list_print(filter_odd(listB));
+
+
+
+
+
     //list_print(filter_odd(listA));
 
 
