@@ -40,6 +40,7 @@ list_t filter_odd(list_t list){
 }
 
 list_t filter(list_t list, bool (*fn)(int)){
+    if (list_isEmpty(list)) return list;
 	// TODO: implement filter function
     return filter_help(list, list_make(), fn);
 }
