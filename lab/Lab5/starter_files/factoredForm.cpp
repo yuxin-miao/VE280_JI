@@ -9,12 +9,10 @@ quadraticFunction::quadraticFunction(float a_in, float b_in, float c_in){
     float delta = b_in * b_in - 4 * a_in * c_in;
     r1.imaginary = 0; r1.real = 0; r2.imaginary = 0; r2.real = 0;
     if (delta >= 0) {
-
         r1.real = (-b_in - sqrtf(delta)) / (2 * a_in); r1.imaginary = 0;
         r2.real = (-b_in + sqrtf(delta)) / (2 * a_in); r2.imaginary = 0;
     }
     else {
-
         r1.real = -b_in / (2 * a_in); r1.imaginary = - sqrtf(-delta) / (2 * a_in);
         r2.real = -b_in / (2 * a_in); r2.imaginary = sqrtf(-delta) / (2 * a_in);
     }
@@ -52,7 +50,7 @@ root quadraticFunction::getRoot() {
     }
     else
         result.realRootNum = 0;
-
+    // for root[0] to store the smaller value
     result.roots[0].real = fminf(r1.real, r2.real); result.roots[0].imaginary = fminf(r1.imaginary, r2.imaginary);
     result.roots[1].real = fmaxf(r1.real, r2.real); result.roots[1].imaginary = fmaxf(r1.imaginary, r2.imaginary);
     return result;
@@ -60,10 +58,17 @@ root quadraticFunction::getRoot() {
 
 int quadraticFunction::intersect(quadraticFunction g) {
     // TODO: implement this function
-    if (a == g.getA()) return 1;
-
-    float delta = (getB() - g.getB()) * (getB() - g.getB()) - 4 * (a - g.getA()) * (getC() - g.getC());
-    const double eps = 1.0e-6;
+    if (a == g.getA()) { // determine whether they are parallel
+        if (getB() == g.getB() && getC() != g.getC()) {
+            return 0;
+        }
+        return 1;
+    }
+    float A = g.getA();
+    float B = g.getB();
+    float C = g.getC();
+    float delta = (getB() - B) * (getB() - g.getB()) - 4 * (a - A) * (getC() - C);
+    const double eps = 1.0e-3;
     if (delta >= 0 || fabs(delta) < eps) return 1;
     else return 0;
 }

@@ -24,7 +24,6 @@ int main() {
     cout << "x1 = " << root1.roots[0].real << " + " << root1.roots[0].imaginary << "i" << endl;
     cout << "x2 = " << root1.roots[1].real << " + " << root1.roots[1].imaginary << "i" << endl;
 
-    cout << "g(x)=" << g.getA() << "x^2+" << g.getB() << "x+" << g.getC() << endl;
 
     cout << f.intersect(g) << std::endl;
 }
