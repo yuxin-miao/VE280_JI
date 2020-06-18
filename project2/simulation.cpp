@@ -420,7 +420,7 @@ void visit(struct User_t &user1, struct User_t &user2) {
     printUser(user2, relationship);
 }
 
-void bubble_sort_swap (struct Tag_t& left, struct Tag_t& right) {
+void bubble_sort_swap (Tag_t& left, Tag_t& right) {
     // swap the two struct
     string temp = left.tag_content;
     unsigned int temp_score = left.tag_score;
@@ -713,7 +713,6 @@ int exception_unlike(const User_t &user1, const User_t &user2, const unsigned in
     }
     return 1;
 }
-
 int exception_comment(const User_t &user1, const User_t &user2, const unsigned int post_id) {
     try {
         if (user2.num_posts < post_id || post_id < 1) {

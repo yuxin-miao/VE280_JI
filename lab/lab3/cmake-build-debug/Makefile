@@ -123,59 +123,32 @@ lab3/fast:
 	$(MAKE) -f CMakeFiles/lab3.dir/build.make CMakeFiles/lab3.dir/build
 .PHONY : lab3/fast
 
-ex2.o: ex2.cpp.o
+ex1.o: ex1.cpp.o
 
-.PHONY : ex2.o
-
-# target to build an object file
-ex2.cpp.o:
-	$(MAKE) -f CMakeFiles/lab3.dir/build.make CMakeFiles/lab3.dir/ex2.cpp.o
-.PHONY : ex2.cpp.o
-
-ex2.i: ex2.cpp.i
-
-.PHONY : ex2.i
-
-# target to preprocess a source file
-ex2.cpp.i:
-	$(MAKE) -f CMakeFiles/lab3.dir/build.make CMakeFiles/lab3.dir/ex2.cpp.i
-.PHONY : ex2.cpp.i
-
-ex2.s: ex2.cpp.s
-
-.PHONY : ex2.s
-
-# target to generate assembly for a file
-ex2.cpp.s:
-	$(MAKE) -f CMakeFiles/lab3.dir/build.make CMakeFiles/lab3.dir/ex2.cpp.s
-.PHONY : ex2.cpp.s
-
-ex3.o: ex3.cpp.o
-
-.PHONY : ex3.o
+.PHONY : ex1.o
 
 # target to build an object file
-ex3.cpp.o:
-	$(MAKE) -f CMakeFiles/lab3.dir/build.make CMakeFiles/lab3.dir/ex3.cpp.o
-.PHONY : ex3.cpp.o
+ex1.cpp.o:
+	$(MAKE) -f CMakeFiles/lab3.dir/build.make CMakeFiles/lab3.dir/ex1.cpp.o
+.PHONY : ex1.cpp.o
 
-ex3.i: ex3.cpp.i
+ex1.i: ex1.cpp.i
 
-.PHONY : ex3.i
+.PHONY : ex1.i
 
 # target to preprocess a source file
-ex3.cpp.i:
-	$(MAKE) -f CMakeFiles/lab3.dir/build.make CMakeFiles/lab3.dir/ex3.cpp.i
-.PHONY : ex3.cpp.i
+ex1.cpp.i:
+	$(MAKE) -f CMakeFiles/lab3.dir/build.make CMakeFiles/lab3.dir/ex1.cpp.i
+.PHONY : ex1.cpp.i
 
-ex3.s: ex3.cpp.s
+ex1.s: ex1.cpp.s
 
-.PHONY : ex3.s
+.PHONY : ex1.s
 
 # target to generate assembly for a file
-ex3.cpp.s:
-	$(MAKE) -f CMakeFiles/lab3.dir/build.make CMakeFiles/lab3.dir/ex3.cpp.s
-.PHONY : ex3.cpp.s
+ex1.cpp.s:
+	$(MAKE) -f CMakeFiles/lab3.dir/build.make CMakeFiles/lab3.dir/ex1.cpp.s
+.PHONY : ex1.cpp.s
 
 # Help Target
 help:
@@ -186,12 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... lab3"
-	@echo "... ex2.o"
-	@echo "... ex2.i"
-	@echo "... ex2.s"
-	@echo "... ex3.o"
-	@echo "... ex3.i"
-	@echo "... ex3.s"
+	@echo "... ex1.o"
+	@echo "... ex1.i"
+	@echo "... ex1.s"
 .PHONY : help
 
 

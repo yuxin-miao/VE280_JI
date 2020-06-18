@@ -11,7 +11,8 @@ const int MAXSIZE = 10;
 
 bool canWim_helper(const int arr[], int arr_record[], int position, int count) {
     if (position > count - 1 | position < 0) return false;
-    arr_record[position] = 1;
+    if (arr_record[position] == 1) return false; 
+    arr_record[position] = 1; //你的record没用？？
     if (arr[position] == 280) return true;
     return (canWim_helper(arr, arr_record, position+arr[position], count) | canWim_helper(arr, arr_record, position-arr[position], count));
 }

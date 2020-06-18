@@ -57,45 +57,30 @@ include CMakeFiles/lab3.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/lab3.dir/flags.make
 
-CMakeFiles/lab3.dir/ex3.cpp.o: CMakeFiles/lab3.dir/flags.make
-CMakeFiles/lab3.dir/ex3.cpp.o: ../ex3.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lab3.dir/ex3.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/lab3.dir/ex3.cpp.o -c /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex3.cpp
+CMakeFiles/lab3.dir/ex1.cpp.o: CMakeFiles/lab3.dir/flags.make
+CMakeFiles/lab3.dir/ex1.cpp.o: ../ex1.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lab3.dir/ex1.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/lab3.dir/ex1.cpp.o -c /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex1.cpp
 
-CMakeFiles/lab3.dir/ex3.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab3.dir/ex3.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex3.cpp > CMakeFiles/lab3.dir/ex3.cpp.i
+CMakeFiles/lab3.dir/ex1.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab3.dir/ex1.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex1.cpp > CMakeFiles/lab3.dir/ex1.cpp.i
 
-CMakeFiles/lab3.dir/ex3.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab3.dir/ex3.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex3.cpp -o CMakeFiles/lab3.dir/ex3.cpp.s
-
-CMakeFiles/lab3.dir/ex2.cpp.o: CMakeFiles/lab3.dir/flags.make
-CMakeFiles/lab3.dir/ex2.cpp.o: ../ex2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/lab3.dir/ex2.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/lab3.dir/ex2.cpp.o -c /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex2.cpp
-
-CMakeFiles/lab3.dir/ex2.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab3.dir/ex2.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex2.cpp > CMakeFiles/lab3.dir/ex2.cpp.i
-
-CMakeFiles/lab3.dir/ex2.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab3.dir/ex2.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex2.cpp -o CMakeFiles/lab3.dir/ex2.cpp.s
+CMakeFiles/lab3.dir/ex1.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab3.dir/ex1.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/ex1.cpp -o CMakeFiles/lab3.dir/ex1.cpp.s
 
 # Object files for target lab3
 lab3_OBJECTS = \
-"CMakeFiles/lab3.dir/ex3.cpp.o" \
-"CMakeFiles/lab3.dir/ex2.cpp.o"
+"CMakeFiles/lab3.dir/ex1.cpp.o"
 
 # External object files for target lab3
 lab3_EXTERNAL_OBJECTS =
 
-lab3: CMakeFiles/lab3.dir/ex3.cpp.o
-lab3: CMakeFiles/lab3.dir/ex2.cpp.o
+lab3: CMakeFiles/lab3.dir/ex1.cpp.o
 lab3: CMakeFiles/lab3.dir/build.make
 lab3: CMakeFiles/lab3.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable lab3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/lab/lab3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable lab3"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lab3.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
