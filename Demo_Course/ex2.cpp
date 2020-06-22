@@ -17,43 +17,45 @@ int main() {
     if (num > 0) generate_strings(num);
     return 0;
 }
-void binary_add (int arr[], int K) {
-    int carry = 1;
-    int x = arr[0];
-    int y = arr[1];
-    int z  = arr[2];
+void print (int arr[], int size) {
 
-    for (int i = K - 1; i >= 0; i --){
-        if (arr[i] == 0) {
-            arr[i] += carry;
-            carry = 0;
+    int i = 0;
+    bool print = true;
+    while (i < size - 1) {
+        if (arr[i] && arr[i + 1]) {
+            print = false;
+            break;
         }
-        else if (arr[i] == 1){
-            arr[i] = 0;
-            carry = 1;
+        i++;
+    }
+    if (print) {
+        i = 0;
+        while (i < 3) {
+            cout << arr[i];
+            i++;
         }
-        else {cout << "wrong " << endl;}
-        if (carry == 0) break;
+        cout << " ";
     }
 }
-void generate_strings_helper(int arr[], int K) {
-    for (int i = 0; i < pow(2, K) - 1; i++) {
-        bool print = true;
-        binary_add(arr, K);
-
-        for (int j = 0; j < K; j++) {
-            if ((arr[j] == 1) && (arr[j + 1] == 1)) {
-                print = false;
-                break;
-            }
-        }
-        if (print) {
-            for (int j = 0; j < K; j++) {
-                cout << arr[j];
-            }
-            cout << " ";
-        }
+void generate_strings_helper(int arr[],int K, const int size) {
+    int i = 0;
+    int result = 0;
+    while (i < size) {
+        result += arr[i];
+        i++;
     }
+    if (result == size) return;
+    if (arr[K - 1] == 0) {
+        arr[K - 1] = 1;
+        print(arr, size);
+        generate_strings_helper(arr, K, size);
+    }
+    else if (arr[K - 1] == 1){
+        arr[K - 1] = 0;
+        print(arr, size);
+        generate_strings_helper(arr, K - 1, size);
+    }
+
 }
 void generate_strings(int K) {
     int arr[K];
@@ -63,6 +65,7 @@ void generate_strings(int K) {
     for (int j = 0; j < K; j++) {
         cout << arr[j];
     }
+
     cout << " ";
-    generate_strings_helper(arr, K);
+    generate_strings_helper(arr, K, K);
 }
