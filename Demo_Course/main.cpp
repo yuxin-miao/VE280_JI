@@ -14,37 +14,62 @@ void print_array(int A[] , int n)
     }
     cout << endl;
 }
+void dynamic_size_array() {
+    // Request block of memory of size n
+    int n = 5;
+    int *q = new(nothrow) int[n];
 
-void print_triangle(int A[], int n) ; //EFFECTS: Sum triangle from array
+    if (!q)
+        cout << "allocation of memory failed\n";
+    else
+    {
+        for (int i = 0; i < n; i++)
+            q[i] = i+1;
+
+        cout << "Value store in block of memory: ";
+        for (int i = 0; i < n; i++)
+            cout << q[i] << " ";
+    }
+
+    // freed the block of allocated memory
+    delete[] q;
+}
+void print_triangle(int A[], int size) ; //EFFECTS: Sum triangle from array
 int main() {
     // Read the input
     int number;
-    int n = 0;
+    int size = 0;
+    string line;
+    getline(cin, line);
     stringstream temp;
-    while (cin >> number) {
-        n++;
-        temp << number << " ";
+    temp << line;
+    while ( temp >> number) {
+        size++;
     }
-    int arr[n];
-    for (int i = 0; i < n; i++) {
-        temp >> number;
+    stringstream ss;
+    ss << line;
+    int *arr = new(nothrow) int[size];
+    for (int i = 0; i < size; i++) {
+        ss >> number;
         arr[i] = number;
     }
 
-    print_triangle(arr, n);
+    print_triangle(arr, size);
+    delete[] arr;
     return 0;
 }
 
-void print_triangle(int A[], int n) {
+void print_triangle(int A[], int size) {
     // TODO
-    if (n == 1) {
-        print_array(A, n);
+    if (size == 1) {
+        print_array(A, size);
         return;
     }
-    int arr_new[n - 1];
-    for (int i = 0; i < n - 1; i++) {
+    int *arr_new = new(nothrow) int[size - 1];
+    for (int i = 0; i < size - 1; i++) {
         arr_new[i] = A[i] + A[i + 1];
     }
-    print_triangle(arr_new, n - 1);
-    print_array(A, n);
+    print_triangle(arr_new, size - 1);
+    print_array(A, size);
+    delete [] arr_new;
 }
