@@ -27,6 +27,7 @@ static bool list_equal(list_t l1, list_t l2)
 */
 int main()
 {
+    /*
     //int i, dotAns=0;
     list_t listA, listA_answer;
     list_t listB, listC, list_empty;
@@ -69,6 +70,8 @@ int main()
 
 
     //list_print(filter_odd(listA));
+*/
 
+    list_print(list_proper_divisors(12));
 
 }

@@ -38,4 +38,16 @@ list_t filter_odd(list_t list);
 //          For example, if you apply filter_odd to the list
 //          ( 3 4 1 5 6 ), you would get the list ( 3 1 5 ).
 */
+list_t list_proper_divisors(int num);
+// REQUIRES: "num" is a positive integer
+// EFFECTS: returns a list_t which contains all the proper
+// divisors of "num" in ascending order
+
+bool is_pseudoperfect(int num);
+// REQUIRES: "num" is a positive integer
+// EFFECTS: returns true if "num" is a pseudoperfect number,
+// false otherwise
+bool is_pseudoperfect_helper(int num, list_t proper_divisors);
+// REQUIRES: TODO
+// EFFECTS: TODO
 #endif

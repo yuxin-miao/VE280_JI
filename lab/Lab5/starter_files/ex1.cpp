@@ -48,3 +48,22 @@ list_t filter(list_t list, bool (*fn)(int)){
     return filter_help(list, list_make(), fn);
 }
 
+list_t list_proper_divisors(int num){
+
+    list_t result = list_make();
+    for (int i = num - 1; i > 0; i--) {
+        if (num % i == 0)
+            result = list_make(i, result);
+    }
+    return result;
+}
+
+bool is_pseudoperfect_helper(int num, list_t proper_divisors) {
+    if (list_isEmpty(proper_divisors)) return num == 0;
+    return is_pseudoperfect_helper(num, list_rest(proper_divisors)) ||
+           is_pseudoperfect_helper(num - list_first(proper_divisors), list_rest(proper_divisors));
+}
+bool is_pseudoperfect(int num) {
+    list_t proper_divisors = list_proper_divisors(num);
+    return is_pseudoperfect_helper(num, proper_divisors);
+}
