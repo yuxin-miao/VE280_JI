@@ -22,15 +22,14 @@ int main(int argc, char *argv[]) {
     // read in the input
     int bankroll = atoi(argv[1]);
     int hands = atoi(argv[2]);
-    string type = argv[3];
 
     // declare 'Deck', 'simple' or 'counting' player and initialize them
     Deck deck;
     Player* player;
     Hand player_hand, dealer_hand;
 
-    if (strncmp(argv[3], "simple", 6) != 0) player = get_Simple();
-    else if (strncmp(argv[3], "counting", 8) != 0) player = get_Counting();
+    if (strcmp(argv[3], "simple") == 0) player = get_Simple();
+    else if (strcmp(argv[3], "counting") == 0) player = get_Counting();
     else {cout << "WRONG!" << endl; player = get_Simple();} // 之后删掉
 
     shuffling(deck, player); // shuffles the deck, tell the player
@@ -38,16 +37,18 @@ int main(int argc, char *argv[]) {
     unsigned int minimum = 5;
     unsigned int thishand = 0;
     do {
-        if (bankroll < minimum) break; // thishand = 0; terminate (for the first time)
+        if (bankroll < minimum || hands == 0) break; // thishand = 0; terminate (for the first time)
         // for each hand, initialize
         Card cards[5];
         thishand++;
         player_hand.discardAll();
         dealer_hand.discardAll();
 
-        if (deck.cardsLeft() < 20) shuffling(deck, player); // fewer than 20 cards left
 
         cout << "Hand " << thishand << " bankroll " << bankroll << endl;
+        if (deck.cardsLeft() < 20) shuffling(deck, player); // fewer than 20 cards left
+
+
         int wager = player->bet(bankroll, minimum);
         cout << "Player bets " << wager << endl;
         deal_cards(deck, player, dealer_hand, player_hand, cards, bankroll, wager);
@@ -70,12 +71,12 @@ int main(int argc, char *argv[]) {
                 bankroll -= wager;
             }
             else { // no player bust, dealer's turn
-                cout << "Dealer's hole card is " << cards[3].spot << " of " << cards[3].suit << endl;
+                cout << "Dealer's hole card is " << SpotNames[cards[3].spot] << " of " << SuitNames[cards[3].suit] << endl;
                 player->expose(cards[3]);
                 while (dealer_hand.handValue().count < 17) { // deal until reach 17
                     cards[4] = deck.deal();
                     dealer_hand.addCard(cards[4]);
-                    player->expose(cards[4]); // 需要吗
+                    player->expose(cards[4]);
                     cout << "Dealer dealt " << SpotNames[cards[4].spot] << " of " << SuitNames[cards[4].suit] << endl;
                 }
                 cout << "Dealer's total is " << dealer_hand.handValue().count << endl;
@@ -97,19 +98,18 @@ int main(int argc, char *argv[]) {
             }
         }
     } while (hands - thishand > 0 && bankroll >= minimum);
-
     cout << "Player has " << bankroll << " after " << thishand << " hands\n";
     return 0;
 }
 
-
 void shuffling(Deck& deck, Player* player) {
+    cout << "Shuffling the deck\n";
     for (int num = 0; num < 7; num++) {
-        cout << "Shuffling the deck\n";
         int cut = get_cut();
         cout << "cut at " << cut << endl;
         deck.shuffle(cut);
     }
+
     player->shuffled();
 }
 

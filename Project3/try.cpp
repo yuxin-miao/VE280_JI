@@ -1,16 +1,23 @@
+//
+// Created by Cheney Ni on 2019/11/27.
+//
 #include <iostream>
-#include <cstdlib>
-#include <iomanip>
-#include <string>
-#include <cassert>
-#include "deck.h"
+#include "hand.h"
+#include "card.h"
 using namespace std;
 
-
 int main() {
-    Deck one;
+    Hand hand;
+    cout << hand.handValue().count << " " << hand.handValue().soft << endl;
+    hand.addCard({JACK, CLUBS});
+    cout << hand.handValue().count << " " << hand.handValue().soft << endl;
+    hand.addCard({ACE, CLUBS});
+    cout << hand.handValue().count << " " << hand.handValue().soft << endl;
+    hand.addCard({ACE, CLUBS});
+    cout << hand.handValue().count << " " << hand.handValue().soft << endl;
+    // Here count = 12, soft = 0
 
-    one.shuffle(26);
-    one.reset();
-
+    hand.addCard({ACE, CLUBS});
+    cout << hand.handValue().count << " " << hand.handValue().soft << endl;
+    return 0;
 }

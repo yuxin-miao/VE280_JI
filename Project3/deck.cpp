@@ -38,12 +38,15 @@ void Deck::shuffle(int n) {
 
     //没考虑dealt
     Deck temp;
+    for (int i = 0; i < DeckSize; i++) {
+        temp.deck[i] = deck[i];
+    }
     int left = 0;
     int num = 0;
     int right = n;
     do {
         if (right < DeckSize) temp.deck[num++] = deck[right++];
-        if (left < DeckSize - n) temp.deck[num++] = deck[left++];
+        if (left < n) temp.deck[num++] = deck[left++];
     } while (num < DeckSize);
     for (int i = 0; i < DeckSize; i++) {
         deck[i] = temp.deck[i];
@@ -57,7 +60,7 @@ void Deck::shuffle(int n) {
 Card Deck::deal() {
     DeckEmpty empty;
     if (cardsLeft() == 0) throw empty;
-    return deck[++next];
+    return deck[next++];
 }
 
 int Deck::cardsLeft() {
