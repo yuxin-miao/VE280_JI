@@ -55,7 +55,9 @@ void Deck::shuffle(int n) {
 }
 
 Card Deck::deal() {
-    return deck[next];
+    DeckEmpty empty;
+    if (cardsLeft() == 0) throw empty;
+    return deck[++next];
 }
 
 int Deck::cardsLeft() {
