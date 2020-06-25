@@ -22,15 +22,15 @@ int main(int argc, char *argv[]) {
     // read in the input
     int bankroll = atoi(argv[1]);
     int hands = atoi(argv[2]);
-
+    string type(argv[3]);
     // declare 'Deck', 'simple' or 'counting' player and initialize them
     Deck deck;
     Player* player;
     Hand player_hand, dealer_hand;
 
-    if (strcmp(argv[3], "simple") == 0) player = get_Simple();
-    else if (strcmp(argv[3], "counting") == 0) player = get_Counting();
-    else {cout << "WRONG!" << endl; player = get_Simple();} // 之后删掉
+    if (type == "simple") player = get_Simple();
+    else if (type == "counting") player = get_Counting();
+    else {cout << "WRONG!" << endl; player = get_Simple();}
 
     shuffling(deck, player); // shuffles the deck, tell the player
 
