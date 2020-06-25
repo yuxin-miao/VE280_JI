@@ -6,7 +6,7 @@ using namespace std;
 IntSet::IntSet(): numElts(0){
 }
 
-int IntSet::indexOf(int v){
+int IntSet::indexOf(int v){ //binary search with sorted array
     int left = 0;
     int right = numElts-1;
 

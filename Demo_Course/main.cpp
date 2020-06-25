@@ -14,6 +14,10 @@ void print_array(int A[] , int n)
     }
     cout << endl;
 }
+int try_arr (int arr[], int& index) {
+
+    return arr[index++];
+}
 void dynamic_size_array() {
     // Request block of memory of size n
     int n = 5;
@@ -35,7 +39,7 @@ void dynamic_size_array() {
     delete[] q;
 }
 void print_triangle(int A[], int size) ; //EFFECTS: Sum triangle from array
-int main() {
+int main() {/*
     // Read the input
     int number;
     int size = 0;
@@ -55,7 +59,20 @@ int main() {
     }
 
     print_triangle(arr, size);
-    delete[] arr;
+    delete[] arr;*/
+    int arr_try[5];
+    for (int i = 0; i < 5; i++) {
+        arr_try[i] = i;
+    }
+    int index = 0;
+    for (int i = 0; i < 5; i++) {
+        cout << "before " << index << endl;
+        cout << try_arr(arr_try, index) << endl;
+        cout << "after " << index << endl;
+
+    }
+
+
     return 0;
 }
 

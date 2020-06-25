@@ -6,7 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/Demo_Course/getline.cpp
+/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/Demo_Course/main.cpp
 iostream
+-
+vector
+-
+sstream
 -
 

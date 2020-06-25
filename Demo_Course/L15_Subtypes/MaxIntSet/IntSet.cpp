@@ -4,15 +4,7 @@
 using namespace std;
 
 IntSet::IntSet(): numElts(0){
-} // initialization syntax
-/* Generally
-Class_T::Class_T(): anInt(0),
-    aDouble(1.2),
-    aString("Yes"){
 }
-
- As the order they appeared in the definition
-*/
 
 int IntSet::indexOf(int v) const{
     for (int i = 0; i < numElts; i++){
@@ -35,7 +27,7 @@ void IntSet::insert(int v){
         elts[numElts++] = v;
     }
 }
-// if unordered then could directly move to hole
+
 void IntSet::remove(int v){
     int victim = indexOf(v);
     if (victim != MAXELTS){
