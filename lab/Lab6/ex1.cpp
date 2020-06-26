@@ -33,6 +33,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <queue>
 
 using namespace std;
 
@@ -152,8 +153,9 @@ class StmtListNode : public ASTNode {
     void unparse(int indent) {
         // TODO
         for (int i = 0; i < num_child; i++) {
+            addIndent(indent);
             children[i]->unparse(indent); // unparse StmtNode
-            cout << ";/n";
+            cout << ";" << endl;
         }
     }
 };
@@ -175,8 +177,11 @@ class VarDeclNode : public DeclNode {
 
     void unparse(int indent) {
         // TODO
+        addIndent(indent);
         children[0]->unparse(indent); // unparse TypeNode
+        cout << " ";
         children[1]->unparse(indent); // unparse IdNode
+        cout << ";" << endl;
     }
 };
 
@@ -227,7 +232,6 @@ class IntNode : public TypeNode {
 
     void unparse(int indent) {
         // TODO
-        addIndent(indent);
         cout << "int";
     }
 };
@@ -238,7 +242,6 @@ class BoolNode : public TypeNode {
 
     void unparse(int indent) {
         // TODO
-        addIndent(indent);
         cout << "bool";
     }
 };
@@ -249,7 +252,6 @@ class VoidNode : public TypeNode {
 
     void unparse(int indent) {
         // TODO
-        addIndent(indent);
         cout << "void";
     }
 };
@@ -317,7 +319,6 @@ class IntLitNode : public ExpNode {
 
     void unparse(int indent) {
         // TODO
-        addIndent(indent);
         cout << myVal;
     }
 
@@ -331,7 +332,6 @@ class TrueNode : public ExpNode {
 
     void unparse(int indent) {
         // TODO
-        addIndent(indent);
         cout << "true";
     }
 };
@@ -342,7 +342,6 @@ class FalseNode : public ExpNode {
 
     void unparse(int indent) {
         // TODO
-        addIndent(indent);
         cout << "false";
     }
 };
@@ -353,13 +352,10 @@ class IdNode : public ExpNode {
         num_child = n;
         myName = str;
     }
-
     virtual void unparse(int indent) {
         // TODO
-        addIndent(indent);
         cout << myName;
     }
-
    private:
     string myName;
 };
@@ -373,7 +369,6 @@ class AssignNode : public ExpNode {
         children[0]->unparse(indent); // unparse the first ExpNode
         cout << " = ";
         children[1]->unparse(indent); //unparse the second ExpNode
-        cout << "\n";
     }
 };
 
@@ -388,7 +383,6 @@ int main() {
 // Step 3: Save each line of input as a node into an array
 
     for (int i = 0; i < node_num; i++) {
-
         string line, node_type, optional_para;
         getline(cin, line);
         int child_num = 0;
@@ -426,32 +420,30 @@ int main() {
     }
     // TODO: traverse array to construct the tree
     // Step 4
-    nodes[0]->setChild(0, nodes[1]);
-    nodes[1]->setChild(0, nodes[2]);
-    int num = 3; // the nodes to be linked (from nodes[3] to nodes[node_num - 1])
-    int num_in_layer[2] = {nodes[1]->numChild(), nodes[2]->numChild()};
+    /*queue<ASTNode*> queue_node;
+    int num = 0;
+    queue_node.push(nodes[num]);
+    while (!queue_node.empty()) {
+
+    }
+*/
+    int this_layer_total = 1;
+    int num = 0;
+
     while (num < node_num) {
-        for (int to_be_link = 0; to_be_link < num_in_layer[2]; to_be_link++) {
-            for (int link_to = num_in_layer[1]; link_to > 0; link_to--) {
-                for (int link_to_children = 0; link_to_children < nodes[num - link_to]->numChild(); link_to_children++) {
-                    nodes[num - link_to]->setChild(link_to_children, nodes[num + to_be_link]);
-                }
+
+        int temp = 0;
+        for (int this_layer = 0; this_layer < this_layer_total; this_layer++) {
+
+            for (int child = 0; child < nodes[num + this_layer]->numChild(); child++) {
+
+                nodes[num + this_layer]->setChild(child, nodes[num + this_layer_total + child + temp]);
             }
+            temp += nodes[num + this_layer]->numChild();
+
         }
-        num += num_in_layer[2];
-    }
-
-    for (int i = 1; i < node_num; i++) {
-
-    }
-
-    for (int i = 0; i < node_num; i++) {
-
-        int child_to_add = nodes[i]->numChild();
-        for (int child = 0; child < child_to_add; child++) {
-            nodes[i]->setChild(child, nodes[i + child + 1]);
-        }
-
+        num += this_layer_total;
+        this_layer_total = temp;
     }
 
     // call unparse() of root to print whole program
