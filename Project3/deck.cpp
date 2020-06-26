@@ -1,34 +1,15 @@
 #include "deck.h"
 Deck::Deck() {
-    for (int i = 0; i < 13; i++) {
-        deck[i].suit = SPADES;
-        deck[i + 13].suit = HEARTS;
-        deck[i + 26].suit = CLUBS;
-        deck[i + 39].suit = DIAMONDS;
-    }
-    for (int j = 0; j <= 39; j+=13) {
-        deck[j].spot = TWO;
-        deck[j + 1].spot = THREE;
-        deck[j + 2].spot = FOUR;
-        deck[j + 3].spot = FIVE;
-        deck[j + 4].spot = SIX;
-        deck[j + 5].spot = SEVEN;
-        deck[j + 6].spot = EIGHT;
-        deck[j + 7].spot = NINE;
-        deck[j + 8].spot = TEN;
-        deck[j + 9].spot = JACK;
-        deck[j + 10].spot = QUEEN;
-        deck[j + 11].spot = KING;
-        deck[j + 12].spot = ACE;
-    }
+    reset();
     next = 0;
-
 }
 
 void Deck::reset() {
-    Deck new_deck;
-    for (int i = 0; i < DeckSize; i++) {
-        deck[i] = new_deck.deck[i];
+    for (int i = 0; i < DIAMONDS + 1; ++i) {
+        for (int j = 0; j < ACE + 1; ++j) {
+            deck[i * (ACE + 1) + j].spot = Spot(j);
+            deck[i * (ACE + 1) + j].suit = Suit(i);
+        }
     }
     next = 0;
 
