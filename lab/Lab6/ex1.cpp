@@ -153,6 +153,7 @@ class StmtListNode : public ASTNode {
         // TODO
         for (int i = 0; i < num_child; i++) {
             children[i]->unparse(indent); // unparse StmtNode
+            cout << ";/n";
         }
     }
 };
@@ -376,18 +377,20 @@ class AssignNode : public ExpNode {
     }
 };
 
-void save_input_node (ASTNode* a_node, string line);
 
 int main() {
     // TODO: read input line by line, allocate new node, store into array
     ASTNode* nodes[MAX_NUM_NODE];
+
     int node_num = 0;
-    int last_node_child = 0;
     cin >> node_num;
+    getchar();
+// Step 3: Save each line of input as a node into an array
+
     for (int i = 0; i < node_num; i++) {
+
         string line, node_type, optional_para;
         getline(cin, line);
-        // Step 3: Save each line of input as a node into an array
         int child_num = 0;
         stringstream ss;
         ss << line;
@@ -395,42 +398,69 @@ int main() {
 
         if (node_type == "ProgramNode") {nodes[i] = new ProgramNode(child_num);}
         else if (node_type == "DeclListNode") {nodes[i] = new DeclListNode(child_num);}
-        else if (node_type == "FnDeclNode") {
-            nodes[i] = new FnDeclNode(child_num);
-            for (int child = 0; child < child_num; child++) {
-                getline(cin, line);
-                ss << line;
-                int num;
-                ss >> node_type >> num;
-                nodes[i + child] = new IntNode(0);
-                if (node_type == "IntNode") {nodes[i]->setChild(child, nodes[i + child]);}
-                else if (node_type == "BoolNode") {nodes[i]->setChild(child, new BoolNode(0));}
-                else if (node_type == "VoidNode") {nodes[i]->setChild(child, new VoidNode(0));}
-            }
+        else if (node_type == "VarDeclNode") {nodes[i] = new VarDeclNode(child_num);}
+        else if (node_type == "FnDeclNode") {nodes[i] = new FnDeclNode(child_num);}
+        else if (node_type == "FormalDeclNode") {nodes[i] = new FormalDeclNode(child_num);}
+        else if (node_type == "FormalsListNode") {nodes[i] = new FormalsListNode(child_num);}
+        else if (node_type == "FnBodyNode") {nodes[i] = new FnBodyNode(child_num);}
+        else if (node_type == "StmtListNode") {nodes[i] = new StmtListNode(child_num);}
+        else if (node_type == "IntNode") {nodes[i] = new IntNode(child_num);}
+        else if (node_type == "BoolNode") {nodes[i] = new BoolNode(child_num);}
+        else if (node_type == "VoidNode") {nodes[i] = new VoidNode(child_num);}
+        else if (node_type == "AssignStmtNode") {nodes[i] = new AssignStmtNode(child_num);}
+        else if (node_type == "PostIncStmtNode") {nodes[i] = new PostIncStmtNode(child_num);}
+        else if (node_type == "PostDecStmtNode") {nodes[i] = new PostDecStmtNode(child_num);}
+        else if (node_type == "IntLitNode") {
+            int val;
+            ss >> val;
+            nodes[i] = new IntLitNode(child_num, val);
         }
-
-
-        last_node_child = child_num;
+        else if (node_type == "TrueNode") {nodes[i] = new TrueNode(child_num);}
+        else if (node_type == "FalseNode") {nodes[i] = new FalseNode(child_num);}
+        else if (node_type == "IdNode") {
+            string str;
+            ss >> str;
+            nodes[i] = new IdNode(child_num, str);
+        }
+        else if (node_type == "AssignNode") {nodes[i] = new AssignNode(child_num);}
     }
     // TODO: traverse array to construct the tree
+    // Step 4
+    nodes[0]->setChild(0, nodes[1]);
+    nodes[1]->setChild(0, nodes[2]);
+    int num = 3; // the nodes to be linked (from nodes[3] to nodes[node_num - 1])
+    int num_in_layer[2] = {nodes[1]->numChild(), nodes[2]->numChild()};
+    while (num < node_num) {
+        for (int to_be_link = 0; to_be_link < num_in_layer[2]; to_be_link++) {
+            for (int link_to = num_in_layer[1]; link_to > 0; link_to--) {
+                for (int link_to_children = 0; link_to_children < nodes[num - link_to]->numChild(); link_to_children++) {
+                    nodes[num - link_to]->setChild(link_to_children, nodes[num + to_be_link]);
+                }
+            }
+        }
+        num += num_in_layer[2];
+    }
+
+    for (int i = 1; i < node_num; i++) {
+
+    }
+
+    for (int i = 0; i < node_num; i++) {
+
+        int child_to_add = nodes[i]->numChild();
+        for (int child = 0; child < child_to_add; child++) {
+            nodes[i]->setChild(child, nodes[i + child + 1]);
+        }
+
+    }
 
     // call unparse() of root to print whole program
     ASTNode* root = nodes[0];
     root->unparse(0);
 
     // TODO: delete the allocated nodes
-    //每一个里面子类的delete
     for (int i = 0; i < node_num; i++) {
         delete nodes[i];
     }
 }
 
-void save_input_node (ASTNode* a_node, string line) {
-    string node_type, optional_para;
-    int child_num = 0;
-    getline(cin, line);
-    stringstream ss;
-    ss << line;
-    ss >> node_type >> child_num;
-    if (node_type == "ProgramNode") {a_node = new ProgramNode(child_num);};
-}
