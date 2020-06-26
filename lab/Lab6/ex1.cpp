@@ -129,6 +129,7 @@ class FormalsListNode : public ASTNode {
     void unparse(int indent) {
         // TODO
         for (int i = 0; i < num_child; i++) {
+            if (i != 0) cout << ", ";
             children[i]->unparse(indent); // unparse FormalDeclNode
         }
     }
@@ -284,7 +285,7 @@ class PostIncStmtNode : public StmtNode {
     void unparse(int indent) {
         // TODO
         children[0]->unparse(indent + 4); // unparse the ExpNode
-        cout << "++\n";
+        cout << "++";
     }
 };
 
@@ -295,7 +296,7 @@ class PostDecStmtNode : public StmtNode {
     void unparse(int indent) {
         // TODO
         children[0]->unparse(indent); // unparse the ExpNode
-        cout << "--\n";
+        cout << "--";
     }
 };
 
