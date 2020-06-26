@@ -60,6 +60,7 @@ int main() {/*
 
     print_triangle(arr, size);
     delete[] arr;*/
+/*
     int arr_try[5];
     for (int i = 0; i < 5; i++) {
         arr_try[i] = i;
@@ -71,7 +72,18 @@ int main() {/*
         cout << "after " << index << endl;
 
     }
+*/
+    for (int i = 0; i < 5; i++) {
+        string line;
+        getline(cin, line);
+        stringstream ss;
+        ss << line;
+        string type;
+        int num = 0;
+        ss >> type >> num;
 
+
+    }
 
     return 0;
 }

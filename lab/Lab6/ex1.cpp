@@ -32,6 +32,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -126,6 +127,9 @@ class FormalsListNode : public ASTNode {
 
     void unparse(int indent) {
         // TODO
+        for (int i = 0; i < num_child; i++) {
+            children[i]->unparse(indent); // unparse FormalDeclNode
+        }
     }
 };
 
@@ -135,6 +139,9 @@ class FnBodyNode : public ASTNode {
 
     void unparse(int indent) {
         // TODO, think about what indent value to pass to its children!
+        // For all its children in this function body, 4 spaces indent needed
+        children[0]->unparse(indent + 4); // unparse DeclListNode
+        children[1]->unparse(indent + 4); // unparse StmtListNode
     }
 };
 
@@ -144,6 +151,9 @@ class StmtListNode : public ASTNode {
 
     void unparse(int indent) {
         // TODO
+        for (int i = 0; i < num_child; i++) {
+            children[i]->unparse(indent); // unparse StmtNode
+        }
     }
 };
 
@@ -164,6 +174,8 @@ class VarDeclNode : public DeclNode {
 
     void unparse(int indent) {
         // TODO
+        children[0]->unparse(indent); // unparse TypeNode
+        children[1]->unparse(indent); // unparse IdNode
     }
 };
 
@@ -191,6 +203,9 @@ class FormalDeclNode : public DeclNode {
 
     void unparse(int indent) {
         // TODO
+        children[0]->unparse(indent); // unparse TypeNode
+        cout << " ";
+        children[1]->unparse(indent); // unparse IdNode
     }
 };
 
@@ -211,6 +226,8 @@ class IntNode : public TypeNode {
 
     void unparse(int indent) {
         // TODO
+        addIndent(indent);
+        cout << "int";
     }
 };
 
@@ -220,6 +237,8 @@ class BoolNode : public TypeNode {
 
     void unparse(int indent) {
         // TODO
+        addIndent(indent);
+        cout << "bool";
     }
 };
 
@@ -229,6 +248,8 @@ class VoidNode : public TypeNode {
 
     void unparse(int indent) {
         // TODO
+        addIndent(indent);
+        cout << "void";
     }
 };
 
@@ -249,6 +270,7 @@ class AssignStmtNode : public StmtNode {
 
     void unparse(int indent) {
         // TODO
+        children[0]->unparse(indent); // unparse AssignNode
     }
 };
 
@@ -258,6 +280,8 @@ class PostIncStmtNode : public StmtNode {
 
     void unparse(int indent) {
         // TODO
+        children[0]->unparse(indent + 4); // unparse the ExpNode
+        cout << "++\n";
     }
 };
 
@@ -267,6 +291,8 @@ class PostDecStmtNode : public StmtNode {
 
     void unparse(int indent) {
         // TODO
+        children[0]->unparse(indent); // unparse the ExpNode
+        cout << "--\n";
     }
 };
 
@@ -290,6 +316,8 @@ class IntLitNode : public ExpNode {
 
     void unparse(int indent) {
         // TODO
+        addIndent(indent);
+        cout << myVal;
     }
 
    private:
@@ -302,6 +330,8 @@ class TrueNode : public ExpNode {
 
     void unparse(int indent) {
         // TODO
+        addIndent(indent);
+        cout << "true";
     }
 };
 
@@ -311,6 +341,8 @@ class FalseNode : public ExpNode {
 
     void unparse(int indent) {
         // TODO
+        addIndent(indent);
+        cout << "false";
     }
 };
 
@@ -323,6 +355,8 @@ class IdNode : public ExpNode {
 
     virtual void unparse(int indent) {
         // TODO
+        addIndent(indent);
+        cout << myName;
     }
 
    private:
@@ -335,13 +369,49 @@ class AssignNode : public ExpNode {
 
     void unparse(int indent) {
         // TODO
+        children[0]->unparse(indent); // unparse the first ExpNode
+        cout << " = ";
+        children[1]->unparse(indent); //unparse the second ExpNode
+        cout << "\n";
     }
 };
+
+void save_input_node (ASTNode* a_node, string line);
 
 int main() {
     // TODO: read input line by line, allocate new node, store into array
     ASTNode* nodes[MAX_NUM_NODE];
+    int node_num = 0;
+    int last_node_child = 0;
+    cin >> node_num;
+    for (int i = 0; i < node_num; i++) {
+        string line, node_type, optional_para;
+        getline(cin, line);
+        // Step 3: Save each line of input as a node into an array
+        int child_num = 0;
+        stringstream ss;
+        ss << line;
+        ss >> node_type >> child_num;
 
+        if (node_type == "ProgramNode") {nodes[i] = new ProgramNode(child_num);}
+        else if (node_type == "DeclListNode") {nodes[i] = new DeclListNode(child_num);}
+        else if (node_type == "FnDeclNode") {
+            nodes[i] = new FnDeclNode(child_num);
+            for (int child = 0; child < child_num; child++) {
+                getline(cin, line);
+                ss << line;
+                int num;
+                ss >> node_type >> num;
+                nodes[i + child] = new IntNode(0);
+                if (node_type == "IntNode") {nodes[i]->setChild(child, nodes[i + child]);}
+                else if (node_type == "BoolNode") {nodes[i]->setChild(child, new BoolNode(0));}
+                else if (node_type == "VoidNode") {nodes[i]->setChild(child, new VoidNode(0));}
+            }
+        }
+
+
+        last_node_child = child_num;
+    }
     // TODO: traverse array to construct the tree
 
     // call unparse() of root to print whole program
@@ -349,4 +419,18 @@ int main() {
     root->unparse(0);
 
     // TODO: delete the allocated nodes
+    //每一个里面子类的delete
+    for (int i = 0; i < node_num; i++) {
+        delete nodes[i];
+    }
+}
+
+void save_input_node (ASTNode* a_node, string line) {
+    string node_type, optional_para;
+    int child_num = 0;
+    getline(cin, line);
+    stringstream ss;
+    ss << line;
+    ss >> node_type >> child_num;
+    if (node_type == "ProgramNode") {a_node = new ProgramNode(child_num);};
 }
