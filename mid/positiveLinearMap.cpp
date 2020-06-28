@@ -7,7 +7,7 @@ PositiveLinearMap::PositiveLinearMap(Vector &a):lm(LinearMap(a)) {
 }
 
 double PositiveLinearMap::evaluate(Vector &v) {
-   return lm.dot(v);
+   return LinearMap::evaluate(v);
 }
 
 std::string PositiveLinearMap::str() {

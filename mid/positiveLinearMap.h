@@ -1,12 +1,15 @@
 #include "linearMap.h"
+#ifndef positiveLinearMap_h
+#define positiveLinearMap_h
 // EFFECTS:
 class PositiveLinearMap {
 
-   linearMap lm;
+   LinearMap lm;
 
 public:
-   PositiveLinearMap(Vector &a);
+   explicit PositiveLinearMap(Vector &a);
 
    double evaluate(Vector &v);
    std::string str();
-}
+};
+#endif

@@ -1,8 +1,10 @@
+#ifndef Vector_h
+#define Vector_h
 class Vector {
    double w;
    double q;
 public:
-   Vector(double w=0, double q=0);
+   explicit Vector(double w=0, double q=0);
    Vector(Vector &v);
 
    double getX();
@@ -12,4 +14,5 @@ public:
    Vector scale(double s);
    double dot(Vector &v);
    std::string toString();   
-}
+};
+#endif

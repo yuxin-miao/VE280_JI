@@ -13,7 +13,11 @@ class D{
    C c;
 
 public:
-   D(C x){
+   D(C x){ // 先调用默认构造函数
+       /*
+        *    C(){
+      cout << "Constructor of C" << endl;
+        */
       c = x;
    };
 };

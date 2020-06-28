@@ -1,11 +1,13 @@
 #include "vector.h"
-// EFFECTS:
+#ifndef linearMap_h
+#define linearMap_h
 class LinearMap {
    Vector a;
 
 public:
-   LinearMap(Vector &a);
+   explicit LinearMap(Vector &a);
 
    double evaluate(Vector &v);
    std::string str();
-}
+};
+#endif

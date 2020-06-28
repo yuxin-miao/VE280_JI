@@ -13,3 +13,7 @@ Vector LinearFunction::evaluate(Vector &v) {
 Vector LinearFunction::str() {
    return '(' + a1.str() + ", " + a2.str() + ")";
 }
+
+LinearFunction::LinearFunction(Vector &x, Vector &y) {
+
+}
