@@ -16,8 +16,6 @@ void Deck::reset() {
 }
 
 void Deck::shuffle(int n) {
-
-    //没考虑dealt
     Deck temp;
     for (int i = 0; i < DeckSize; i++) {
         temp.deck[i] = deck[i];
@@ -33,9 +31,6 @@ void Deck::shuffle(int n) {
         deck[i] = temp.deck[i];
     }
     next = 0;
-
-
-
 }
 
 Card Deck::deal() {

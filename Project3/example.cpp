@@ -3,7 +3,7 @@
 #include "deck.h"
 
 using namespace std;
-
+/*
 int main()
 {
     Deck d;
@@ -28,3 +28,4 @@ int main()
 
     return result;
 }
+*/
