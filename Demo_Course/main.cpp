@@ -84,6 +84,14 @@ int main() {/*
 
 
     }
+    int* p1 = new int(1);
+    int* p2 = new int(2);
+    //p1 = p2; then no pointer pointing to the object "1"
+    // no way to release the memory occupied by "1"
+
+    delete p1;
+    delete p2; // no delete - memory leak
+    
 
     return 0;
 }
