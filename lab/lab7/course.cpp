@@ -33,7 +33,7 @@ public:
 
     // TODO: declare and implement the destructor
     ~TechnicalCourse() override  {
-        delete [] tasks;
+        delete[] tasks;
     }
     // TODO: declare updateTask method
     void updateTask(const std::string &type, int index, int due_month, int due_day) override;
@@ -49,14 +49,15 @@ void TechnicalCourse::updateTask(const std::string &type, int index, int due_mon
 //          throw an exception if tasks is full
 {
     // TODO: implement this function
-    int i = 0;
+    int i = 0; bool exist = false;
     for (i = 0; i < numTasks; i++) {
         if (tasks[i].type == type && tasks[i].index == index) { // this task exists in the array, update the due_day and due_month
             tasks[i].due_day = due_day;
             tasks[i].due_month = due_month;
+            exist = true;
         }
     }
-    if (i == numTasks && i < sizeTasks){ // not exist
+    if (!exist && numTasks < sizeTasks){ // not exist
         tasks[numTasks].type = type;
         tasks[numTasks].index = index;
         tasks[numTasks].due_month = due_month;
@@ -116,7 +117,7 @@ public:
     explicit UpperlevelTechnicalCourse(const std::string &course_code, int size = MAXTASKS) : TechnicalCourse(course_code,size) {};
 // 不确定 会发生什么如果无size
     // TODO: declare and implement the destructor
-    ~UpperlevelTechnicalCourse() override {delete [] tasks;};
+    ~UpperlevelTechnicalCourse() override = default;;
     void updateTask(const std::string &type, int index, int due_month, int due_day) override;
 };
 
