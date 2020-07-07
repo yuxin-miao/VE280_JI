@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Demo_Course.dir/L13_ADT/constructor/test_constructor.cpp.o"
   "CMakeFiles/Demo_Course.dir/main.cpp.o"
   "Demo_Course"
   "Demo_Course.pdb"

@@ -4,6 +4,10 @@
 #include "player.h"
 #include "rand.h"
 class Simple_Player: public Player {
+    // REQUIRES: bankroll >= minimum
+    // MODIFIES: player
+    // EFFECTS: follow the simple player pattern, play the game
+    // places the minimum allowable wager
 public:
     int bet(unsigned int bankroll, unsigned int minimum) override;
     bool draw(Card dealer, const Hand &player) override;
@@ -13,6 +17,10 @@ public:
 
 class Count_Player: public Simple_Player {
     int count{0};
+    // REQUIRES: bankroll >= minimum
+    // MODIFIES: player
+    // EFFECTS: follow the count player pattern, play the game
+    // keeps a running “count” of the cards
 public:
     int bet(unsigned int bankroll, unsigned int minimum) override;
     bool draw(Card dealer, const Hand &player) override;
@@ -51,10 +59,10 @@ void Simple_Player::shuffled() {}
 
 int Count_Player::bet(unsigned int bankroll, unsigned int minimum) {
     if (count >= 2 && (bankroll >= 2 * minimum)) return 2 * (int)minimum;
-    else return Simple_Player::bet(bankroll, minimum); // 是吗
+    else return Simple_Player::bet(bankroll, minimum);
 }
 
-bool Count_Player::draw(Card dealer, const Hand &player) {return Simple_Player::draw(dealer, player);} //？？困惑
+bool Count_Player::draw(Card dealer, const Hand &player) {return Simple_Player::draw(dealer, player);}
 
 void Count_Player::expose(Card c) {
     if (c.spot >= TEN) count -= 1;
@@ -67,9 +75,9 @@ void Count_Player::shuffled() {count = 0;} // when shuffled, reset count to zero
 static Simple_Player simple_return;
 static Count_Player count_return;
 // return pointers to each of these two global instances
-extern Player *get_Simple() {
+Player *get_Simple() {
     return &simple_return;
 }
-extern Player *get_Counting() {
+Player *get_Counting() {
     return &count_return;
 }

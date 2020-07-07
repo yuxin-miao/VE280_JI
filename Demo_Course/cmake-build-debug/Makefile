@@ -123,33 +123,6 @@ Demo_Course/fast:
 	$(MAKE) -f CMakeFiles/Demo_Course.dir/build.make CMakeFiles/Demo_Course.dir/build
 .PHONY : Demo_Course/fast
 
-L13_ADT/constructor/test_constructor.o: L13_ADT/constructor/test_constructor.cpp.o
-
-.PHONY : L13_ADT/constructor/test_constructor.o
-
-# target to build an object file
-L13_ADT/constructor/test_constructor.cpp.o:
-	$(MAKE) -f CMakeFiles/Demo_Course.dir/build.make CMakeFiles/Demo_Course.dir/L13_ADT/constructor/test_constructor.cpp.o
-.PHONY : L13_ADT/constructor/test_constructor.cpp.o
-
-L13_ADT/constructor/test_constructor.i: L13_ADT/constructor/test_constructor.cpp.i
-
-.PHONY : L13_ADT/constructor/test_constructor.i
-
-# target to preprocess a source file
-L13_ADT/constructor/test_constructor.cpp.i:
-	$(MAKE) -f CMakeFiles/Demo_Course.dir/build.make CMakeFiles/Demo_Course.dir/L13_ADT/constructor/test_constructor.cpp.i
-.PHONY : L13_ADT/constructor/test_constructor.cpp.i
-
-L13_ADT/constructor/test_constructor.s: L13_ADT/constructor/test_constructor.cpp.s
-
-.PHONY : L13_ADT/constructor/test_constructor.s
-
-# target to generate assembly for a file
-L13_ADT/constructor/test_constructor.cpp.s:
-	$(MAKE) -f CMakeFiles/Demo_Course.dir/build.make CMakeFiles/Demo_Course.dir/L13_ADT/constructor/test_constructor.cpp.s
-.PHONY : L13_ADT/constructor/test_constructor.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -186,9 +159,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Demo_Course"
-	@echo "... L13_ADT/constructor/test_constructor.o"
-	@echo "... L13_ADT/constructor/test_constructor.i"
-	@echo "... L13_ADT/constructor/test_constructor.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

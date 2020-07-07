@@ -39,7 +39,11 @@ void dynamic_size_array() {
     delete[] q;
 }
 void print_triangle(int A[], int size) ; //EFFECTS: Sum triangle from array
-int main() {/*
+int main() {
+    int x,y;
+    x = 4;
+    (y = x) += 2;
+    /*
     // Read the input
     int number;
     int size = 0;

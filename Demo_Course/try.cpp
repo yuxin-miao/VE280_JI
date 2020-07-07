@@ -4,7 +4,6 @@ using namespace std;
 class Base
 {
 public:
-    Base() {}; //Base的构造函数
     virtual ~Base() = 0;
     virtual void DoSomething()
     {
@@ -14,13 +13,15 @@ public:
 
 class Derived : public Base
 {
+    int* pArr;
+    int size;
 public:
-    Derived() {}; //Derived的构造函数
-    ~Derived() //Derived的析构函数
+    Derived(); //Derived的构造函数
+    ~Derived() override //Derived的析构函数
     {
        cout << "Output from the destructor of class Derived!" << endl;
      };
-    void DoSomething()
+    void DoSomething() override
     {cout << "Do something in class Derived!" << endl;
     };
 };
@@ -33,6 +34,8 @@ public:
 
 int main()
 {
+
+
     Base *pt = new subDerived();
     delete pt;
 

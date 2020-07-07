@@ -14,6 +14,10 @@ int main() {
         cout << "Insertion failed!" << endl;
     }
     IntSet& r = s;
+    //C++ allows a reference or pointer of a base type to refer to an object of a derived type.
+    // not inverse s.t. PosIntSet &ws = r
+    //While implicit downcasts are prohibited, we can do explicit downcasts with static_cast:
+    PosIntSet &cs = static_cast<PosIntSet&>(r);
     try {
         cout << "Insert -2 through the reference to s" << endl;
         r.insert(-2); // exception, not successful anymore
