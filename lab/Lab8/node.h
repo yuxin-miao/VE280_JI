@@ -1,7 +1,7 @@
 //
 // Created by zzebilly on 02/07/2020.
 //
-
+#include <string>
 #ifndef LAB8_NODE_H
 #define LAB8_NODE_H
 
@@ -23,18 +23,20 @@ private:
     // EFFECTS: add the node child to the children array
     //          throw an exception tooManyChildren when child_num exceed n
 
+
 public:
     Node(int _value, int _n = 2);
     // EFFECTS: create a root node with value and n
 
     ~Node();
     // EFFECTS: destroy the whole tree rooted at sub
+    void delete_tree();
 
     void addChild(int _value);
     // EFFECTS: create a child node with value and add it to the children array
     //			throw an exception tooManyChildren when child_num exceed n
 
-    void traverse();
+    void traverse() const;
     // EFFECTS: print the value of the nodes using a pre-order traversal,
     //          separated by a space.
     //          A pre-order traversal print the value of the node
@@ -55,6 +57,9 @@ public:
     // EFFECTS: return a reference of (i+1) th child node of this,
     //          e.g. node1[0] returns a reference of the first child node of node1
     //          if i is invalid, throw an invalidIndex
+
+    void descendant(std::string &des);
+    // EFFECTS: return all the descendants of this node
 };
 
 

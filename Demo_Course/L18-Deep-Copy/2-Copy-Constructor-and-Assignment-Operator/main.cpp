@@ -23,6 +23,7 @@ int main() {
         x = s;
         cout << "x: ";
         x.print();
+        x.insert(6);
     }
 
     s.query(5);
