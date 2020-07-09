@@ -17,6 +17,10 @@ class IntSet{
     // MODIFIES: this
     // EFFECTS:  copies is contents to this
 
+    void grow();
+    // MODIFIES: this
+    // EFFECTS:  enlarge the elts array, 
+    // 		 preserving current content
 public:
     IntSet(int size = MAXELTS);  
     // EFFECTS: create a set with specified capacity.
@@ -30,8 +34,7 @@ public:
 
     void insert(int v);
     // MODIFIES: this
-    // EFFECTS: this = this + {v} if room, 
-    //          throws int sizeElts otherwise.
+    // EFFECTS: this = this + {v}
     void remove(int v);
     // MODIFIES: this
     // EFFECTS: this = this - {v} if v is in this

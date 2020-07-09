@@ -19,7 +19,6 @@ IntSet& IntSet::operator= (const IntSet &is){
 }
 
 IntSet::~IntSet(){
-    cout << "Destructor\n";
     delete[] elts;
 }
 
@@ -45,6 +44,16 @@ void IntSet::copyFrom(const IntSet &is){
     numElts = is.numElts; 
 }
 
+void IntSet::grow(){
+    int *tmp = new int[sizeElts * 2];
+    for (int i = 0; i < numElts; i++) {
+        tmp[i] = elts[i];
+    }
+    delete [] elts;
+    elts = tmp;
+    sizeElts *= 2;
+}
+
 int IntSet::size(){
   return numElts;
 }
@@ -56,7 +65,7 @@ bool IntSet::query(int v){
 void IntSet::insert(int v){
     if (indexOf(v) == sizeElts){
         if (numElts == sizeElts) 
-            throw sizeElts; 
+           grow(); 
         elts[numElts++] = v;
     }
 }

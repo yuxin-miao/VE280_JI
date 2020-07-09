@@ -2,28 +2,23 @@
 #include "IntSet.h"
 
 using namespace std;
-/**Deep copy**/
+
 void foo(IntSet x){
-    cout << "In function foo" << endl;
 }
 
 int main() {
-
     IntSet s(10);
     s.insert(5);
+    s.print();
 
-    foo(s); // the copy constructor is called
+    foo(s);
     s.query(5);
-    cout << "s: ";
     s.print();
 
     {
-        cout << "In the block: "<< endl;
         IntSet x;
         x = s;
-        cout << "x: ";
         x.print();
-        x.insert(6);
     }
 
     s.query(5);
