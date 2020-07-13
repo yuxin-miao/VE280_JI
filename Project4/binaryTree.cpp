@@ -153,6 +153,7 @@ void copyFrom(Node* root, Node* new_copy) {
     copyFrom(root->rightSubtree(), new_copy->rightSubtree());
 }
 BinaryTree BinaryTree::copy() const {
+    if (!root) {BinaryTree emptyTree(nullptr); return emptyTree;}
     Node* new_copy = new Node(root->getstr(), root->getnum());
     copyFrom(root, new_copy);
     BinaryTree tree(new_copy);
