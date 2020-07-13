@@ -48,7 +48,8 @@ public:
     // REQUIRES: leftNode and rightNode points to dynamically allocated node objects.
     // EFFECTS: Returns a pointer to a node with "str" being the result of appending
     //          leftNode->str and rightNode->str, and "num" being leftNode->num +
-    //          rightNode->num. Also, Please allocate memory for this returned node
+    //          rightNode->num. Moreover, “left” should be leftNode and “right” should
+    //          be rightNode. Also, Please allocate memory for this returned node
     //          object.
     //
     //          For example, if leftNode->str = "a", and rightNode->str = "b", then
