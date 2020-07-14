@@ -16,7 +16,7 @@ void find_root(vector<Node*> &arr);
 void encode(const HuffmanTree& HTree, const vector<char>& content);
 // EFFECTS: output the binary code based on the HTree
 
-int main(int argc, char *argv[]) { //?? ？考虑一下单独处理空文件
+int main(int argc, char *argv[]) {
     vector<char> content;
     vector<int> freq; // used to store the character's frequency
     vector<char> character; // used to store every unique character
@@ -30,7 +30,6 @@ int main(int argc, char *argv[]) { //?? ？考虑一下单独处理空文件
             character.push_back(*ptr);
         }
     }
-
     /**CREATE NODES**/
     vector<Node*> arr;
     for (int i = 0; i < (int)character.size(); i++) {
@@ -46,13 +45,8 @@ int main(int argc, char *argv[]) { //?? ？考虑一下单独处理空文件
     }
     find_root(arr);
     HuffmanTree HTree(arr[0]);
-
     if (argc == 3) HTree.printTree();
     if (argc == 2) encode(HTree, content);
-
-
-
-
     return 0;
 }
 

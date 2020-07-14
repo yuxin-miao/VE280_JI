@@ -66,6 +66,13 @@ int main(int argc, char *argv[]) {
     Tree6.preorder_num();
     BinaryTree Tree7 = Tree6.copy();
     BinaryTree Tree8 = Tree4.copy();
-    cout << Tree8.covered_by(Tree4);
+    cout << Tree8.covered_by(Tree4) << endl;
+
+    BinaryTree Tree9 = Tree8.copy();
+    Tree9.preorder_num();
+    Tree8.preorder_num();
+    BinaryTree Tree10 = Tree9.copy();
+    BinaryTree Tree11 = emptyTree.copy();
+    cout << Tree11.depth();
     return 0;
 }
