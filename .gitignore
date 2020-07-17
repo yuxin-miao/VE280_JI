@@ -1,6 +1,8 @@
 *lbm*
 *lbq*
-*.*
+*
+!*.*
+!*/
 !*.cpp
 !*.h
 !*.py
@@ -27,6 +29,6 @@
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
-
 cmake-build-*/
 *.
+
