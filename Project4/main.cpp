@@ -25,6 +25,7 @@ int main(int argc, char *argv[]) {
     N4->setleft(N9);
     BinaryTree emptyTree(nullptr);
     BinaryTree Tree1(N1);
+    cout << Tree1.findPath("a") << endl;
 
     Node* D1 = new Node("ab", 3);
     BinaryTree Tree2(D1);

@@ -4,14 +4,14 @@ from random import randint
 import difflib
 import random
 
-
 count = 0  # used for count the different cases
 strLetter = "qwertyuiopasdfghjklzxcvbnm "
 
-for a in tqdm(range(1, 10001)):
+for a in tqdm(range(1, 100)):
 
     for b in range(1, 10):  # write the file used for compress
         with open("text.txt", "a") as f:
+            f.write(" ")
             f.write("\n")
             f.write("".join(random.sample(strLetter, b)) + "\n")
 
@@ -38,4 +38,3 @@ for a in tqdm(range(1, 10001)):
         with open("result.txt", 'w+') as f:
             f.write(result)
         exit(-1)
-
