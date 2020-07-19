@@ -17,10 +17,24 @@ Node* Node::rightSubtree() const{return right;}
 string Node::getstr() const {return str;}
 
 int Node::getnum() const {return num;}
+void deleteNode (Node * node) {
+    if (node->leftSubtree()) deleteNode(node->leftSubtree());
+    if (node->rightSubtree()) deleteNode(node->rightSubtree());
+    delete node;
+}
+void Node::setleft(Node *n) {
+    if (this->leftSubtree()) {
+        deleteNode(this->leftSubtree());
+    }
+    left = n;
+}
 
-void Node::setleft(Node *n) {left = n;}
-
-void Node::setright(Node *n) {right = n;}
+void Node::setright(Node *n) {
+    if(this->rightSubtree()) {
+        deleteNode(this->rightSubtree());
+    }
+    right = n;
+}
 
 void Node::incnum() {num++;}
 
