@@ -23,9 +23,15 @@ int main(int argc, char *argv[]) {
     N2->setright(N7);
     N2->setleft(N8);
     N4->setleft(N9);
+
     BinaryTree emptyTree(nullptr);
     BinaryTree Tree1(N1);
-    cout << Tree1.findPath("a") << endl;
+    Tree1.preorder_num();
+
+    Node* N10 = new Node("aaaa", 100);
+    N1->setright(N10);
+    Tree1.preorder_num();
+    cout << Tree1.findPath("b") << endl;
 
     Node* D1 = new Node("ab", 3);
     BinaryTree Tree2(D1);
