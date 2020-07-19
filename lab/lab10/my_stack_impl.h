@@ -71,7 +71,7 @@ void Stack<T>::push(T val) {
 template<class T>
 size_t Stack<T>::size() const {
     if (isEmpty()) return 0;
-    size_t size_num;
+    size_t size_num = 0;
     Node<T>* temp = head;
     while (temp) {
         size_num++;
@@ -134,26 +134,25 @@ void reverse(Stack<T> &s) {
 }
 template <class T>
 Stack<T> operator +(Stack<T> &s, T val) {
-    Stack<T>* new_s = new Stack<T>(s);
-    new_s->reverseStack();
-    new_s->push(val);
-    new_s->reverseStack();
-    return *new_s;
+    Stack<T> new_s(s);
+    new_s.reverseStack();
+    new_s.push(val);
+    new_s.reverseStack();
+    return Stack<T>(new_s);
 
 }
 
 template <class T>
 Stack<T> operator +(Stack<T> &first, Stack<T> &second) {
-    Stack<T>* result = new Stack<T>(first);
-    result->reverseStack();
+    Stack<T> result(first);
+    result.reverseStack();
     Stack<T> temp(second);
     while (!temp.isEmpty()) {
-        result->push(temp.top());
+        result.push(temp.top());
         temp.pop();
     }
-    result->reverseStack();
-
-    return *result;
+    result.reverseStack();
+    return Stack<T>(result);
 
 }
 #endif //MY_STACK_IMPL_H

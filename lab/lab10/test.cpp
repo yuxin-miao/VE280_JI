@@ -19,6 +19,7 @@ int main()
 {
     try{
         Stack<int> s1, s2;
+        s1.reverseStack();
         cout << s1.size() << endl;
         s1.push(4);
         s1.push(3);
@@ -39,12 +40,14 @@ int main()
         s3.print();
         cout << s3.size() << endl;
 
-        s3 = s3 + 8;
+        s3 = s3 + 87;
         s3.print();
         cout << s3.size() << endl;
 
 
         reverse(s3);
+        s3.print();
+        s3.pop();
         s3.print();
     }
     catch(stackEmpty){
