@@ -84,10 +84,8 @@ template<class T>
 void Stack<T>::pop() {
     if (isEmpty()) throw stackEmpty();
     Node<T>* victim = head;
-    T val = victim->val;
     head = head->next;
     delete victim;
-    //return val;
 }
 
 template<class T>
