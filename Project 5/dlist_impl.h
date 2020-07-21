@@ -76,12 +76,26 @@ T *Dlist<T>::remove(bool (*cmp)(const T *, const T *), T *ref) {
     node* itr = first;
     while (itr) {
         if (cmp(itr->op, ref)) {
-            (itr->next)->prev = itr->prev;
-            (itr->prev)->next = itr->next;
-            T* val = itr->op;
+            T* val;
+            if (itr->prev && itr->next) {
+                node* temp_prev = itr->prev;
+                temp_prev->next = itr->next;
+                itr->prev = temp_prev;
+                node *temp_next = itr->next;
+                temp_next->prev = itr->prev;
+                itr->next = temp_next;
+                val = itr->op;
+                delete itr;
+            }
+            else if (!itr->prev) { // itr is the first element
+                val = removeFront();
+            }
+            else if (!itr->next) { // itr is the last element
+                val = removeBack();
+            }
             return val;
         }
-        itr = first->next;
+        itr = itr->next;
     }
     return nullptr;
 }
@@ -130,6 +144,16 @@ Dlist<T> &Dlist<T>::operator=(const Dlist &l) {
 template<class T>
 Dlist<T>::~Dlist() {
     removeAll();
+}
+
+template<class T>
+void Dlist<T>::print() const {
+    node* itr = first;
+    while (itr) {
+        std::cout << *itr->op;
+        itr = itr->next;
+    }
+    std::cout << std::endl;
 }
 
 
