@@ -9,7 +9,7 @@ class Complex{
 public:
    Complex(double real=0, double img=0): 
       real(real), img(img){}
-   Complex operator      +(const Complex &c){
+   Complex operator      +(const Complex &c){ // defined inside
       return Complex(this->real + c.real, 
                      this->img + c.img);
    }
@@ -21,6 +21,7 @@ public:
    friend Complex operator-(const Complex &,  // since it is defined outside the class
                             const Complex &); // keyword friend needed
                             // or it could not access the private member
+                            // not a member function, but an ordinary function
 };
 
 Complex operator  -(const Complex &c1, 

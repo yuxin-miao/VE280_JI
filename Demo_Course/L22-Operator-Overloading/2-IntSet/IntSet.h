@@ -37,9 +37,12 @@ public:
     const int &operator[](int i) const;
     // EFFECTS: returns a const reference to the element at index i 
     //          if i<numElts, throws -1 otherwise
+    // const version: as it might be called with const objects or within some const member functions
     int &operator[](int i);
     // EFFECTS: returns a reference to the element at index i
     //          if i<numElts, throws -1 otherwise
+    // non const version: used to assign: is[5]=2
+    // if both versions are fine, then non-const version first
 };
 
 #endif
