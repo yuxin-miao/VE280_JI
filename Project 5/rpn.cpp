@@ -141,7 +141,10 @@ int computeRPN(string& rpn) {
          else { // an operator is found
              if (nums.empty()) throw 3; // not enough operand
              int* operand2 = nums.pop();
-             if (nums.empty()) throw 3;
+             if (nums.empty()) { // not enough operand, handle the object being poped
+                 delete operand2;
+                 throw 3;
+             }
              int* operand1 = nums.pop();
              switch (op[0]) {
                  case '+':
@@ -154,7 +157,11 @@ int computeRPN(string& rpn) {
                      nums.push(new int (*operand1 * (*operand2)));
                      break;
                  case '/':
-                     if (*operand2 == 0) throw 'a'; // divided by zero
+                     if (*operand2 == 0) { // divided by zero
+                         delete operand1;
+                         delete operand2;
+                         throw 'a';
+                     }
                      nums.push(new int(*operand1 / (*operand2)));
                      break;
                  default:

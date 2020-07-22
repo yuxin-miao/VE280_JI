@@ -88,6 +88,7 @@ int LRUCache::read(int address) {
     block* blo_remove = cache.remove(compare, new_read); // check whether exists block in cache has the same address
     if (blo_remove) { // if hits, blo_remove has already been removed
         cache.insertFront(blo_remove);
+        delete new_read;
         return blo_remove->data; // this data might be different from the data in memory
     }
     else { // if miss
