@@ -76,7 +76,7 @@ T *Dlist<T>::remove(bool (*cmp)(const T *, const T *), T *ref) {
     node* itr = first;
     while (itr) {
         if (cmp(itr->op, ref)) {
-            T* val;
+            T* val = nullptr;
             if (itr->prev && itr->next) {
                 node* temp_prev = itr->prev;
                 temp_prev->next = itr->next;
@@ -87,7 +87,7 @@ T *Dlist<T>::remove(bool (*cmp)(const T *, const T *), T *ref) {
                 val = itr->op;
                 delete itr;
             }
-            else if (!itr->prev) { // itr is the first element
+            else if (!itr->prev) { // itr is the first element or the only element
                 val = removeFront();
             }
             else if (!itr->next) { // itr is the last element

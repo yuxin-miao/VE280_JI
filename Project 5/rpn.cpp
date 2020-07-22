@@ -131,7 +131,6 @@ int computeRPN(string& rpn) {
     ss << rpn;
     string op;
     while (ss >> op) {
-
          if (isdigit(op[0])) { // an operand is found, push it to the stack
             stringstream temp;
             temp << op;
