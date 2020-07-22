@@ -13,7 +13,7 @@ class Dlist {
 
    public:
     // Operational methods
-    void print() const ; // ?? need to be deleted!
+    //void print() const ; // ?? need to be deleted!
     bool isEmpty() const;
     // EFFECTS: returns true if list is empty, false otherwise
 

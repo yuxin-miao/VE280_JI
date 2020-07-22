@@ -143,9 +143,9 @@ void LRUCache::printCache() {
 
 void LRUCache::printMem() {
     for (int i = 0; i < mem_size; i++) {
-        if (i != mem_size - 1) cout << memory[i] << " ";
-        else cout << memory[i] << endl;
+        cout << memory[i] << " ";
     }
+    cout << endl;
 }
 
 void implInstruction(const string& line, LRUCache& lruCache) {

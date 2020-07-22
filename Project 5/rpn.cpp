@@ -34,7 +34,7 @@ string convertInfix(const string& infix);
 int computeRPN(string& rpn);
 // EFFECTS: compute value based on the rpn expression, and return the result
 
-int main(int argc, char *argv[])
+int main()
 {
     string infix;
     getline(cin, infix);
