@@ -130,6 +130,7 @@ int computeRPN(string& rpn) {
     stringstream ss;
     ss << rpn;
     string op;
+    if(ss.rdbuf()->in_avail() == 0) throw 3; // the rpn expression is empty
     while (ss >> op) {
          if (isdigit(op[0])) { // an operand is found, push it to the stack
             stringstream temp;
