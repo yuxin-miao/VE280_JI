@@ -5,11 +5,11 @@ import random
 import os
 import time
 
-os.popen("g++ -Wall -std=c++17 -o cache ./yxm/cache.cpp")
-os.popen("g++ -Wall -std=c++17 -o rpn ./yxm/rpn.cpp")
+os.popen("g++ -Wall -Wextra -Werror -pedantic -std=c++17 -o cache ./yxm/cache.cpp")
+os.popen("g++ -Wall -Wextra -Werror -pedantic -std=c++17 -o rpn ./yxm/rpn.cpp")
 
-os.popen("g++ -Wall -std=c++17 -o lbmcache ./lbm/cache.cpp")
-os.popen("g++ -Wall -std=c++17 -o lbmrpn ./lbm/rpn.cpp")
+os.popen("g++ -std=c++17 -o lbmcache ./lbm/cache.cpp")
+os.popen("g++ -std=c++17 -o lbmrpn ./lbm/rpn.cpp")
 
 # wait until compiled
 time.sleep(2)

@@ -10,8 +10,8 @@ def generate_case(mem_size):
     with open("cacheIn.txt", "a") as f:
         for i in range(0, 5):
             # legal cases
-            f.write("READ " + str(random.randint(0, mem_size)) + '\n')
-            f.write("WRITE " + str(random.randint(0, mem_size)) + " " + str(random.randint(0, 200000)) + '\n')
+            f.write("READ " + str(random.randint(0, mem_size)) + " " + '\n')
+            f.write("WRITE " + str(random.randint(0, mem_size)) + " " + str(random.randint(0, 200000)) + " " + '\n')
             if i == 3:
                 f.write("PRINTCACHE" + '\n')
                 f.write("PRINTMEM" + '\n')
@@ -19,6 +19,7 @@ def generate_case(mem_size):
             f.write("READ " + '\n')
             f.write("WRITE " + str(random.randint(0, mem_size)) + '\n')
             f.write("WRITE " + '\n')
+            f.write("READ " + str(random.randint(-300, 0)) + " " + "\n")
             f.write("READ " + str(random.randint(0, mem_size)) + " " + str(random.randint(0, 200000)) + '\n')
             f.write("WRITE " + str(random.randint(0, mem_size)) + " " + str(random.randint(0, 200000)) + " " + str(random.randint(0, 200000)) + '\n')
             f.write("WRITE " + str(random.randint(-300, 900)) + " " + str(random.randint(0, 200000)) + '\n')
@@ -42,5 +43,5 @@ def cache_test(mem_size):
                 f.write(item + '\n')
         exit(-1)
 
-    if not valgrind_check('./cache', "cacheIn.txt", "yxmValgrind") or not valgrind_check('./lbmcache', "cacheIn.txt", "lbmValgrind"):
-        exit(-1)
+    # if not valgrind_check('./cache', "cacheIn.txt", "yxmValgrind") or not valgrind_check('./lbmcache',
+    # "cacheIn.txt", "lbmValgrind"): exit(-1)

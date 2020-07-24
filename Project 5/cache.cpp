@@ -1,8 +1,6 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <cstdlib>
-#include <cassert>
 #include "dlist.h"
 
 using namespace std;
@@ -37,9 +35,9 @@ public:
     // EFFECTS: prints the memory in given format
 };
 
-
 void implInstruction(const string& line, LRUCache& lruCache);
 // EFFECTS: implement corresponding instruction, throw exceptions if any
+
 int main() {
     string line;
     getline(cin, line);
@@ -154,9 +152,6 @@ void implInstruction(const string& line, LRUCache& lruCache) {
     string instr;
     ss >> instr;
     string temp;
-    //ss.rdbuf()->in_avail();
-
-    //cout << ss.rdbuf()->in_avail() << endl;
     if (instr == "READ") {
         ss >> ws; // in case the input is "READ "
         if (ss.rdbuf()->in_avail() == 0) { // no more operands could be read
@@ -164,7 +159,6 @@ void implInstruction(const string& line, LRUCache& lruCache) {
         }
         int address;
         ss >> address;
-        //cout << ss.rdbuf()->in_avail() << endl;
         ss >> ws;
         if (ss.rdbuf()->in_avail() != 0) throw 3.0; // still exit operands, too many
         int read_data = lruCache.read(address);

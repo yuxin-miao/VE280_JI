@@ -145,16 +145,4 @@ template<class T>
 Dlist<T>::~Dlist() {
     removeAll();
 }
-/*
-template<class T>
-void Dlist<T>::print() const {
-    node* itr = first;
-    while (itr) {
-        std::cout << *itr->op;
-        itr = itr->next;
-    }
-    std::cout << std::endl;
-}
-*/
-
 #endif //DLIST_IMPL_H

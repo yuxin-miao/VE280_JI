@@ -145,7 +145,7 @@ template<class T>
 Dlist<T>::~Dlist() {
     removeAll();
 }
-/*
+
 template<class T>
 void Dlist<T>::print() const {
     node* itr = first;
@@ -155,6 +155,6 @@ void Dlist<T>::print() const {
     }
     std::cout << std::endl;
 }
-*/
+
 
 #endif //DLIST_IMPL_H
