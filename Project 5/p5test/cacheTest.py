@@ -42,5 +42,5 @@ def cache_test(mem_size):
                 f.write(item + '\n')
         exit(-1)
 
-    if not valgrind_check('cache', "cacheIn.txt", "yxmValgrind") or not valgrind_check('lbmcache', "cacheIn.txt", "lbmValgrind"):
+    if not valgrind_check('./cache', "cacheIn.txt", "yxmValgrind") or not valgrind_check('./lbmcache', "cacheIn.txt", "lbmValgrind"):
         exit(-1)
