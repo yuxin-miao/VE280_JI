@@ -7,6 +7,8 @@ IntSet::IntSet(int size): elts(new int[size]),
     sizeElts(size), numElts(0){
 }
 
+// must pass by reference to avoid infinite recursion
+// const: avoid accidentally change the argument / ensure any instance(const object) could be the source
 IntSet::IntSet(const IntSet &is): elts(NULL), sizeElts(0), numElts(0){
     cout << "Copy constructor\n";
     copyFrom(is);

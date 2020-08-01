@@ -35,6 +35,7 @@ public:
 
 class PosIntSet : public IntSet{
     // OVERVIEW: a subclass, but not a subtype
+    // 不满足substitution principle
 public:
     virtual void insert(int v);
     // EFFECTS: if v is non-negative,

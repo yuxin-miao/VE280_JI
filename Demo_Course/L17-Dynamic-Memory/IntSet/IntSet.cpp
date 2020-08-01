@@ -2,13 +2,14 @@
 #include <iostream>
 
 using namespace std;
-
+// When creating a dynamic array, it stores the size of array along with the array
+// a pointer to the beginning of the array is returned (which is pointing behind the size)
 IntSet::IntSet(int size): elts(new int[size]),
-    sizeElts(size), numElts(0){
+    sizeElts(size), numElts(0){ // initialization syntax
 }
 
 IntSet::~IntSet(){
-    delete[] elts;
+    delete[] elts; // delete [] will look before (for the size) to see how many elements to return to the heap
 }
 
 int IntSet::indexOf(int v){

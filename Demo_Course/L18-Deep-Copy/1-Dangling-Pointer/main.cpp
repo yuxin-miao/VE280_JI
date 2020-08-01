@@ -15,7 +15,8 @@ int main(){
 
 //    {
 //        IntSet x;
-//        x = s;
+//        x = s; // x and s would have a pointer pointing to the same array
+//                  when x is destroyed after this block, pointer in s becomes a dangling pointer
 //    }
     s.print();
 

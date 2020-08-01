@@ -11,13 +11,13 @@ int main() {
     s.insert(5);
     s.print();
 
-    foo(s);
+    foo(s); // copy constructor will copy s inside the function
     s.query(5);
     s.print();
 
     {
         IntSet x;
-        x = s;
+        x = s; // assignment operator, need the two objects both exist
         x.print();
     }
 

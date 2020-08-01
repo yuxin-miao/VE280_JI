@@ -6,7 +6,7 @@ const int MAXELTS = 100;
 
 class IntSet{
 // OVERVIEW: a mutable set of integers, |set| <= sizeElts
-    int *elts;    // pointer to dynamic array
+    int *elts;    // pointer to dynamic array (rather than hold an array explicitly)
     int sizeElts; // capacity of array
     int numElts;  // current occupancy
 
@@ -15,7 +15,7 @@ class IntSet{
     //          array, sizeElts otherwise.
 
 public:
-    IntSet(int size = MAXELTS);  
+    IntSet(int size = MAXELTS);  // default argument, only add in declaration, not in definition
     // EFFECTS: create a set with specified capacity.
     // It defaults to MAXELTS if not supplied.
 
