@@ -6,7 +6,7 @@
 !*.cpp
 !*.h
 !*.py
-
+!*.md
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
