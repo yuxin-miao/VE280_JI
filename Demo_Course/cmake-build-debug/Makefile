@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named Try
+
+# Build rule for target.
+Try: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Try
+.PHONY : Try
+
+# fast build rule for target.
+Try/fast:
+	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/build
+.PHONY : Try/fast
+
+#=============================================================================
 # Target rules for targets named Demo_Course
 
 # Build rule for target.
@@ -150,6 +163,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/Demo_Course.dir/build.make CMakeFiles/Demo_Course.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+try.o: try.cpp.o
+
+.PHONY : try.o
+
+# target to build an object file
+try.cpp.o:
+	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/try.cpp.o
+.PHONY : try.cpp.o
+
+try.i: try.cpp.i
+
+.PHONY : try.i
+
+# target to preprocess a source file
+try.cpp.i:
+	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/try.cpp.i
+.PHONY : try.cpp.i
+
+try.s: try.cpp.s
+
+.PHONY : try.s
+
+# target to generate assembly for a file
+try.cpp.s:
+	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/try.cpp.s
+.PHONY : try.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -158,10 +198,14 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... Try"
 	@echo "... Demo_Course"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... try.o"
+	@echo "... try.i"
+	@echo "... try.s"
 .PHONY : help
 
 

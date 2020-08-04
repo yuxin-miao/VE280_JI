@@ -1,4 +1,8 @@
 #include <iostream>
+#include <deque>
+#include <map>
+#include <vector>
+#include <list>
 using namespace std;
 
 class Base
@@ -31,7 +35,71 @@ public:
     subDerived() {};
     ~subDerived()=default;
 };
+void add(double n1, double n2) {
+    cout << n1 + n2;
+}/*
+class A{
+    int i;
+public:
+    A(): i(0) {
+        cout << "dc";
+    }
+    A(const A&a) {
 
+    }
+};
+*/
+class A {
+public:
+    virtual void f() = 0;
+    virtual void g(){cout << "A::g" << endl;}
+    void h(){ cout << "A::h" << endl;}
+};
+class B: public A{
+public:
+    void f() {cout << "B::f" << endl;}
+    void g(){cout << "B::g" << endl;}
+    virtual void h(){ cout << "B::h" << endl;}
+};
+
+class C: public B{
+public:
+    void f() {cout << "C::f" << endl;}
+    void h(){ A::h();}
+};
+class D: public C{
+public:
+    void h(){ cout << "D::h" << endl;}
+};
+int main(){
+    B* pa;
+    B b;
+    C c;
+    D d;
+    c.f();
+    c.h();
+    pa = &b;
+    pa->f();
+    pa->g();
+    pa->h();
+
+    pa = &c;
+    pa->f();
+    pa->g();
+    pa->h();
+    A&ra = d;
+    ra.g();
+    ra.h();
+    d.f();
+    d.g();
+
+    list<int> l;
+    for (int i = 0; i < 10; i++) {
+        l.push_back(i);
+    }
+
+
+}/*
 int main()
 {
 
@@ -51,3 +119,4 @@ int main()
 
     return 0;
 }
+*/

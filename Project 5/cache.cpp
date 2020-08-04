@@ -37,31 +37,33 @@ public:
 
 void implInstruction(const string& line, LRUCache& lruCache);
 // EFFECTS: implement corresponding instruction, throw exceptions if any
+void throwException();
+// EFFECTS: throw exception
 
-int main() {
+int main() { // cache main function
     string line;
     getline(cin, line);
     int mem_size, cache_size;
     stringstream ss;
     ss << line;
-    ss >> cache_size >> mem_size;
+    ss >> cache_size >> mem_size; // get the first line of input
     LRUCache lruCache(cache_size, mem_size);
     while (getline(cin, line)) {
         try {
             implInstruction(line, lruCache);
-        } catch (int x) {
+        } catch (int x) { // catch the exception if any
             cout << "ERROR: Address out of bound" << endl;
         } catch (double y) {
             if (y == 10.0) cout << "ERROR: Not enough operands" << endl;
             else if (y == 3.0) cout << "ERROR: Too many operands" << endl;
             else if (y == 20.0) cout << "ERROR: Unknown instruction" << endl;
         } catch (exitPro ex) {
-            return 0;
+            return 0; // when exit, return 0
         }
     }
     return 0;
 }
-
+// constructor
 LRUCache::LRUCache(int cache_size, int memory_size):
     mem_size(memory_size),  cur_cache_size(0), max_cache_size(cache_size) {
     memory = new int[memory_size];
@@ -78,7 +80,7 @@ bool LRUCache::compare(const LRUCache::block *a, const LRUCache::block *b) {
     return a->address == b->address;
 }
 
-int LRUCache::read(int address) {
+int LRUCache::read(int address) { // read
     if (address < 0 || address >= mem_size) throw 3; // out of bound
     block* new_read = new block;
     new_read->address = address;
@@ -105,7 +107,7 @@ int LRUCache::read(int address) {
     return memory[address];
 }
 
-void LRUCache::write(int address, int data) {
+void LRUCache::write(int address, int data) { // write
     if (address < 0 || address >= mem_size) throw 3; // out of bound
     block* new_write = new block;
     new_write->address = address;
@@ -185,7 +187,11 @@ void implInstruction(const string& line, LRUCache& lruCache) {
     else if (instr == "PRINTCACHE") lruCache.printCache();
     else if (instr == "PRINTMEM") lruCache.printMem();
     else if (instr == "EXIT") {
-        throw exitPro();
+        throwException();
     }
     else throw 20.0;
+}
+
+void throwException(){
+    throw exitPro();
 }

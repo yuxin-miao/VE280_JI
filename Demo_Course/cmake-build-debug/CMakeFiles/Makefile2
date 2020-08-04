@@ -53,6 +53,7 @@ CMAKE_BINARY_DIR = /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/Demo_Co
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/Try.dir/all
 all: CMakeFiles/Demo_Course.dir/all
 
 .PHONY : all
@@ -63,9 +64,37 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/Try.dir/clean
 clean: CMakeFiles/Demo_Course.dir/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/Try.dir
+
+# All Build rule for target.
+CMakeFiles/Try.dir/all:
+	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/depend
+	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/Demo_Course/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target Try"
+.PHONY : CMakeFiles/Try.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Try.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/Demo_Course/cmake-build-debug/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Try.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/yuxinmiao/CLionProjects/Clion_2020Summer/VE280/Demo_Course/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/Try.dir/rule
+
+# Convenience name for target.
+Try: CMakeFiles/Try.dir/rule
+
+.PHONY : Try
+
+# clean rule for target.
+CMakeFiles/Try.dir/clean:
+	$(MAKE) -f CMakeFiles/Try.dir/build.make CMakeFiles/Try.dir/clean
+.PHONY : CMakeFiles/Try.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/Demo_Course.dir

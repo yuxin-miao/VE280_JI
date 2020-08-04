@@ -37,21 +37,21 @@ BinaryTree &BinaryTree::operator=(const BinaryTree &bt) {
 
 bool BinaryTree::isSorted() {
     if (empty) return true;
-    if (left) {
+    if (left && !left->empty) {
         if (this->v < left->v) return false;
-        if (left->right && this->v < left->right->v) return false;
+        if (left->right && !left->right->empty &&  this->v < left->right->v) return false;
     }
-    if (right) {
+    if (right && !right->empty) {
         if (this->v > right->v) return false;
-        if (right->left && this->v > right->left->v) return false;
+        if (right->left && !right->left->empty && this->v > right->left->v) return false;
     }
     return left->isSorted() && right->isSorted();
 }
 
 int BinaryTree::count() {
     if (empty) return 0;
-    int cnt = 1;
-    if (left) cnt = cnt + left->count();
-    if (right) cnt = cnt + right->count();
-    return cnt;
+    int count = 1;
+    if (left) count = count + left->count();
+    if (right) count = count + right->count();
+    return count;
 }

@@ -122,7 +122,6 @@ List<int> Add(const List<int> &a, const List<int> &b) {
     auto aPtr = a.returnHead();
     auto bPtr = b.returnHead();
     while (aPtr || bPtr) {
-
         sum = carry + (aPtr ? aPtr->val : 0) + (bPtr ? bPtr->val : 0); // if no digit, treat as zero
         carry = (sum >= 10) ? 1 : 0; // if sum larger than 10, update the carry
         sum %= 10; // if sum larger than 10, only keep the single digit
@@ -130,7 +129,6 @@ List<int> Add(const List<int> &a, const List<int> &b) {
         if (aPtr) aPtr = aPtr->next;
         if (bPtr) bPtr = bPtr->next;
     }
-
     if (carry == 1) {
         sumResult.insertBack(1);
     }

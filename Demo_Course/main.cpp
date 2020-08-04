@@ -102,6 +102,7 @@ int main() {
 
 void print_triangle(int A[], int size) {
     // TODO
+
     if (size == 1) {
         print_array(A, size);
         return;
